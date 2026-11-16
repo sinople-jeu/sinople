@@ -16,8 +16,8 @@
     "bonus_serie_plafond_pourcent": 50
   },
   "reussite": {
-    "lecon": 0.7,
-    "epreuve": 0.8
+    "lecon": 1,
+    "epreuve": 1
   },
   "serie": {
     "fuseau": "Europe/Paris",

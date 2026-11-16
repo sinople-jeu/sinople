@@ -27,6 +27,8 @@ Pour déplacer des blocs ou changer la mise en page, demandez à Claude.
 | Page introuvable (404) | `src/pages/404.astro` |
 
 - Thèmes, animaux et carrières : `src/data/themes.json`.
+- La scène du complot (animaux, rôle de chacun, 5 niveaux du feu, pierres et bannières, grades du règne, garde, duel, images) : `src/data/scene.json`. Avec `themes.json`, il forme le « manifeste » du contenu, vérifié par `src/lib/contenu/manifeste.ts` : ajouter un animal ou un thème se fait dans ces deux fichiers, sans toucher au code.
+- Ce que la scène montre (qui est assis, qui est éclairé, taille du feu, bûches, duel ouvert…) est calculé à partir de la progression du joueur dans `src/lib/scene/etat-scene.ts`.
 - Questions : une leçon par fichier dans `src/content/questions/<thème>/<étape>-<leçon>.json` (par exemple `religion/1-1.json`), avec le niveau, l'explication et la source de chaque question. Le format est décrit dans `src/lib/contenu/schema.ts`. Chaque question garde son `id` pour toujours (il sert à la révision).
 - Les façons de répondre (`type` d'une question) :
   - `qcm` : 4 choix, `juste` = le numéro du bon (en comptant à partir de 0) ;

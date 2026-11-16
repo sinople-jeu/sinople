@@ -22,6 +22,8 @@ export type Etat = {
   grades: Record<string, number>;
   leconsFaites: Record<string, LeconFaite>;
   revision: Record<string, Fiche>;
+  /** Après le duel gagné : le renard règne (date du sacre et points de savoir à ce moment-là). Absent avant. */
+  regne?: { depuis: string; pointsAuSacre: number };
 };
 
 /** Le sous-ensemble de localStorage dont on a besoin (remplaçable dans les tests). */
@@ -124,7 +126,8 @@ export function terminerLecon(etat: Etat, fin: FinDeLecon, maintenant: number): 
   return {
     ...etat,
     profil: { ...etat.profil, points: etat.profil.points + fin.points, serie: apresLecon(etat.profil.serie, maintenant) },
-    conjures: etat.conjures.includes(fin.theme) ? etat.conjures : [...etat.conjures, fin.theme],
+    // L'animal vient s'asseoir au feu à la première leçon réussie de son thème.
+    conjures: !fin.reussie || etat.conjures.includes(fin.theme) ? etat.conjures : [...etat.conjures, fin.theme],
     grades: fin.epreuve ? { ...etat.grades, [fin.theme]: gradeApresEpreuve(grade, fin.etape, fin.reussie) } : etat.grades,
     leconsFaites: fin.reussie || avant
       ? {
@@ -150,4 +153,10 @@ export function terminerRevision(etat: Etat, reponses: Record<string, boolean>, 
   }
   const vies = viesApresRevision(etat.profil.vies, Object.keys(reponses).length, maintenant);
   return { ...etat, profil: { ...etat.profil, vies }, revision };
+}
+
+/** Le duel est gagné : le renard prend le trône. Ne change ni les vies, ni les grades, ni les points. */
+export function couronner(etat: Etat, maintenant: number): Etat {
+  if (etat.regne) return etat;
+  return { ...etat, regne: { depuis: jourParis(maintenant), pointsAuSacre: etat.profil.points } };
 }

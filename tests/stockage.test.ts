@@ -53,6 +53,7 @@ describe('stockage local', () => {
       theme: 'religion', leconId: 'religion-1-2', etape: 1, epreuve: false, reussie: false, points: 10, score: 20, reponses: {},
     }, t0);
     expect(rate.leconsFaites).toEqual({});
+    expect(rate.conjures).toEqual([]); // l'animal ne vient qu'à une leçon réussie
     const epreuve = terminerLecon(rate, {
       theme: 'religion', leconId: 'religion-1-6', etape: 1, epreuve: true, reussie: true, points: 100, score: 90, reponses: {},
     }, t0);

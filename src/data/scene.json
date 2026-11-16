@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "version": "2026-11-17.1",
+  "animaux": [
+    { "id": "renard", "nom": "Renard", "theme": "generale", "role": "joueur", "phase": "complot" },
+    { "id": "cerf", "nom": "Cerf", "theme": "histoire", "role": "conjure", "phase": "complot" },
+    { "id": "hibou", "nom": "Hibou", "theme": "geographie", "role": "conjure", "phase": "complot" },
+    { "id": "paon", "nom": "Paon", "theme": "culture", "role": "conjure", "phase": "complot" },
+    { "id": "belier", "nom": "Bélier", "theme": "religion", "role": "conjure", "phase": "complot" },
+    { "id": "pie", "nom": "Pie", "theme": "politique", "role": "conjure", "phase": "complot" },
+    { "id": "lapin", "nom": "Lapin", "theme": "savoir-vivre", "role": "conjure", "phase": "complot" },
+    { "id": "sanglier", "nom": "Sanglier", "theme": "sport", "role": "conjure", "phase": "complot" },
+    { "id": "grenouille", "nom": "Grenouille", "theme": "savoir-inutile", "role": "conjure", "phase": "complot" },
+    { "id": "lion", "nom": "Lion", "theme": null, "role": "roi", "phase": "complot" }
+  ],
+  "feu": {
+    "noms": ["Braise", "Petit feu", "Feu", "Beau feu", "Grand feu"],
+    "seuils": [0, 3, 10, 20, 33],
+    "pierres_a": 3,
+    "bannieres_a": 6
+  },
+  "regne": {
+    "grades": [
+      { "nom": "Roi", "points": 0 },
+      { "nom": "Sage", "points": 2000 },
+      { "nom": "Mage", "points": 4000 },
+      { "nom": "Archimage", "points": 8000 },
+      { "nom": "Grand Mage suprême", "points": 16000 },
+      { "nom": "Esprit universel", "points": 32000 }
+    ]
+  },
+  "garde": {
+    "a_l_ouverture": 0.33,
+    "apres_buche_brulee": true,
+    "intervalle_min_minutes": 4
+  },
+  "duel": {
+    "questions": 20
+  },
+  "assets": {}
+}
