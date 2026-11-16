@@ -24,6 +24,7 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
       <p class="grade" id="grade">{joueur.grade}</p>
       <p class="recit" id="recit">{joueur.recit}</p>
       <a class="reviser" id="reviser" href={`${base}/revision`} hidden></a>
+      <a class="bouton duel" id="duel" href={`${base}/duel`} hidden>Défier le roi</a>
       <a class="bouton" href={`${base}/themes`}>Prendre la route</a>
     </section>
   </main>
@@ -35,6 +36,8 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
   import themes from '../data/themes.json';
   import { serieDuJour, jourParis } from '../lib/jeu/serie';
   import { aReviser } from '../lib/jeu/revision';
+  import { vueScene } from '../lib/scene/etat-scene';
+  import { manifesteEmbarque } from '../lib/contenu/manifeste';
   const etat = lireEtat(stockageNavigateur());
   const maintenant = Date.now();
   // La flamme : jours de série (0 si un jour manqué n'a pas été couvert par un gel), et les gels en réserve.
@@ -53,12 +56,18 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
     lien.textContent = `${aRevoir} question${aRevoir > 1 ? 's' : ''} à réviser`;
     lien.hidden = false;
   }
-  // Le grade affiché est celui du renard (culture générale).
-  document.getElementById('grade')!.textContent = themes.find((t) => t.id === 'generale')!.grades[(etat.grades.generale ?? 1) - 1];
+  // Le grade affiché est celui du renard (culture générale), puis, après le sacre, son grade de roi.
+  const vue = vueScene(etat, manifesteEmbarque(), maintenant);
+  const essaiRegne = new URLSearchParams(location.search).get('essai') === 'regne';
+  document.getElementById('grade')!.textContent = vue.regne?.nomGrade ?? (essaiRegne ? 'Roi (essai)' : themes.find((t) => t.id === 'generale')!.grades[(etat.grades.generale ?? 1) - 1]);
+  // Les 9 animaux au 6e grade : le duel contre le roi est ouvert.
+  document.getElementById('duel')!.hidden = !vue.duelOuvert || !!vue.regne;
   document.getElementById('points')!.textContent = String(etat.profil.points);
   const n = etat.conjures.length;
   if (n > 0) document.getElementById('recit')!.textContent =
     n === 1 ? 'Un conjuré écoute le renard au coin du feu' : `${n} conjurés écoutent le renard au coin du feu`;
+  if (vue.duelOuvert && !vue.regne) document.getElementById('recit')!.textContent = 'Le complot est prêt : le roi peut tomber';
+  if (vue.regne || essaiRegne) document.getElementById('recit')!.textContent = 'Le renard règne, ses conjurés autour du feu';
 </script>
 
 <style>
@@ -106,4 +115,6 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
   .recit { font: italic 1.15rem var(--police-recit); margin-bottom: 16px !important; }
   /* Bouton à la taille de son texte : il ne doit pas écraser la barre d'onglets. */
   .bouton { width: auto; padding: 12px 36px; font-size: 1rem; }
+  .bouton.duel { margin-bottom: 12px; background: var(--or); color: var(--encre); }
+  .bouton[hidden] { display: none; }
 </style>

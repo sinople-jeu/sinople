@@ -94,3 +94,26 @@ describe('vue de la scène', () => {
     expect(couronner(etat, t0 + 1)).toBe(etat); // on ne se fait sacrer qu'une fois
   });
 });
+
+import { gardeDoitPasser } from '../src/scene/garde';
+
+describe('garde', () => {
+  const memoire = () => {
+    const d = new Map<string, string>();
+    return { getItem: (k: string) => d.get(k) ?? null, setItem: (k: string, v: string) => void d.set(k, v) };
+  };
+  it('passe à l’ouverture une fois sur trois environ, puis pas avant 4 minutes', () => {
+    const local = memoire();
+    expect(gardeDoitPasser(m, 5, t0, local, memoire(), 0.9)).toBe(false);
+    expect(gardeDoitPasser(m, 5, t0, local, memoire(), 0.1)).toBe(true);
+    expect(gardeDoitPasser(m, 5, t0 + 3 * 60_000, local, memoire(), 0.1)).toBe(false);
+    expect(gardeDoitPasser(m, 5, t0 + 5 * 60_000, local, memoire(), 0.1)).toBe(true);
+  });
+  it('passe au retour d’une leçon où une bûche a brûlé, sans toucher à la progression', () => {
+    const local = memoire();
+    const session = memoire();
+    expect(gardeDoitPasser(m, 5, t0, local, session, 0.9)).toBe(false); // ouverture, pas de chance
+    expect(gardeDoitPasser(m, 5, t0 + 1000, local, session, 0.9)).toBe(false); // rien n'a brûlé
+    expect(gardeDoitPasser(m, 4, t0 + 2000, local, session, 0.9)).toBe(true); // une bûche a brûlé
+  });
+});

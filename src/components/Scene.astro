@@ -12,6 +12,10 @@ const { mode = 'accueil', actif } = Astro.props;
 <script>
   import { monterScene } from '../scene/scene';
   for (const el of document.querySelectorAll<HTMLElement>('.scene-complot')) {
-    monterScene(el, { mode: el.dataset.mode === 'theme' ? 'theme' : 'accueil', actif: el.dataset.actif || null });
+    monterScene(el, {
+      mode: el.dataset.mode === 'theme' ? 'theme' : 'accueil',
+      actif: el.dataset.actif || null,
+      essaiRegne: new URLSearchParams(location.search).get('essai') === 'regne',
+    });
   }
 </script>

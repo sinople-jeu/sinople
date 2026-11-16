@@ -9,11 +9,13 @@ import { creerCouches, placerCouches, type Couche } from './parallax';
 import { creerPerso, eclairer, animerPerso, placer, type Perso } from './animaux';
 import { aller, avancer, type Marche } from './marche';
 import { creerFeu, majFeu, animerFeu } from './feu';
+import { Sprite } from './sprite';
 import { creerTas, majTas } from './vies';
 import { majGrade } from './grades';
-import { CAMERA, MARCHE, SCENE, ANIMAUX } from './reglages';
+import { gardeDoitPasser, creerGarde, avancerGarde, lancerGarde } from './garde';
+import { CAMERA, MARCHE, SCENE, ANIMAUX, GARDE } from './reglages';
 
-export type OptionsScene = { mode: 'accueil' | 'theme'; actif: string | null };
+export type OptionsScene = { mode: 'accueil' | 'theme'; actif: string | null; /** ?essai=regne : voir le décor du règne sans rien enregistrer. */ essaiRegne?: boolean };
 
 const CLE_INTRO = 'sinople-intro-vue';
 const CLE_VUS = 'sinople-scene-vus';
@@ -62,7 +64,10 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
 
   const monde = document.createElement('div');
   monde.className = 'monde';
-  const couches = creerCouches(m, 'nuit');
+  // Après la prise du trône, le décor change : l'aube, le château aux couleurs du renard.
+  const regne = vue.regne ?? (options.essaiRegne ? { grade: 1, nomGrade: m.regne.grades[0].nom } : null);
+  const couches = creerCouches(m, regne && m.decors.regne ? 'regne' : 'nuit');
+  if (regne) racine.classList.add('regne');
   // La couche de la clairière (feu et animaux) avance avec la caméra ; le premier plan passe devant.
   const clairiere = document.createElement('div');
   clairiere.className = 'couche couche-clairiere';
@@ -88,9 +93,18 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
     const p = creerPerso(a, m, a.place ? 0 : rang++);
     if (!va.present) continue;
     eclairer(p, va);
-    majGrade(p, va, va.assis);
+    majGrade(p, regne && va.role === 'joueur' ? { ...va, nomGrade: regne.nomGrade } : va, va.assis);
     persos.set(a.id, p);
     clairiere.append(p.el);
+  }
+  if (regne && m.assets['trone-rondins']) {
+    // Le trône de rondins, derrière la place du renard.
+    const r = persos.get(m.animaux.find((a) => a.role === 'joueur')!.id)!;
+    const t = new Sprite(m.assets['trone-rondins'], 'trône', '#7a3b2e').el;
+    t.style.position = 'absolute';
+    t.style.transform = `translate(${r.x - 15}px, ${r.y - 34}px)`;
+    t.style.zIndex = String(r.y - 1);
+    clairiere.append(t);
   }
   const marches = new Map<string, Marche>();
   const renard = [...persos.values()].find((p) => m.animaux.find((a) => a.id === p.id)?.role === 'joueur')!;
@@ -147,6 +161,15 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
     }
   }
 
+  // Le garde : il passe au fond, tout le monde se cache et le feu baisse, puis tout revient.
+  const garde = creerGarde(m);
+  clairiere.append(garde.el);
+  if (!moteur.reduit && gardeDoitPasser(m, vue.buches, Date.now(), local(), session())) {
+    // Il attend que le renard ait fini de marcher.
+    const attendre = (): unknown => ((marches.get(renard.id)?.cible ?? null) !== null ? setTimeout(attendre, 500) : lancerGarde(garde));
+    setTimeout(attendre, GARDE.attente * 1000);
+  }
+
   // Taille entière et caméra.
   let echelle: Echelle;
   let camera = 0;
@@ -176,6 +199,13 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
       if (p) avancer(p, mch, dt);
     }
     for (const p of persos.values()) animerPerso(p, t, dt);
+    const phase = avancerGarde(garde, dt);
+    const cache = phase === 'passe';
+    if (racine.classList.contains('garde-passe') !== cache) {
+      racine.classList.toggle('garde-passe', cache);
+      feu.flammes.el.hidden = cache || vue.eteint;
+      feu.braises.hidden = !(cache || vue.eteint);
+    }
     animerFeu(feu, t);
     const cible = viser();
     camera += (cible - camera) * Math.min(1, dt * CAMERA.suivi);

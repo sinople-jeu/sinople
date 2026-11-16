@@ -48,3 +48,14 @@ export const FEU = {
   /** Écart entre deux bûches du tas. */
   ecartBuches: 12,
 };
+
+export const GARDE = {
+  /** Vitesse du garde, en pixels par seconde (il traverse toute la scène). */
+  vitesse: 60,
+  /** Ligne de ses pieds, au fond de la clairière. */
+  y: 128,
+  /** Délai avant son arrivée, à l'ouverture (après l'intro du renard s'il y en a une). */
+  attente: 2.5,
+  /** Temps pour se cacher et pour revenir (fondu). */
+  fondu: 0.4,
+};

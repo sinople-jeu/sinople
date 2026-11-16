@@ -110,6 +110,10 @@
 }
 .scene-complot .perso.ombre .etiquette { opacity: 0.45; }
 
+/* Le garde passe : tout le monde se cache derrière les arbres. */
+.scene-complot .perso { transition: opacity 0.4s; }
+.scene-complot.garde-passe .perso { opacity: 0; }
+
 /* Bûches : une bûche brûlée s'efface. */
 .scene-complot .tas-de-buches { position: absolute; left: 0; top: 0; }
 .scene-complot .buche { transition: opacity 0.8s; }

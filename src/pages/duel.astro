@@ -1,0 +1,25 @@
+---
+// Le duel final contre le lion. Ouvert quand les 9 animaux ont leur 6e grade ;
+// /duel?essai=1 permet de l'essayer tout de suite, sans rien enregistrer.
+import Base from '../layouts/Base.astro';
+import Duel from '../islands/Duel';
+import { getCollection } from 'astro:content';
+import scene from '../data/scene.json';
+import type { QuestionDuel } from '../lib/jeu/duel';
+import '../styles/lecteur.css';
+import '../styles/duel.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const questions: QuestionDuel[] = (await getCollection('questions')).flatMap(({ data }) =>
+  data.questions.flatMap((q) =>
+    q.type === 'qcm' && !q.image
+      ? [{ id: q.id, theme: data.theme, q: q.q, choix: q.choix, juste: q.juste, explication: q.explication, source: q.source }]
+      : [],
+  ),
+);
+---
+<Base titre="Duel contre le roi" nav={false}>
+  <main class="page" id="duel" data-base={base}>
+    <Duel client:only="preact" base={base} questions={questions} nombre={scene.duel.questions} />
+  </main>
+</Base>
