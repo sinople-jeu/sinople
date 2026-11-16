@@ -13,6 +13,8 @@ export type AnimalEnScene = {
   role: 'joueur' | 'conjure' | 'roi';
   /** Assis au feu (le renard l'est toujours ; le roi jamais avant la fin du complot). */
   assis: boolean;
+  /** Visible dans la scène : assis, ou animal du thème ouvert (il attend à l'orée du bois avant sa première leçon réussie). */
+  present: boolean;
   /** Éclairé par le feu ; sinon dans l'ombre, on ne voit que ses yeux jaunes. */
   eclaire: boolean;
   /** Grade de 1 à 6 (0 s'il n'est pas encore venu au feu, ou pour le roi). */
@@ -87,8 +89,9 @@ export function vueScene(etat: Etat, m: Manifeste, maintenant: number, actif: st
     const assis = assisAuFeu(etat, a);
     const grade = a.theme && assis ? (etat.grades[a.theme] ?? GRADE_DE_DEPART) : 0;
     const noms = a.theme ? themes.get(a.theme)?.grades : undefined;
-    const eclaire = !eteint && assis && (actif === null || a.theme === actif);
-    return { id: a.id, nom: a.nom, theme: a.theme, role: a.role, assis, eclaire, grade, nomGrade: grade && noms ? noms[grade - 1] : null };
+    const present = assis || (actif !== null && a.theme === actif);
+    const eclaire = !eteint && present && (actif === null || a.theme === actif);
+    return { id: a.id, nom: a.nom, theme: a.theme, role: a.role, assis, present, eclaire, grade, nomGrade: grade && noms ? noms[grade - 1] : null };
   });
   const venus = animaux.filter((a) => a.assis && a.role === 'conjure').length;
   const niveauFeu = niveauDuFeu(progressionDuFeu(etat, m), m.feu.seuils);

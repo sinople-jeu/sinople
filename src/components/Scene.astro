@@ -1,0 +1,17 @@
+---
+// Le bandeau de la scène du complot (environ un quart de l'écran), en pixel art.
+// mode « accueil » : intro du renard, animaux venus au feu, tous éclairés.
+// mode « theme » : le renard va voir l'animal du thème, seul éclairé ; les autres dans l'ombre, yeux jaunes.
+// Les réglages (vitesses, durées) sont dans src/scene/reglages.ts ; le contenu dans src/data/scene.json.
+import '../styles/scene.css';
+interface Props { mode?: 'accueil' | 'theme'; actif?: string }
+const { mode = 'accueil', actif } = Astro.props;
+---
+<div class="scene-complot" data-mode={mode} data-actif={actif ?? ''}></div>
+
+<script>
+  import { monterScene } from '../scene/scene';
+  for (const el of document.querySelectorAll<HTMLElement>('.scene-complot')) {
+    monterScene(el, { mode: el.dataset.mode === 'theme' ? 'theme' : 'accueil', actif: el.dataset.actif || null });
+  }
+</script>

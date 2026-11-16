@@ -18,6 +18,11 @@ export const asset = z.object({
   images: z.number().int().positive().default(1),
   ips: z.number().positive().default(8),
   boucle: z.boolean().default(true),
+  /** Planche en grille : nombre d'images par ligne (par défaut, toutes sur une ligne). */
+  colonnes: z.number().int().positive().optional(),
+  /** Point d'appui dans une image (les pieds, la base du feu), en pixels. Par défaut : milieu du bas. */
+  ancre: z.tuple([z.number().int(), z.number().int()]).optional(),
+  /** Placeholder signalé : le dessin manque encore, on affiche un bloc avec ce texte. */
   a_dessiner: z.string().optional(),
 });
 
@@ -40,6 +45,15 @@ export const animal = z.object({
   role: z.enum(['joueur', 'conjure', 'roi']),
   /** « complot » : compte pour faire tomber le roi. « regne » : arrivé après le couronnement, ne rebloque pas le duel. */
   phase: z.enum(['complot', 'regne']).default('complot'),
+  /** Place autour du feu : x des pieds, y des pieds (plus grand = plus près), taille du placeholder. Sans place : rangé automatiquement. */
+  place: z.object({ x: z.number().int(), y: z.number().int(), l: z.number().int().positive().default(28), h: z.number().int().positive().default(40) }).optional(),
+  /** Planches de l'animal (ids dans `assets`) ; absentes = placeholder signalé. */
+  sprites: z
+    .object({ idle: z.string(), marche: z.string(), assis: z.string(), non: z.string(), cache: z.string() })
+    .partial()
+    .default({}),
+  /** Couleur du placeholder. */
+  couleur: z.string().default('#8a7a6a'),
 });
 
 const croissant = (t: number[]) => t.every((v, i) => i === 0 || v > t[i - 1]);
@@ -68,6 +82,8 @@ export const manifeste = z
       intervalle_min_minutes: z.number().min(0),
     }),
     duel: z.object({ questions: z.number().int().positive() }),
+    /** Décors : couches de parallax, de la plus lointaine à la plus proche. `vitesse` 0 = immobile, 1 = avance avec la scène ; `bas` = ligne du bas de la couche (180 = bas de la scène). */
+    decors: z.record(z.string(), z.array(z.object({ id, asset: z.string(), vitesse: z.number().min(0), bas: z.number().int().optional() }))),
     assets: z.record(z.string(), asset).default({}),
   })
   .superRefine((m, ctx) => {
@@ -79,6 +95,12 @@ export const manifeste = z
       if (!animaux.has(t.animal)) ctx.addIssue({ code: 'custom', message: `le thème ${t.id} a un animal inconnu : ${t.animal}` });
     for (const a of m.animaux)
       if (a.theme && !themes.has(a.theme)) ctx.addIssue({ code: 'custom', message: `l'animal ${a.id} a un thème inconnu : ${a.theme}` });
+    for (const a of m.animaux)
+      for (const s of Object.values(a.sprites))
+        if (s && !m.assets[s]) ctx.addIssue({ code: 'custom', message: `l'animal ${a.id} utilise une image inconnue : ${s}` });
+    for (const [nom, couches] of Object.entries(m.decors))
+      for (const c of couches)
+        if (!m.assets[c.asset]) ctx.addIssue({ code: 'custom', message: `le décor ${nom} utilise une image inconnue : ${c.asset}` });
     if (m.animaux.filter((a) => a.role === 'joueur').length !== 1) ctx.addIssue({ code: 'custom', message: 'il faut exactement un animal joueur' });
   });
 

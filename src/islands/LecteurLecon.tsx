@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { lireEtat, ecrireEtat, stockageNavigateur } from '../lib/stockage/local';
 import { viesActuelles, perdreVie, prochaineVieDans } from '../lib/jeu/vies';
+import scene from '../data/scene.json';
+import themesDonnees from '../data/themes.json';
 import { construireChemin, leconAccessible, type LeconDuChemin } from '../lib/jeu/chemin';
 import { regles } from '../lib/jeu/regles';
 import { pointsQcm, pointsSaisie, type Bilan } from '../lib/jeu/points';
@@ -77,6 +79,27 @@ function FeuEteint() {
 
 /** Typographie française : espace fine insécable avant ? ! : ; (le signe ne part plus seul à la ligne). */
 const typo = (t: string) => t.replace(/\s+([?!:;])/g, '\u202f$1');
+/**
+ * L'animal du thème, en petit à côté des bûches : il secoue la tête et soupire à chaque mauvaise réponse.
+ * Le renard a son dessin ; les autres animaux sont des placeholders signalés tant qu'ils ne sont pas dessinés.
+ */
+function Compagnon({ base, theme, non }: { base: string; theme: string; non: number }) {
+  const t = themesDonnees.find((x) => x.id === theme);
+  const id = (t?.animal ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const a = scene.animaux.find((x) => x.id === id);
+  if (!a) return null;
+  const dessin = (a as { sprites?: { idle?: string } }).sprites?.idle;
+  return (
+    <span key={non} class={`compagnon${non > 0 ? ' non' : ''}`} aria-hidden="true" title={dessin ? a.nom : `À dessiner : ${a.nom.toLowerCase()} qui secoue la tête`}>
+      {dessin ? (
+        <span class="tete-renard" style={{ backgroundImage: `url(${base}/scene/renard/idle.png)` }} />
+      ) : (
+        <span class="tete-a-dessiner" style={{ background: a.couleur }} />
+      )}
+      {non > 0 && <span class="soupir">pff…</span>}
+    </span>
+  );
+}
 
 function formatDuree(ms: number) {
   const min = Math.ceil(ms / 60_000);
@@ -108,6 +131,8 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
   // Un court temps avant « Continuer » : un double toucher ne saute plus l'explication.
   const verrou = useRef(false);
   const [attente, setAttente] = useState(0);
+  // Nombre de mauvaises réponses : chaque nouvelle relance l'animation de l'animal.
+  const [non, setNon] = useState(0);
 
   // Au chargement : leçon verrouillée → retour au chemin ; plus de vie → feu éteint.
   useEffect(() => {
@@ -237,6 +262,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     setTimeout(() => (verrou.current = false), 400);
     setReponses((r) => ({ ...r, [q.id]: juste }));
     setPoints((p) => ({ ...p, [q.id]: gagnes }));
+    if (!juste) setNon((n) => n + 1);
     if (!juste && !revision) {
       // La bûche brûle tout de suite : quitter la leçon ne la rend pas.
       const maintenant = Date.now();
@@ -369,6 +395,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
         <div class="barre" role="progressbar" aria-label="Avancement" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={fait}>
           <div class="remplissage" style={{ width: `${pourcent}%` }} />
         </div>
+        <Compagnon base={base} theme={lecon.theme} non={non} />
         <Buches vies={vies} />
       </header>
 

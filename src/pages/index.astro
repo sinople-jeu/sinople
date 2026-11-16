@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Feu from '../components/Feu.astro';
+import Scene from '../components/Scene.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Valeurs d'exemple : elles viendront du compte du joueur à l'étape 2 (Supabase).
@@ -9,11 +9,9 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
 <Base titre="Accueil" fond="#191826" nuit>
   <main class="accueil">
     <h1 class="invisible">Sinople, le feu des conjurés</h1>
-    <div class="ciel">
-      <!-- Le feu des conjurés : le renard seul au début, puis un animal par thème joué.
-           La vidéo du goupil conquérant reste dans public/accueil/ si on veut la remettre. -->
-      <Feu accueil />
-    </div>
+    <!-- La scène du complot : le renard arrive au feu, puis un animal par thème joué.
+         L'ancien feu dessiné (src/components/Feu.astro) et la vidéo du goupil conquérant restent dans le dépôt. -->
+    <Scene mode="accueil" />
 
     <section class="compteurs">
       <p class="serie" id="serie" aria-label="Série : 0 jour">
@@ -73,10 +71,9 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
     color: var(--creme);
     text-align: center;
   }
-  .ciel { flex: 1; min-height: 0; width: 100%; overflow: hidden; background: #1d1f4a; }
-  .ciel :global(.feu) { height: 100%; }
   .compteurs {
-    flex: none;
+    flex: 1;
+    justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
