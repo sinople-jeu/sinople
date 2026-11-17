@@ -20,7 +20,7 @@ export interface Regles {
   grades: { max: number };
   saisie: { fautes_tolerees: number; lettres_min_pour_tolerance: number; articles_ignores: string[]; part_pour_juste: number };
   garde_fous: { secondes_min_par_question: number; parties_max_par_heure: number };
-  ligues: { taille_groupe: number; montent: number; descendent: number };
+  ligues: { taille_groupe: number; montent: number; descendent: number; noms: string[]; couleurs: string[] };
 }
 
 export const regles: Regles = donnees;

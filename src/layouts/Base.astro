@@ -41,6 +41,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       };
       const lancer = () => {
         verifierContenu();
+        let attente = false;
+        try { attente = !!localStorage.getItem('sinople-scores-en-attente'); } catch {}
+        if (attente) import('../lib/compte/score').then((m) => m.viderFile()).catch(() => {});
         if (avecCompte() && !location.pathname.endsWith('/compte')) import('../lib/compte/client').then((c) => c.synchroniser()).catch(() => {});
       };
       if ('requestIdleCallback' in window) requestIdleCallback(lancer, { timeout: 3000 });

@@ -10,6 +10,7 @@ import { regles } from '../lib/jeu/regles';
 import { pointsQcm, pointsSaisie, type Bilan } from '../lib/jeu/points';
 import { estAcceptee, trouverExacte, trouverReponse, saisieJuste } from '../lib/jeu/reponses';
 import { enregistrerFin, enregistrerRevision } from '../scripts/fin-de-lecon';
+import type { ReponseBrute } from '../lib/jeu/correction';
 import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles } from '../lib/jeu/formats';
 import { Molette, Jauge, Pastilles, Registre, nombre, type ImageQuestion, type QuestionMolette, type QuestionJauge, type QuestionPastilles, type QuestionRegistre } from './Formats';
 
@@ -120,6 +121,9 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
   const [corrige, setCorrige] = useState(false);
   const [reponses, setReponses] = useState<Record<string, boolean>>({});
   const [points, setPoints] = useState<Record<string, number>>({});
+  // Réponses brutes (le choix, la valeur, le texte…) : le serveur les corrige lui-même pour valider le score.
+  const brutes = useRef<Record<string, ReponseBrute>>({});
+  const debut = useRef(Date.now());
   // Réponse à taper : le texte en cours, les réponses de la liste déjà trouvées, le chrono.
   const [texte, setTexte] = useState('');
   const [trouvees, setTrouvees] = useState<number[]>([]);
@@ -240,20 +244,25 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     if (q.type === 'qcm' || q.type === 'registre') {
       if (choisi < 0) return;
       gagnes = pointsQcm(juste);
+      brutes.current[q.id] = q.type === 'qcm' ? choisi : q.choix[choisi];
     } else if (q.type === 'molette' || q.type === 'jauge') {
       if (valeur === null) return;
       gagnes = pointsEstimation(valeur, q.juste, q.tolerance ?? (q.type === 'jauge' ? 5 : 0));
+      brutes.current[q.id] = valeur;
     } else if (q.type === 'pastilles') {
       if (!cochees.length) return;
       gagnes = pointsPastilles(cochees, q.justes);
+      brutes.current[q.id] = cochees;
     } else {
       let n = trouvees.length;
+      brutes.current[q.id] = trouvees.map((k) => q.reponses[k][0]);
       if (!liste) {
         // Le champ lui-même fait foi : « Entrée » peut arriver avant que l'affichage ait suivi la frappe.
         const saisie = champ.current?.value ?? texte;
         if (!saisie.trim()) return;
         n = estAcceptee(saisie, q.reponses[0]) ? 1 : 0;
         setTrouvees(n ? [0] : []);
+        brutes.current[q.id] = [saisie];
       }
       juste = saisieJuste(n, q.reponses.length);
       gagnes = pointsSaisie(n, q.reponses.length);
@@ -310,6 +319,9 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     }
     const fin = enregistrerFin({ theme: lecon.theme, leconId: lecon.id, etape: lecon.etape, epreuve: lecon.epreuve, reponses, points });
     setBilan(fin.bilan);
+    // Le serveur recompte les points pour la ligue (sans bloquer l'écran de fin, et sans réseau : plus tard).
+    const envoi = { lecon: lecon.id, brutes: brutes.current, duree_ms: Date.now() - debut.current };
+    import('../lib/compte/score').then((m) => m.envoyerFinDeLecon(envoi)).catch(() => {});
     if (fin.gradeApres > fin.gradeAvant) setPromu(fin.gradeApres);
     setEcran('fin');
   }

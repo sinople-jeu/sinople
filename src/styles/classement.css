@@ -1,0 +1,32 @@
+/* Classement des ligues. Les couleurs des blasons sont dans src/data/regles.json (ligues.couleurs). */
+.cl, .cl-vide { max-width: 34rem; margin: 0 auto; padding-bottom: 96px; display: grid; gap: 16px; }
+.cl-vide { text-align: center; justify-items: center; padding-top: 32px; }
+.cl-vide p { margin: 0; max-width: 32ch; color: var(--encre-douce); }
+.cl-tete { display: flex; gap: 14px; align-items: center; padding-top: 8px; }
+.cl-tete h1 { font-size: 1.6rem; }
+.cl-tete p { margin: 4px 0 0; color: var(--encre-douce); font-size: .95rem; }
+/* Un petit écu héraldique de la couleur de la ligue. */
+.cl-blason {
+  flex: none;
+  width: 44px; height: 52px;
+  background: var(--blason);
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+  box-shadow: inset 0 0 0 3px rgb(0 0 0 / .18);
+}
+.cl-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.cl-ligne {
+  display: grid; grid-template-columns: 2.2rem 1fr auto; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--blanc); border-radius: 14px;
+  border-left: 5px solid transparent;
+}
+.cl-ligne.monte { border-left-color: var(--juste); }
+.cl-ligne.descend { border-left-color: var(--faux); }
+.cl-ligne.moi { background: var(--sinople-clair); font-weight: 600; }
+.cl-rang { font-weight: 700; color: var(--encre-douce); text-align: center; }
+.cl-pseudo { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cl-points { font-variant-numeric: tabular-nums; }
+.cl-echelle { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; gap: 4px; }
+.cl-echelle li { display: grid; justify-items: center; gap: 4px; font-size: .75rem; color: var(--encre-douce); opacity: .55; }
+.cl-echelle li.ici { opacity: 1; color: var(--encre); font-weight: 700; }
+.cl-echelle .cl-blason { width: 26px; height: 31px; }
+.cl-compte { text-align: center; margin: 0; }

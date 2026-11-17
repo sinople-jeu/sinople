@@ -31,3 +31,15 @@ describe('correction côté serveur', () => {
     expect(partieCredible(10, 60_000)).toBe(true);
   });
 });
+
+import { serieDepuisJours } from '../src/lib/jeu/serveur';
+
+describe('série recalculée par le serveur', () => {
+  it('compte les jours consécutifs jusqu’à hier ou aujourd’hui, comme le navigateur', () => {
+    expect(serieDepuisJours([], '2026-11-17')).toBe(0);
+    expect(serieDepuisJours(['2026-11-14', '2026-11-15', '2026-11-16', '2026-11-16'], '2026-11-17')).toBe(3);
+    expect(serieDepuisJours(['2026-11-15', '2026-11-16', '2026-11-17'], '2026-11-17')).toBe(3);
+    expect(serieDepuisJours(['2026-11-10', '2026-11-11', '2026-11-15'], '2026-11-17')).toBe(0);
+    expect(serieDepuisJours(['2026-11-12', '2026-11-16', '2026-11-17'], '2026-11-17')).toBe(2);
+  });
+});
