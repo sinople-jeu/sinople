@@ -466,7 +466,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       </header>
 
       <section class="ecran-question">
-        <p class="theme">{nomTheme} · {lecon.titre} · {q.niveau}</p>
+        <p class="theme"><span>{nomTheme}</span> <span>{typo(lecon.titre)}</span> <span>{q.niveau}</span></p>
         <h1 class="question" id="question">{typo(q.q)}</h1>
         {q.image && <Tableau key={q.id} image={q.image} corrige={corrige} />}
         {q.type === 'saisie' ? (

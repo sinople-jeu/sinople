@@ -25,7 +25,7 @@
 .cl-rang { font-weight: 700; color: var(--encre-douce); text-align: center; }
 .cl-pseudo { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cl-points { font-variant-numeric: tabular-nums; }
-.cl-echelle { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; gap: 4px; }
+.cl-echelle { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 14px; }
 .cl-echelle li { display: grid; justify-items: center; gap: 4px; font-size: .75rem; color: var(--encre-douce); opacity: .55; }
 .cl-echelle li.ici { opacity: 1; color: var(--encre); font-weight: 700; }
 .cl-echelle .cl-blason { width: 26px; height: 31px; }
