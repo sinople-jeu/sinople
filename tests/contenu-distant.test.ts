@@ -4,7 +4,6 @@ import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { manifesteEmbarque, validerManifeste, erreursManifeste, type Manifeste } from '../src/lib/contenu/manifeste';
 import { synchroniserContenu, CLE_MANIFESTE, type Magasin, type CacheFichiers } from '../src/lib/contenu/distant';
-// @ts-expect-error : script Node sans types
 import { fabriquerPaquet } from '../scripts/paquet-contenu.mjs';
 
 const URL_M = 'https://exemple.test/contenu/manifest.json';
