@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.5",
+  "version": "2026-11-17.6",
   "animaux": [
     {
       "id": "renard",
@@ -392,13 +392,13 @@
     },
     "garde": {
       "src": "/scene/garde/garde.png",
-      "largeur": 54,
-      "hauteur": 78,
+      "largeur": 32,
+      "hauteur": 46,
       "images": 1,
       "ips": 1,
       "ancre": [
-        27,
-        78
+        16,
+        46
       ]
     },
     "trone-rondins": {
@@ -494,12 +494,12 @@
     },
     "garde-lanterne": {
       "src": "/scene/garde/lanterne.png",
-      "largeur": 11,
-      "hauteur": 20,
+      "largeur": 7,
+      "hauteur": 13,
       "images": 1,
       "ips": 1,
       "ancre": [
-        5,
+        3,
         0
       ]
     },
