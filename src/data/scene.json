@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.4",
+  "version": "2026-11-17.6",
   "animaux": [
     {
       "id": "renard",
@@ -47,7 +47,17 @@
         "l": 22,
         "h": 30
       },
-      "couleur": "#8a6240"
+      "couleur": "#8a6240",
+      "sprites": {
+        "idle": "hibou-idle",
+        "marche": "hibou-marche",
+        "assis": "hibou-assis"
+      },
+      "yeux": [
+        20,
+        23,
+        11
+      ]
     },
     {
       "id": "paon",
@@ -381,9 +391,15 @@
       "a_dessiner": "bannière"
     },
     "garde": {
-      "largeur": 24,
-      "hauteur": 56,
-      "a_dessiner": "garde avec lanterne"
+      "src": "/scene/garde/garde.png",
+      "largeur": 32,
+      "hauteur": 46,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        16,
+        46
+      ]
     },
     "trone-rondins": {
       "largeur": 30,
@@ -475,6 +491,73 @@
       "hauteur": 18,
       "images": 1,
       "zoom": 2
+    },
+    "garde-lanterne": {
+      "src": "/scene/garde/lanterne.png",
+      "largeur": 7,
+      "hauteur": 13,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        3,
+        0
+      ]
+    },
+    "foret-bord-gauche": {
+      "src": "/scene/foret/bord-gauche.png",
+      "largeur": 480,
+      "hauteur": 192,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-bord-droite": {
+      "src": "/scene/foret/bord-droite.png",
+      "largeur": 528,
+      "hauteur": 192,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "hibou-idle": {
+      "src": "/scene/hibou/idle.png",
+      "largeur": 48,
+      "hauteur": 64,
+      "images": 6,
+      "ips": 6,
+      "boucle": true,
+      "ancre": [
+        24,
+        63
+      ]
+    },
+    "hibou-marche": {
+      "src": "/scene/hibou/marche.png",
+      "largeur": 48,
+      "hauteur": 64,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        24,
+        63
+      ]
+    },
+    "hibou-assis": {
+      "src": "/scene/hibou/assis.png",
+      "largeur": 48,
+      "hauteur": 64,
+      "images": 6,
+      "ips": 5,
+      "boucle": true,
+      "ancre": [
+        24,
+        63
+      ]
     }
   },
   "decors": {
@@ -483,6 +566,20 @@
         "id": "foret",
         "asset": "foret-fond",
         "vitesse": 1,
+        "bas": 384
+      },
+      {
+        "id": "foret-bord-gauche",
+        "asset": "foret-bord-gauche",
+        "vitesse": 1,
+        "x": -960,
+        "bas": 384
+      },
+      {
+        "id": "foret-bord-droite",
+        "asset": "foret-bord-droite",
+        "vitesse": 1,
+        "x": 688,
         "bas": 384
       },
       {
@@ -547,6 +644,20 @@
         "id": "foret",
         "asset": "foret-fond",
         "vitesse": 1,
+        "bas": 384
+      },
+      {
+        "id": "foret-bord-gauche",
+        "asset": "foret-bord-gauche",
+        "vitesse": 1,
+        "x": -960,
+        "bas": 384
+      },
+      {
+        "id": "foret-bord-droite",
+        "asset": "foret-bord-droite",
+        "vitesse": 1,
+        "x": 688,
         "bas": 384
       },
       {

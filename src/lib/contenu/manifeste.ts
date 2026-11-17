@@ -72,6 +72,8 @@ export const animal = z.object({
     .default({}),
   /** Couleur du placeholder. */
   couleur: z.string().default('#8a7a6a'),
+  /** Les yeux jaunes dans l'ombre : [x, y, largeur] en pixels de l'image (x, y = l'œil de gauche ; largeur d'un œil à l'autre, 4 par défaut). Sans valeur, ceux du renard. */
+  yeux: z.array(z.number().int()).min(2).max(3).optional(),
 });
 
 const croissant = (t: number[]) => t.every((v, i) => i === 0 || v > t[i - 1]);

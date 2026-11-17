@@ -59,12 +59,22 @@ export const FEU = {
 };
 
 export const GARDE = {
-  /** Vitesse du garde, en pixels par seconde (il traverse toute la scène). */
-  vitesse: 60,
-  /** Ligne de ses pieds, au fond de la clairière. */
-  y: 300,
+  /** Vitesse du garde sur le chemin, en pixels par seconde (lente : il est loin). */
+  vitesse: 14,
+  /** Le chemin peint dans la forêt (points des pieds) : il sort des arbres au fond et descend en lacets jusqu'à l'herbe de la clairière. */
+  chemin: [[322, 264], [330, 269], [326, 274], [314, 278], [296, 282], [279, 287], [277, 292], [290, 296], [304, 300], [306, 307]] as [number, number][],
   /** Délai avant son arrivée, à l'ouverture (après l'intro du renard s'il y en a une). */
   attente: 2.5,
   /** Temps pour se cacher et pour revenir (fondu). */
   fondu: 0.4,
+  /** Pas par seconde (le corps se soulève à chaque pas). */
+  pasParSeconde: 1.6,
+  /** Hauteur du soulèvement, en pixels. */
+  levee: 1,
+  /** Oscillation de la lanterne, en degrés de chaque côté. */
+  balancement: 9,
+  /** Où pend la lanterne dans le dessin du garde (coin haut gauche de son image). */
+  lanterne: { x: 0, y: 25 },
+  /** Rayon de la lueur de la lanterne. */
+  lueur: 20,
 };

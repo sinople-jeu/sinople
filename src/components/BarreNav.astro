@@ -1,10 +1,9 @@
 ---
-// Barre d'onglets du bas, façon appli : Accueil, Quiz, Révision, Stats, Classement.
+// Barre d'onglets du bas, façon appli : Quiz (la page d'entrée), Révision, Stats, Classement.
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const chemin = Astro.url.pathname.replace(base, '') || '/';
 const liens = [
-  { href: '/', nom: 'Accueil', icone: 'M4 11 12 4l8 7v9h-5v-6H9v6H4z' },
-  { href: '/themes', nom: 'Quiz', icone: 'M3 5.5C6 4.3 9 4.5 11 6v13c-2-1.4-5-1.6-8-.5zM21 5.5C18 4.3 15 4.5 13 6v13c2-1.4 5-1.6 8-.5z' },
+  { href: '/', nom: 'Quiz', icone: 'M3 5.5C6 4.3 9 4.5 11 6v13c-2-1.4-5-1.6-8-.5zM21 5.5C18 4.3 15 4.5 13 6v13c2-1.4 5-1.6 8-.5z' },
   { href: '/revision', nom: 'Révision', icone: 'M12 4a8 8 0 1 0 8 8h-2.5A5.5 5.5 0 1 1 12 6.5V9l4-3.5L12 2z' },
   { href: '/stats', nom: 'Stats', icone: 'M4 19h16v2H4zM5 15l4-5 4 3 6-8 1.6 1.2-7.2 9.6-4-3-2.8 3.6z' },
   { href: '/classement', nom: 'Classement', icone: 'M3 20V12h5v8zM9.5 20V6h5v14zM16 20v-6h5v6z' },
@@ -12,7 +11,7 @@ const liens = [
 ---
 <nav class="nav" aria-label="Navigation principale">
   {liens.map((l) => {
-    const actif = l.href === '/' ? chemin === '/' : chemin.startsWith(l.href);
+    const actif = l.href === '/' ? chemin === '/' || /^\/(themes|theme\/|chemin)/.test(chemin) : chemin.startsWith(l.href);
     return (
       <a href={base + l.href} class:list={['lien', { actif }]} aria-current={actif ? 'page' : undefined}>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d={l.icone} /></svg>
@@ -30,7 +29,7 @@ const liens = [
     right: 0;
     bottom: 0;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: 6px max(8px, env(safe-area-inset-left)) max(6px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-right));
     background: var(--blanc);
     border-top: 1px solid color-mix(in srgb, var(--encre) 12%, transparent);

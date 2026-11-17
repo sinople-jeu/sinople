@@ -35,7 +35,7 @@ export default function LeconDistante({ base }: { base: string }) {
     return (
       <section class="lecteur ecran-centre">
         <h1>{etat.erreur}</h1>
-        <a class="bouton" href={`${base}/themes`}>Retour aux thèmes</a>
+        <a class="bouton" href={`${base}/`}>Retour aux thèmes</a>
       </section>
     );
   return etat.props ? <LecteurLecon {...etat.props} /> : <p class="chargement">Chargement de la leçon…</p>;

@@ -54,7 +54,7 @@ export default function Revision({ base }: { base: string }) {
         <p class="sous-titre">
           {date ? `Prochaine révision : ${date}.` : 'Les questions ratées dans les leçons viendront ici, pour être revues plus tard.'}
         </p>
-        <a class="bouton" href={`${base}/themes`}>Jouer une leçon</a>
+        <a class="bouton" href={`${base}/`}>Jouer une leçon</a>
         <a class="bouton clair" href={`${base}/`}>Retour au feu</a>
       </section>
     );
