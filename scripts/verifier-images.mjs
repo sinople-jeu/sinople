@@ -23,11 +23,20 @@ async function demander(src) {
 }
 
 let erreurs = 0;
+let limitees = 0;
 for (const { fichier, id, src } of images) {
   let message = '';
   try {
     const r = await demander(src);
     const type = r.headers.get('content-type') ?? '';
+    if (r.status === 429) {
+      // Toujours limité après les essais : le serveur répond, l'image existe ; on le signale sans faire échouer la vérification.
+      limitees++;
+      console.warn(`⚠ ${fichier} › ${id} : débit limité par le serveur (HTTP 429), non vérifiée\n  ${src}`);
+      await r.body?.cancel();
+      await pause(300);
+      continue;
+    }
     if (!r.ok) message = `HTTP ${r.status}`;
     else if (!type.startsWith('image/')) message = `ce n'est pas une image (${type})`;
     await r.body?.cancel();
@@ -40,5 +49,5 @@ for (const { fichier, id, src } of images) {
   } else console.log(`✓ ${fichier} › ${id}`);
   await pause(300); // une demande à la fois, sans presser le serveur
 }
-console.log(`${images.length} image(s) vérifiée(s), ${erreurs} en erreur.`);
+console.log(`${images.length} image(s), ${erreurs} en erreur, ${limitees} non vérifiée(s) (débit limité).`);
 process.exit(erreurs ? 1 : 0);

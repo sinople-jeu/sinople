@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.3",
+  "version": "2026-11-17.4",
   "animaux": [
     {
       "id": "renard",
@@ -9,8 +9,8 @@
       "role": "joueur",
       "phase": "complot",
       "place": {
-        "x": 306,
-        "y": 158,
+        "x": 402,
+        "y": 368,
         "l": 40,
         "h": 70
       },
@@ -28,8 +28,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 214,
-        "y": 142,
+        "x": 322,
+        "y": 312,
         "l": 34,
         "h": 62
       },
@@ -42,8 +42,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 420,
-        "y": 156,
+        "x": 522,
+        "y": 358,
         "l": 22,
         "h": 30
       },
@@ -56,8 +56,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 512,
-        "y": 148,
+        "x": 560,
+        "y": 366,
         "l": 34,
         "h": 48
       },
@@ -70,8 +70,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 258,
-        "y": 150,
+        "x": 342,
+        "y": 352,
         "l": 34,
         "h": 30
       },
@@ -84,8 +84,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 466,
-        "y": 142,
+        "x": 548,
+        "y": 330,
         "l": 22,
         "h": 26
       },
@@ -98,8 +98,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 556,
-        "y": 158,
+        "x": 498,
+        "y": 378,
         "l": 20,
         "h": 30
       },
@@ -112,8 +112,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 170,
-        "y": 158,
+        "x": 306,
+        "y": 374,
         "l": 44,
         "h": 30
       },
@@ -126,8 +126,8 @@
       "role": "conjure",
       "phase": "complot",
       "place": {
-        "x": 596,
-        "y": 160,
+        "x": 452,
+        "y": 380,
         "l": 18,
         "h": 12
       },
@@ -365,31 +365,6 @@
         128
       ]
     },
-    "ciel": {
-      "largeur": 2400,
-      "hauteur": 180,
-      "a_dessiner": "ciel de nuit"
-    },
-    "chateau": {
-      "largeur": 120,
-      "hauteur": 70,
-      "a_dessiner": "château du roi (le lion au rempart)"
-    },
-    "collines": {
-      "largeur": 2400,
-      "hauteur": 40,
-      "a_dessiner": "collines"
-    },
-    "arbres": {
-      "largeur": 2400,
-      "hauteur": 70,
-      "a_dessiner": "arbres de la forêt"
-    },
-    "premier-plan": {
-      "largeur": 2400,
-      "hauteur": 10,
-      "a_dessiner": "premier plan (fougères)"
-    },
     "buche": {
       "largeur": 14,
       "hauteur": 5,
@@ -410,21 +385,6 @@
       "hauteur": 56,
       "a_dessiner": "garde avec lanterne"
     },
-    "ciel-aube": {
-      "largeur": 2400,
-      "hauteur": 180,
-      "a_dessiner": "ciel d'aube dorée (le règne)"
-    },
-    "chateau-renard": {
-      "largeur": 120,
-      "hauteur": 70,
-      "a_dessiner": "château aux bannières vertes du renard"
-    },
-    "arbres-lanternes": {
-      "largeur": 2400,
-      "hauteur": 70,
-      "a_dessiner": "arbres avec lanternes"
-    },
     "trone-rondins": {
       "largeur": 30,
       "hauteur": 34,
@@ -441,71 +401,209 @@
         32,
         82
       ]
+    },
+    "foret-fond": {
+      "src": "/scene/foret/fond.png",
+      "largeur": 344,
+      "hauteur": 192,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-arbres-gauche": {
+      "src": "/scene/foret/arbres-gauche.png",
+      "largeur": 97,
+      "hauteur": 152,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-arbres-droite": {
+      "src": "/scene/foret/arbres-droite.png",
+      "largeur": 98,
+      "hauteur": 163,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-buissons-gauche": {
+      "src": "/scene/foret/buissons-gauche.png",
+      "largeur": 151,
+      "hauteur": 54,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-fougeres-droite": {
+      "src": "/scene/foret/fougeres-droite.png",
+      "largeur": 61,
+      "hauteur": 52,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-feuilles-qui-tombent": {
+      "src": "/scene/foret/feuilles-qui-tombent.png",
+      "largeur": 311,
+      "hauteur": 192,
+      "images": 48,
+      "zoom": 2,
+      "colonnes": 8,
+      "ips": 12,
+      "boucle": true
+    },
+    "foret-buche-gauche": {
+      "src": "/scene/foret/buche-gauche.png",
+      "largeur": 49,
+      "hauteur": 27,
+      "images": 1,
+      "zoom": 2
+    },
+    "foret-buche-droite": {
+      "src": "/scene/foret/buche-droite.png",
+      "largeur": 44,
+      "hauteur": 18,
+      "images": 1,
+      "zoom": 2
     }
   },
   "decors": {
     "nuit": [
       {
-        "id": "ciel",
-        "asset": "ciel",
-        "vitesse": 0,
-        "bas": 180
+        "id": "foret",
+        "asset": "foret-fond",
+        "vitesse": 1,
+        "bas": 384
       },
       {
-        "id": "chateau",
-        "asset": "chateau",
-        "vitesse": 0.08,
-        "bas": 112
+        "id": "arbres-gauche",
+        "asset": "foret-arbres-gauche",
+        "vitesse": 1,
+        "x": 0,
+        "bas": 304,
+        "pied": 300
       },
       {
-        "id": "collines",
-        "asset": "collines",
-        "vitesse": 0.25,
-        "bas": 132
+        "id": "arbres-droite",
+        "asset": "foret-arbres-droite",
+        "vitesse": 1,
+        "x": 492,
+        "bas": 326,
+        "pied": 300
       },
       {
-        "id": "arbres",
-        "asset": "arbres",
-        "vitesse": 0.55,
-        "bas": 146
+        "id": "buche-droite",
+        "asset": "foret-buche-droite",
+        "vitesse": 1,
+        "x": 500,
+        "bas": 336,
+        "pied": 332
       },
       {
-        "id": "premier-plan",
-        "asset": "premier-plan",
-        "vitesse": 1.3,
-        "bas": 180
+        "id": "buche-gauche",
+        "asset": "foret-buche-gauche",
+        "vitesse": 1,
+        "x": 346,
+        "bas": 358,
+        "pied": 354
+      },
+      {
+        "id": "buissons-gauche",
+        "asset": "foret-buissons-gauche",
+        "vitesse": 1,
+        "x": 0,
+        "bas": 384,
+        "pied": 384
+      },
+      {
+        "id": "fougeres-droite",
+        "asset": "foret-fougeres-droite",
+        "vitesse": 1,
+        "x": 566,
+        "bas": 384,
+        "pied": 384
+      },
+      {
+        "id": "feuilles-qui-tombent",
+        "asset": "foret-feuilles-qui-tombent",
+        "vitesse": 1,
+        "x": 20,
+        "bas": 384,
+        "pied": 9999
       }
     ],
     "regne": [
       {
-        "id": "ciel",
-        "asset": "ciel-aube",
-        "vitesse": 0,
-        "bas": 180
+        "id": "foret",
+        "asset": "foret-fond",
+        "vitesse": 1,
+        "bas": 384
       },
       {
-        "id": "chateau",
-        "asset": "chateau-renard",
-        "vitesse": 0.08,
-        "bas": 112
+        "id": "arbres-gauche",
+        "asset": "foret-arbres-gauche",
+        "vitesse": 1,
+        "x": 0,
+        "bas": 304,
+        "pied": 300
       },
       {
-        "id": "collines",
-        "asset": "collines",
-        "vitesse": 0.25,
-        "bas": 132
+        "id": "arbres-droite",
+        "asset": "foret-arbres-droite",
+        "vitesse": 1,
+        "x": 492,
+        "bas": 326,
+        "pied": 300
       },
       {
-        "id": "arbres",
-        "asset": "arbres-lanternes",
-        "vitesse": 0.55,
-        "bas": 146
+        "id": "buche-droite",
+        "asset": "foret-buche-droite",
+        "vitesse": 1,
+        "x": 500,
+        "bas": 336,
+        "pied": 332
       },
       {
-        "id": "premier-plan",
-        "asset": "premier-plan",
-        "vitesse": 1.3,
-        "bas": 180
+        "id": "buche-gauche",
+        "asset": "foret-buche-gauche",
+        "vitesse": 1,
+        "x": 346,
+        "bas": 358,
+        "pied": 354
+      },
+      {
+        "id": "buissons-gauche",
+        "asset": "foret-buissons-gauche",
+        "vitesse": 1,
+        "x": 0,
+        "bas": 384,
+        "pied": 384
+      },
+      {
+        "id": "fougeres-droite",
+        "asset": "foret-fougeres-droite",
+        "vitesse": 1,
+        "x": 566,
+        "bas": 384,
+        "pied": 384
+      },
+      {
+        "id": "feuilles-qui-tombent",
+        "asset": "foret-feuilles-qui-tombent",
+        "vitesse": 1,
+        "x": 20,
+        "bas": 384,
+        "pied": 9999
       }
     ]
   }

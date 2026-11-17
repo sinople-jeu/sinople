@@ -3,7 +3,7 @@
 import type { Manifeste } from '../lib/contenu/manifeste';
 import type { AnimalEnScene } from '../lib/scene/etat-scene';
 import { Sprite, placeholder } from './sprite';
-import { ANIMAUX, FEU } from './reglages';
+import { ANIMAUX, FEU, SCENE } from './reglages';
 
 export type Mode = 'idle' | 'marche' | 'assis';
 
@@ -83,7 +83,7 @@ export function creerPerso(a: Animal, m: Manifeste, rang: number): Perso {
   etiquette.style.left = `${ancre[0]}px`;
   etiquette.style.fontSize = `${ANIMAUX.tailleEtiquette}px`;
   el.append(halo, retourne, etiquette);
-  const p: Perso = { id: a.id, el, retourne, halo, etiquette, x: place.x, y: place.y, ancre, sprites, mode: a.sprites.assis ? 'assis' : 'idle', sens: place.x > 360 ? -1 : 1, tMode: 0, eclaire: false };
+  const p: Perso = { id: a.id, el, retourne, halo, etiquette, x: place.x, y: place.y, ancre, sprites, mode: a.sprites.assis ? 'assis' : 'idle', sens: place.x > SCENE.feuX ? -1 : 1, tMode: 0, eclaire: false };
   placer(p);
   return p;
 }

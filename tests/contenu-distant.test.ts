@@ -34,7 +34,7 @@ function avecOurs(version: string): Manifeste {
     version,
     animaux: [...embarque.animaux, { id: 'ours', nom: 'Ours', theme: 'cuisine', role: 'conjure', phase: 'regne', sprites: { idle: 'ours-idle' }, couleur: '#6b4a2a' }],
     themes: [...embarque.themes, { ...embarque.themes[0], id: 'cuisine', nom: 'Cuisine', animal: 'ours' }],
-    assets: { ...embarque.assets, 'ours-idle': { src: 'assets/ours-idle-abc.png', largeur: 40, hauteur: 40, images: 4, ips: 6, boucle: true, hash: 'abc' } },
+    assets: { ...embarque.assets, 'ours-idle': { src: 'assets/ours-idle-abc.png', largeur: 40, hauteur: 40, images: 4, ips: 6, boucle: true, zoom: 1, hash: 'abc' } },
     lecons: [{ id: 'cuisine-1-1', theme: 'cuisine', etape: 1, lecon: 1, titre: 'Les sauces', epreuve: false, src: 'lecons/cuisine/1-1.json', hash: 'l1' }],
   };
 }

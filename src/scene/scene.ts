@@ -5,7 +5,7 @@ import { lireEtat, stockageNavigateur } from '../lib/stockage/local';
 import { vueScene, type VueScene } from '../lib/scene/etat-scene';
 import { creerMoteur } from './moteur';
 import { calculerEchelle, type Echelle } from './echelle';
-import { creerCouches, placerCouches, type Couche } from './parallax';
+import { creerDecor, placerCouches, animerDecor, type Couche } from './parallax';
 import { creerPerso, eclairer, animerPerso, placer, type Perso } from './animaux';
 import { aller, avancer, type Marche } from './marche';
 import { creerFeu, majFeu, animerFeu, montrerTaille, tailleDuFeu, tailleAllumage } from './feu';
@@ -66,7 +66,8 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
   monde.className = 'monde';
   // Après la prise du trône, le décor change : l'aube, le château aux couleurs du renard.
   const regne = vue.regne ?? (options.essaiRegne ? { grade: 1, nomGrade: m.regne.grades[0].nom } : null);
-  const couches = creerCouches(m, regne && m.decors.regne ? 'regne' : 'nuit');
+  const decor = creerDecor(m, regne && m.decors.regne ? 'regne' : 'nuit');
+  const couches = decor.couches;
   if (regne) racine.classList.add('regne');
   // La couche de la clairière (feu et animaux) avance avec la caméra ; le premier plan passe devant.
   const clairiere = document.createElement('div');
@@ -77,6 +78,7 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
   const iPremierPlan = couches.findIndex((c) => c.vitesse > 1);
   couches.splice(iPremierPlan < 0 ? couches.length : iPremierPlan, 0, coucheClairiere);
   monde.append(...couches.map((c) => c.el));
+  clairiere.append(...decor.avant);
 
   const feu = creerFeu(m);
   const tas = creerTas(m);
@@ -215,6 +217,7 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
     if (allumage !== null && enAllumage >= cible) allumage = null;
     montrerTaille(feu, cache ? 0 : enAllumage);
     animerFeu(feu, t);
+    animerDecor(decor, t);
     const vise = viser();
     camera += (vise - camera) * Math.min(1, dt * CAMERA.suivi);
     if (moteur.reduit) camera = vise;

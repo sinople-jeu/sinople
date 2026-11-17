@@ -47,9 +47,10 @@ export function creerFeu(m: Manifeste): Feu {
   }
   const p = m.assets.pierres;
   const pierres = poser(new Sprite(p, 'pierres', '#6b6478').el, SCENE.feuX - p.largeur / 2, SCENE.feuY - p.hauteur + 6, SCENE.feuY + 1);
+  if (SCENE.foyerPeint) pierres.dataset.peint = '';
   const ba = m.assets.banniere;
   const bannieres = [SCENE.feuX - 120, SCENE.feuX + 120].map((x) =>
-    poser(new Sprite(ba, 'bannière', '#2f7d4a').el, x - ba.largeur / 2, 132 - ba.hauteur, 120),
+    poser(new Sprite(ba, 'bannière', '#2f7d4a').el, x - ba.largeur / 2, SCENE.feuY - 30 - ba.hauteur, SCENE.feuY - 30),
   );
   el.append(...halos.map((h) => h.el), ...tailles.map((t) => t.el), pierres, ...bannieres);
   return { el, tailles, halos, intensites: m.feu.halo_intensite, pierres, bannieres, taille: -1 };
@@ -69,7 +70,7 @@ export function montrerTaille(feu: Feu, n: number): void {
 
 export function majFeu(feu: Feu, vue: VueScene): void {
   montrerTaille(feu, tailleDuFeu(vue));
-  feu.pierres.hidden = !vue.pierres;
+  feu.pierres.hidden = !vue.pierres || "peint" in feu.pierres.dataset;
   feu.bannieres.forEach((b) => (b.hidden = !vue.bannieres));
 }
 
