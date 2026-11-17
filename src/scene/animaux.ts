@@ -67,8 +67,10 @@ export function creerPerso(a: Animal, m: Manifeste, rang: number): Perso {
   // Les yeux jaunes, visibles seulement dans l'ombre.
   const yeux = document.createElement('div');
   yeux.className = 'yeux';
-  yeux.style.left = `${Math.round(l * 0.62)}px`;
-  yeux.style.top = `${Math.round(h * (a.sprites.idle ? 0.19 : 0.18))}px`;
+  const [yx, yy, yl] = a.yeux ?? [Math.round(l * 0.62), Math.round(h * (a.sprites.idle ? 0.19 : 0.18))];
+  if (yl) yeux.style.width = `${yl}px`;
+  yeux.style.left = `${yx}px`;
+  yeux.style.top = `${yy}px`;
   corps.append(yeux);
   retourne.style.transformOrigin = `${ancre[0]}px 0`;
   // Un placeholder ne se retourne pas : son texte resterait à l'envers.

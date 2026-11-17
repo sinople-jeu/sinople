@@ -134,7 +134,7 @@ const jouables = themes.filter((t) => totaux[t.id] > 0);
       const th = document.getElementById('s-themes')!;
       th.replaceChildren(...(s.par_theme.length ? s.par_theme.slice(0, 6).map((t) => ligne(noms[t.theme] ?? t.theme, `${pluriel(t.parties, 'partie')} · ${t.score_moyen} %`)) : [vide('Aucune partie pour l’instant')]));
       const pg = document.getElementById('s-pages')!;
-      const fixes: Record<string, string> = { '/': 'Accueil', '/themes': 'Choix du quiz', '/stats': 'Stats', '/revision': 'Révision', '/classement': 'Classement', '/quiz/demo': 'Essai de géographie' };
+      const fixes: Record<string, string> = { '/': 'Choix du quiz', '/themes': 'Choix du quiz', '/stats': 'Stats', '/revision': 'Révision', '/classement': 'Classement', '/quiz/demo': 'Essai de géographie' };
       const nomPage = (p: string) => fixes[p]
         ?? p.replace(/^\/theme\/(.+)$/, (_, id) => `Chemin : ${noms[id] ?? id}`)
             .replace(/^\/quiz\/([^/]+)\/(\d+)-(\d+)$/, (_, id, e, l) => `${noms[id] ?? id}, étape ${e} leçon ${l}`);

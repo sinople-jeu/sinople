@@ -96,7 +96,7 @@
   width: 4px;
   height: 1px;
   display: none;
-  background: linear-gradient(90deg, #f2c94c 0 1px, transparent 1px 3px, #f2c94c 3px 4px);
+  background: linear-gradient(90deg, #f2c94c 0 1px, transparent 1px calc(100% - 1px), #f2c94c calc(100% - 1px));
 }
 .scene-complot .perso.ombre .yeux { display: block; }
 .scene-complot .perso.ombre.cligne .yeux { opacity: 0; }
@@ -111,6 +111,15 @@
 .scene-complot .perso.ombre .etiquette { opacity: 0.45; }
 
 /* Le garde passe : tout le monde se cache derrière les arbres. */
+.scene-complot .garde-retourne, .scene-complot .garde-corps { position: relative; }
+.scene-complot .garde-lanterne { position: absolute; }
+.scene-complot .garde-lueur {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 196 104 / 0.55) 0 12%, rgb(255 150 60 / 0.22) 35%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
 .scene-complot .perso { transition: opacity 0.4s; }
 .scene-complot.garde-passe .perso { opacity: 0; }
 

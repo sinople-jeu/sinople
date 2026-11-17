@@ -36,7 +36,7 @@ export default function Classement({ base }: Props) {
         <p>Chaque semaine, affronte jusqu'à 29 autres joueurs. Les {L.montent} premiers montent d'une ligue, les {L.descendent} derniers descendent.</p>
         <Echelle ligue={0} />
         <p>Termine une leçon pour entrer dans la ligue de {L.noms[0]}.</p>
-        <a class="bouton" href={`${base}/themes`}>Jouer une leçon</a>
+        <a class="bouton" href={`${base}/`}>Jouer une leçon</a>
       </section>
     );
   }
@@ -58,7 +58,7 @@ export default function Classement({ base }: Props) {
       {n === 0 ? (
         <div class="cl-vide">
           <p>Personne n'a encore joué cette semaine dans ta ligue. Termine une leçon pour ouvrir le classement.</p>
-          <a class="bouton" href={`${base}/themes`}>Jouer une leçon</a>
+          <a class="bouton" href={`${base}/`}>Jouer une leçon</a>
         </div>
       ) : (
         <ol class="cl-liste">

@@ -1,44 +1,87 @@
 ---
 import Base from '../layouts/Base.astro';
 import Scene from '../components/Scene.astro';
+import themes from '../data/themes.json';
+import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-// Valeurs d'exemple : elles viendront du compte du joueur à l'étape 2 (Supabase).
-const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son complot contre le roi' };
+type Theme = (typeof themes)[number] & { pret?: boolean; lien?: string };
+// Nombre de leçons écrites par thème : un thème qui en a se joue en entier, sinon c'est l'essai de 3 questions.
+const lecons = await getCollection('questions');
+const nbLecons = (id: string) => lecons.filter((l) => l.data.theme === id).length;
+// les vrais quiz avant l'essai de géographie
+const prets = (themes as Theme[]).filter((t) => t.pret).sort((a, b) => nbLecons(b.id) - nbLecons(a.id));
+const aVenir = (themes as Theme[]).filter((t) => !t.pret);
+const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.toLowerCase()}`;
 ---
-<Base titre="Accueil" fond="#191826" nuit>
-  <main class="accueil">
-    <h1 class="invisible">Sinople, le feu des conjurés</h1>
-    <!-- La scène du complot : le renard arrive au feu, puis un animal par thème joué.
-         L'ancien feu dessiné (src/components/Feu.astro) et la vidéo du goupil conquérant restent dans le dépôt. -->
-    <Scene mode="accueil" />
-
-    <section class="compteurs">
-      <p class="serie" id="serie" aria-label="Série : 0 jour">
-        <svg class="flamme-serie" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2c3 4 6 6.5 6 11a6 6 0 0 1-12 0c0-3 1.5-4.5 3-6 0 2 1 3 2 3 0-3 0-5 1-8z" /></svg>
-        <span id="jours">0</span>
-        <span id="gels" class="gels"></span>
-      </p>
-      <p class="points" id="points">{joueur.points}</p>
-      <p class="unite">points de savoir</p>
-      <p class="grade" id="grade">{joueur.grade}</p>
-      <p class="recit" id="recit">{joueur.recit}</p>
-      <a class="reviser" id="reviser" href={`${base}/revision`} hidden></a>
+<Base titre="Choisir un quiz" fond="#191826" nuit>
+  <!-- Le bandeau de la scène du complot : à l'ouverture, le renard vient s'asseoir et le feu s'allume ;
+       puis les animaux déjà venus au feu. -->
+  <h1 class="invisible">Sinople, le feu des conjurés</h1>
+  <Scene mode="accueil" />
+  <main class="page large">
+    <header class="entete">
+      <div>
+        <p class="salut"><span id="grade">Gueux</span>&#8239;: <span id="recit">le renard rumine seul son complot contre le roi</span></p>
+        <h2 class="titre">Quel savoir veux-tu conquérir&#8239;?</h2>
+      </div>
+      <div class="compteurs">
+        <p class="serie" id="serie" aria-label="Série : 0 jour">
+          <svg class="flamme-serie" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2c3 4 6 6.5 6 11a6 6 0 0 1-12 0c0-3 1.5-4.5 3-6 0 2 1 3 2 3 0-3 0-5 1-8z" /></svg>
+          <span id="jours">0</span><span id="gels" class="gels"></span>
+        </p>
+        <p class="points"><span id="points">0</span> <span class="unite">pts</span></p>
+      </div>
+    </header>
+    <p class="actions">
       <a class="bouton duel" id="duel" href={`${base}/duel`} hidden>Défier le roi</a>
-      <a class="bouton" href={`${base}/themes`}>Prendre la route</a>
-    </section>
+      <a class="reviser" id="reviser" href={`${base}/revision`} hidden></a>
+    </p>
+
+    <!-- Les thèmes jouables d'abord ; les autres attendent, sans lien, dans « Bientôt au feu ». -->
+    <h2 class="rubrique">Prêts à jouer</h2>
+    <ul class="grille">
+      {prets.map((t) => (
+        <li class="large">
+          <a class="theme pret" href={`${base}/theme/${t.id}`}>
+            <span class="nom">{t.nom}</span>
+            <span class="matieres">{t.matieres}</span>
+            <span class="carriere">{voie(t.carriere)}</span>
+            <span class="jouer">{nbLecons(t.id) ? `Jouer\u2002·\u2002${nbLecons(t.id)} leçons` : 'Essai\u2002·\u20023 questions'}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Thèmes publiés à distance (sans redéployer le site) : ajoutés ici dans le navigateur. -->
+    <ul class="grille" id="themes-distants" data-connus={JSON.stringify(themes.map((t) => t.id))} data-base={base}></ul>
+
+    <h2 class="rubrique">Bientôt au feu</h2>
+    <ul class="grille">
+      {aVenir.map((t) => (
+        <li>
+          <div class="theme a-venir">
+            <span class="nom">{t.nom}</span>
+            <span class="matieres">{t.matieres}</span>
+            <span class="carriere">{voie(t.carriere)}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
   </main>
 </Base>
 
 <script>
+  import { contenuCourant } from '../lib/contenu/navigateur';
+  // Les compteurs : série, points, grade et récit, lus sur l'appareil.
+
   import { lireEtat, stockageNavigateur } from '../lib/stockage/local';
   // En attendant les comptes : points et conjurés lus sur l'appareil.
-  import themes from '../data/themes.json';
+  import themesSite from '../data/themes.json';
   import { serieDuJour, jourParis } from '../lib/jeu/serie';
   import { aReviser } from '../lib/jeu/revision';
   import { vueScene } from '../lib/scene/etat-scene';
-  import { contenuCourant } from '../lib/contenu/navigateur';
-  const etat = lireEtat(stockageNavigateur());
+    const etat = lireEtat(stockageNavigateur());
   const maintenant = Date.now();
   // La flamme : jours de série (0 si un jour manqué n'a pas été couvert par un gel), et les gels en réserve.
   const jours = serieDuJour(etat.profil.serie, maintenant);
@@ -59,62 +102,117 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
   // Le grade affiché est celui du renard (culture générale), puis, après le sacre, son grade de roi.
   const vue = vueScene(etat, contenuCourant(), maintenant);
   const essaiRegne = new URLSearchParams(location.search).get('essai') === 'regne';
-  document.getElementById('grade')!.textContent = vue.regne?.nomGrade ?? (essaiRegne ? 'Roi (essai)' : themes.find((t) => t.id === 'generale')!.grades[(etat.grades.generale ?? 1) - 1]);
+  document.getElementById('grade')!.textContent = vue.regne?.nomGrade ?? (essaiRegne ? 'Roi (essai)' : themesSite.find((t) => t.id === 'generale')!.grades[(etat.grades.generale ?? 1) - 1]);
   // Les 9 animaux au 6e grade : le duel contre le roi est ouvert.
   document.getElementById('duel')!.hidden = !vue.duelOuvert || !!vue.regne;
   document.getElementById('points')!.textContent = String(etat.profil.points);
   const n = etat.conjures.length;
   if (n > 0) document.getElementById('recit')!.textContent =
-    n === 1 ? 'Un conjuré écoute le renard au coin du feu' : `${n} conjurés écoutent le renard au coin du feu`;
-  if (vue.duelOuvert && !vue.regne) document.getElementById('recit')!.textContent = 'Le complot est prêt : le roi peut tomber';
-  if (vue.regne || essaiRegne) document.getElementById('recit')!.textContent = 'Le renard règne, ses conjurés autour du feu';
+    n === 1 ? 'un conjuré écoute le renard au coin du feu' : `${n} conjurés écoutent le renard au coin du feu`;
+  if (vue.duelOuvert && !vue.regne) document.getElementById('recit')!.textContent = 'le complot est prêt, le roi peut tomber';
+  if (vue.regne || essaiRegne) document.getElementById('recit')!.textContent = 'le renard règne, ses conjurés autour du feu';
+  document.querySelector('.actions')!.toggleAttribute('hidden', document.querySelectorAll('.actions > :not([hidden])').length === 0);
+
+  const ul = document.getElementById('themes-distants')!;
+  const connus = new Set<string>(JSON.parse(ul.dataset.connus!));
+  const m = contenuCourant();
+  // Les styles de la page sont « scopés » : on reprend l'attribut d'Astro pour que les nouvelles cartes aient le même look.
+  const portee = [...ul.attributes].filter((a) => a.name.startsWith('data-astro-cid'));
+  const styler = <T extends Element>(el: T) => (portee.forEach((a) => el.setAttribute(a.name, a.value)), el);
+  for (const t of m.themes.filter((x) => !connus.has(x.id) && m.lecons.some((l) => l.theme === x.id))) {
+    const li = styler(document.createElement('li'));
+    li.className = 'large';
+    const a = styler(document.createElement('a'));
+    a.className = 'theme pret';
+    a.href = `${ul.dataset.base}/chemin?id=${encodeURIComponent(t.id)}`;
+    for (const [classe, texte] of [['nom', t.nom], ['matieres', t.matieres], ['carriere', `Voie : ${t.carriere}`], ['jouer', 'Jouer']]) {
+      const span = styler(document.createElement('span'));
+      span.className = classe;
+      span.textContent = texte;
+      a.append(span);
+    }
+    li.append(a);
+    ul.append(li);
+  }
 </script>
 
 <style>
-  /* L'accueil tient dans un seul écran, sans défilement : le feu prend la place qui reste. */
-  .accueil {
-    height: 100dvh;
-    overflow: hidden;
+  .entete {
     display: flex;
-    flex-direction: column;
-    color: var(--creme);
-    text-align: center;
-  }
-  .compteurs {
-    flex: 1;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 8px 16px calc(var(--hauteur-nav) + 12px + env(safe-area-inset-bottom));
-    max-width: 480px;
-    margin: 0 auto;
-    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 24px;
   }
+  .entete > div { min-width: 0; }
+  .page { color: var(--creme); }
+  .entete { align-items: flex-start; }
+  .salut { margin: 0 0 6px; color: var(--brume); font: italic 1rem var(--police-recit); text-wrap: balance; }
+  .salut #grade { font: 600 .8rem var(--police-texte); letter-spacing: .1em; text-transform: uppercase; font-style: normal; }
+  .titre { margin: 0; font-size: clamp(1.5rem, 1.1rem + 2vw, 2.2rem); color: var(--creme); text-wrap: balance; }
+  .compteurs { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; }
   .compteurs p { margin: 0; }
-  .serie { display: inline-flex; align-items: center; gap: 6px; font: 600 1.2rem var(--police-texte); color: var(--brume); }
+  .serie { display: inline-flex; align-items: center; gap: 4px; font: 600 1.05rem var(--police-texte); color: var(--brume); }
   .flamme-serie { fill: currentColor; }
   .serie.vive { color: var(--goupil); }
-  .gels { color: #9fd3f0; letter-spacing: 2px; font-size: 1rem; }
-  .reviser { margin: -8px 0 12px; color: var(--or); font-size: .95rem; }
-  .reviser[hidden] { display: none; }
-  .points {
-    font: 700 3rem/1 var(--police-texte); /* chiffres de Fredoka : le 0 d'IM Fell se lisait comme un O */
-    font-variant-numeric: tabular-nums;
-    color: var(--or);
-    margin-top: 4px !important;
+  .gels { color: #9fd3f0; letter-spacing: 2px; font-size: .9rem; }
+  .points { font: 700 1.3rem/1 var(--police-texte); font-variant-numeric: tabular-nums; color: var(--or); }
+  .unite { font-size: .85rem; font-weight: 500; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin: -8px 0 24px; }
+  .actions[hidden], .actions [hidden] { display: none; }
+  .reviser { color: var(--or); }
+  .bouton.duel { width: auto; padding: 10px 28px; background: var(--or); color: var(--encre); }
+
+  .grille {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* deux colonnes sur téléphone, une seule si le texte est très agrandi */
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+    gap: 12px;
   }
-  .unite { font: 1rem var(--police-recit); color: var(--or); }
-  .grade {
-    margin-top: 10px !important;
+  .theme {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    min-height: 128px;
+    padding: 16px;
+    border-radius: var(--arrondi);
+    background: var(--blanc);
+    text-decoration: none;
+    color: var(--encre);
+  }
+  .theme.pret {
+    min-height: 0;
+    background: var(--sinople);
+    color: var(--blanc);
+    box-shadow: 0 var(--epaisseur-ombre) 0 var(--sinople-fonce);
+  }
+  .nom { font-weight: 700; font-size: 1.15rem; overflow-wrap: break-word; hyphens: auto; }
+  .matieres { font-size: .85rem; line-height: 1.4; }
+  .carriere { font-size: .85rem; line-height: 1.4; color: var(--encre-douce); }
+  .theme.pret .carriere { color: var(--blanc); }
+  .rubrique { margin: 28px 0 12px; font-size: 1.05rem; color: var(--brume); font-weight: 600; }
+  .entete + .rubrique, .actions + .rubrique { margin-top: 0; }
+  .large { grid-column: 1 / -1; }
+  /* Tablette et ordinateur : les thèmes jouables côte à côte, les autres en trois colonnes. */
+  @media (min-width: 768px) {
+    .grille { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .large { grid-column: auto; }
+  }
+  .theme.a-venir { min-height: 0; background: transparent; color: var(--creme); border: 2px dashed color-mix(in srgb, var(--brume) 45%, transparent); }
+  .a-venir .carriere { color: var(--brume); }
+  .a-venir .nom { font-size: 1rem; }
+  .jouer {
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 8px 16px;
+    border-radius: var(--arrondi-bouton);
     font-size: .85rem;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--brume);
+    font-weight: 600;
   }
-  .recit { font: italic 1.15rem var(--police-recit); margin-bottom: 16px !important; }
-  /* Bouton à la taille de son texte : il ne doit pas écraser la barre d'onglets. */
-  .bouton { width: auto; padding: 12px 36px; font-size: 1rem; }
-  .bouton.duel { margin-bottom: 12px; background: var(--or); color: var(--encre); }
-  .bouton[hidden] { display: none; }
+  .theme.pret .carriere { margin-bottom: 6px; }
+  .jouer { background: var(--blanc); color: var(--sinople-fonce); }
 </style>

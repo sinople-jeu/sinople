@@ -6,7 +6,8 @@ import type { Manifeste } from '../lib/contenu/manifeste';
 import { Sprite } from './sprite';
 import { SCENE } from './reglages';
 
-export type Couche = { el: HTMLElement; vitesse: number; largeur: number; hauteur: number; sprite?: Sprite };
+/** `x` : position dans le monde (prolongements du décor sur les côtés) ; sans `x`, la couche est centrée. */
+export type Couche = { el: HTMLElement; vitesse: number; largeur: number; hauteur: number; x?: number; sprite?: Sprite };
 
 /** Position gauche d'une couche, en pixels entiers, pour une caméra donnée (bord gauche de la vue, en x du monde). */
 export function gaucheCouche(camera: number, vue: number, vitesse: number, largeur: number): number {
@@ -35,14 +36,17 @@ export function creerDecor(m: Manifeste, decor: string): Decor {
       avant.push(el);
     } else {
       el.style.top = `${(c.bas ?? SCENE.hauteur) - h}px`;
-      couches.push({ el, vitesse: c.vitesse, largeur: l, hauteur: h, sprite });
+      couches.push({ el, vitesse: c.vitesse, largeur: l, hauteur: h, x: c.x || undefined, sprite });
     }
   }
   return { couches, avant, sprites };
 }
 
 export function placerCouches(couches: Couche[], camera: number, vue: number): void {
-  for (const c of couches) c.el.style.transform = `translateX(${gaucheCouche(camera, vue, c.vitesse, c.largeur)}px)`;
+  for (const c of couches) {
+    const gauche = c.x === undefined ? gaucheCouche(camera, vue, c.vitesse, c.largeur) : gaucheCouche(camera, vue, c.vitesse, SCENE.largeur) + c.x;
+    c.el.style.transform = `translateX(${gauche}px)`;
+  }
 }
 
 /** Le décor animé (feuillage au vent, feuilles qui tombent) : toutes les planches jouent au même rythme. */

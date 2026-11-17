@@ -26,7 +26,7 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
 ---
 <Base titre={t.nom} fond="#191826" nuit>
   <main class="ecran" data-theme={t.id} data-chemin={JSON.stringify(chemin)} data-article={article(t.animal).replace(/^./, (c) => c.toUpperCase())}>
-    <a class="retour icone-bouton" href={`${base}/themes`} aria-label="Revenir au choix des thèmes">
+    <a class="retour icone-bouton" href={`${base}/`} aria-label="Revenir au choix des thèmes">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
     </a>
     <Scene mode="theme" actif={t.id} />
