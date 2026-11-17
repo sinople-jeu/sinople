@@ -39,6 +39,9 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
       ))}
     </ul>
 
+    <!-- Thèmes publiés à distance (sans redéployer le site) : ajoutés ici dans le navigateur. -->
+    <ul class="grille" id="themes-distants" data-connus={JSON.stringify(themes.map((t) => t.id))} data-base={base}></ul>
+
     <h2 class="rubrique">Bientôt au feu</h2>
     <ul class="grille">
       {aVenir.map((t) => (
@@ -53,6 +56,31 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
     </ul>
   </main>
 </Base>
+
+<script>
+  import { contenuCourant } from '../lib/contenu/navigateur';
+  const ul = document.getElementById('themes-distants')!;
+  const connus = new Set<string>(JSON.parse(ul.dataset.connus!));
+  const m = contenuCourant();
+  // Les styles de la page sont « scopés » : on reprend l'attribut d'Astro pour que les nouvelles cartes aient le même look.
+  const portee = [...ul.attributes].filter((a) => a.name.startsWith('data-astro-cid'));
+  const styler = <T extends Element>(el: T) => (portee.forEach((a) => el.setAttribute(a.name, a.value)), el);
+  for (const t of m.themes.filter((x) => !connus.has(x.id) && m.lecons.some((l) => l.theme === x.id))) {
+    const li = styler(document.createElement('li'));
+    li.className = 'large';
+    const a = styler(document.createElement('a'));
+    a.className = 'theme pret';
+    a.href = `${ul.dataset.base}/chemin?id=${encodeURIComponent(t.id)}`;
+    for (const [classe, texte] of [['nom', t.nom], ['matieres', t.matieres], ['carriere', `Voie : ${t.carriere}`], ['jouer', 'Jouer']]) {
+      const span = styler(document.createElement('span'));
+      span.className = classe;
+      span.textContent = texte;
+      a.append(span);
+    }
+    li.append(a);
+    ul.append(li);
+  }
+</script>
 
 <style>
   .entete {

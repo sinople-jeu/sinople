@@ -3,11 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { lireEtat, ecrireEtat, stockageNavigateur, lireEnCours, ecrireEnCours, effacerEnCours } from '../lib/stockage/local';
 import { viesActuelles, perdreVie, prochaineVieDans } from '../lib/jeu/vies';
+import scene from '../data/scene.json';
+import themesDonnees from '../data/themes.json';
 import { construireChemin, leconAccessible, type LeconDuChemin } from '../lib/jeu/chemin';
 import { regles } from '../lib/jeu/regles';
 import { pointsQcm, pointsSaisie, type Bilan } from '../lib/jeu/points';
 import { estAcceptee, trouverExacte, trouverReponse, saisieJuste } from '../lib/jeu/reponses';
 import { enregistrerFin, enregistrerRevision } from '../scripts/fin-de-lecon';
+import type { ReponseBrute } from '../lib/jeu/correction';
 import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles } from '../lib/jeu/formats';
 import { Molette, Jauge, Pastilles, Registre, nombre, type ImageQuestion, type QuestionMolette, type QuestionJauge, type QuestionPastilles, type QuestionRegistre } from './Formats';
 
@@ -28,6 +31,8 @@ type Props = {
   chemin: LeconDuChemin[];
   /** Mode révision : pas de bûche perdue, pas de verrou ; la fin rend une bûche (5 questions minimum). */
   revision?: boolean;
+  /** Page du chemin où revenir (thèmes publiés à distance) ; par défaut /theme/<thème>. */
+  retourChemin?: string;
 };
 
 type Ecran = 'question' | 'eteint' | 'fin' | 'fin-revision';
@@ -77,14 +82,35 @@ function FeuEteint() {
 
 /** Typographie française : espace fine insécable avant ? ! : ; (le signe ne part plus seul à la ligne). */
 const typo = (t: string) => t.replace(/\s+([?!:;])/g, '\u202f$1');
+/**
+ * L'animal du thème, en petit à côté des bûches : il secoue la tête et soupire à chaque mauvaise réponse.
+ * Le renard a son dessin ; les autres animaux sont des placeholders signalés tant qu'ils ne sont pas dessinés.
+ */
+function Compagnon({ base, theme, non }: { base: string; theme: string; non: number }) {
+  const t = themesDonnees.find((x) => x.id === theme);
+  const id = (t?.animal ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const a = scene.animaux.find((x) => x.id === id);
+  if (!a) return null;
+  const dessin = (a as { sprites?: { idle?: string } }).sprites?.idle;
+  return (
+    <span key={non} class={`compagnon${non > 0 ? ' non' : ''}`} aria-hidden="true" title={dessin ? a.nom : `À dessiner : ${a.nom.toLowerCase()} qui secoue la tête`}>
+      {dessin ? (
+        <span class="tete-renard" style={{ backgroundImage: `url(${base}/scene/renard/idle.png)` }} />
+      ) : (
+        <span class="tete-a-dessiner" style={{ background: a.couleur }} />
+      )}
+      {non > 0 && <span class="soupir">pff…</span>}
+    </span>
+  );
+}
 
 function formatDuree(ms: number) {
   const min = Math.ceil(ms / 60_000);
   return min >= 60 ? `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, '0')}` : `${min} min`;
 }
 
-export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin, animal, grades, revision = false }: Props) {
-  const retour = revision ? `${base}/` : `${base}/theme/${lecon.theme}`;
+export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin, animal, grades, revision = false, retourChemin }: Props) {
+  const retour = revision ? `${base}/` : (retourChemin ?? `${base}/theme/${lecon.theme}`);
   const [vies, setVies] = useState(MAX);
   const [ecran, setEcran] = useState<Ecran>('question');
   const [i, setI] = useState(0);
@@ -95,6 +121,9 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
   const [corrige, setCorrige] = useState(false);
   const [reponses, setReponses] = useState<Record<string, boolean>>({});
   const [points, setPoints] = useState<Record<string, number>>({});
+  // Réponses brutes (le choix, la valeur, le texte…) : le serveur les corrige lui-même pour valider le score.
+  const brutes = useRef<Record<string, ReponseBrute>>({});
+  const debut = useRef(Date.now());
   // Réponse à taper : le texte en cours, les réponses de la liste déjà trouvées, le chrono.
   const [texte, setTexte] = useState('');
   const [trouvees, setTrouvees] = useState<number[]>([]);
@@ -110,6 +139,8 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
   const [attente, setAttente] = useState(0);
   // Leçon reprise là où on l'avait laissée : le numéro de la question où l'on reprend (0 sinon).
   const [reprise, setReprise] = useState(0);
+  // Nombre de mauvaises réponses : chaque nouvelle relance l'animation de l'animal.
+  const [non, setNon] = useState(0);
 
   // Au chargement : leçon verrouillée → retour au chemin ; plus de vie → feu éteint.
   useEffect(() => {
@@ -134,6 +165,9 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       setReponses(enCours.reponses);
       setPoints(enCours.points);
       setReprise(enCours.suivante + 1);
+      // Les réponses brutes et l'heure de début reviennent aussi, pour que le serveur compte toute la leçon.
+      brutes.current = (enCours.brutes ?? {}) as Record<string, ReponseBrute>;
+      if (enCours.debut) debut.current = enCours.debut;
     }
   }, []);
 
@@ -224,20 +258,25 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     if (q.type === 'qcm' || q.type === 'registre') {
       if (choisi < 0) return;
       gagnes = pointsQcm(juste);
+      brutes.current[q.id] = q.type === 'qcm' ? choisi : q.choix[choisi];
     } else if (q.type === 'molette' || q.type === 'jauge') {
       if (valeur === null) return;
       gagnes = pointsEstimation(valeur, q.juste, q.tolerance ?? (q.type === 'jauge' ? 5 : 0));
+      brutes.current[q.id] = valeur;
     } else if (q.type === 'pastilles') {
       if (!cochees.length) return;
       gagnes = pointsPastilles(cochees, q.justes);
+      brutes.current[q.id] = cochees;
     } else {
       let n = trouvees.length;
+      brutes.current[q.id] = trouvees.map((k) => q.reponses[k][0]);
       if (!liste) {
         // Le champ lui-même fait foi : « Entrée » peut arriver avant que l'affichage ait suivi la frappe.
         const saisie = champ.current?.value ?? texte;
         if (!saisie.trim()) return;
         n = estAcceptee(saisie, q.reponses[0]) ? 1 : 0;
         setTrouvees(n ? [0] : []);
+        brutes.current[q.id] = [saisie];
       }
       juste = saisieJuste(n, q.reponses.length);
       gagnes = pointsSaisie(n, q.reponses.length);
@@ -250,9 +289,10 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     const nouveauxPoints = { ...points, [q.id]: gagnes };
     setReponses(nouvellesReponses);
     setPoints(nouveauxPoints);
+    if (!juste) setNon((n) => n + 1);
     // La réponse est gardée tout de suite : quitter maintenant reprendra à la question suivante.
     if (!revision && i + 1 < questions.length) {
-      ecrireEnCours(stockageNavigateur(), { leconId: lecon.id, suivante: i + 1, reponses: nouvellesReponses, points: nouveauxPoints, le: Date.now() });
+      ecrireEnCours(stockageNavigateur(), { leconId: lecon.id, suivante: i + 1, reponses: nouvellesReponses, points: nouveauxPoints, brutes: brutes.current, debut: debut.current, le: Date.now() });
     }
     if (!juste && !revision) {
       // La bûche brûle tout de suite : quitter la leçon ne la rend pas.
@@ -301,6 +341,9 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
     effacerEnCours(stockageNavigateur());
     const fin = enregistrerFin({ theme: lecon.theme, leconId: lecon.id, etape: lecon.etape, epreuve: lecon.epreuve, reponses, points });
     setBilan(fin.bilan);
+    // Le serveur recompte les points pour la ligue (sans bloquer l'écran de fin, et sans réseau : plus tard).
+    const envoi = { lecon: lecon.id, brutes: brutes.current, duree_ms: Date.now() - debut.current };
+    import('../lib/compte/score').then((m) => m.envoyerFinDeLecon(envoi)).catch(() => {});
     if (fin.gradeApres > fin.gradeAvant) setPromu(fin.gradeApres);
     setEcran('fin');
   }
@@ -389,6 +432,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
         <div class="barre" role="progressbar" aria-label="Avancement" aria-valuemin={0} aria-valuemax={questions.length} aria-valuenow={fait}>
           <div class="remplissage" style={{ width: `${pourcent}%` }} />
         </div>
+        <Compagnon base={base} theme={lecon.theme} non={non} />
         <Buches vies={vies} />
       </header>
 

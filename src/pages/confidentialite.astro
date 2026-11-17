@@ -1,0 +1,30 @@
+---
+// Confidentialité (RGPD) : ce que Sinople garde, pourquoi, et comment tout effacer.
+import Base from '../layouts/Base.astro';
+import '../styles/compte.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base titre="Confidentialité">
+  <main class="page texte-legal">
+    <h1>Tes données sur Sinople</h1>
+
+    <h2>Sans compte</h2>
+    <p>Tu peux jouer sans rien donner. Ta progression (grades, points, bûches, leçons faites, révisions) reste sur ton appareil, dans le stockage du navigateur.</p>
+
+    <h2>Avec un compte</h2>
+    <p>Un compte est créé à ta première leçon terminée, pour te placer dans une ligue. Il ne contient que :</p>
+    <ul>
+      <li>un identifiant au hasard et un pseudo (que tu choisis : évite ton vrai nom) ;</li>
+      <li>ta progression, pour la retrouver sur tes autres appareils ;</li>
+      <li>tes scores de leçons (thème, leçon, bonnes réponses, points, durée), pour vérifier les points et tenir le classement ;</li>
+      <li>ton e-mail, seulement si tu choisis de le lier, pour t'envoyer un lien de connexion. Jamais de publicité.</li>
+    </ul>
+    <p>Les autres joueurs de ta ligue voient ton pseudo et tes points de la semaine, rien d'autre.</p>
+
+    <h2>Où et combien de temps</h2>
+    <p>Les données sont hébergées par Supabase, dans l'Union européenne (Paris). Elles sont gardées tant que ton compte existe.</p>
+
+    <h2>Tes droits</h2>
+    <p>Dans <a href={`${base}/compte`}>Mon compte</a>, tu peux à tout moment télécharger toutes tes données ou supprimer ton compte : tout est effacé immédiatement et pour de bon.</p>
+  </main>
+</Base>

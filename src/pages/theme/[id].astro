@@ -2,7 +2,7 @@
 // Le chemin d'un thème : le feu où l'animal du thème s'allume, puis les 6 étapes avec leurs leçons et leur épreuve.
 // L'état (faite, suivante, verrouillée) est recalculé dans le navigateur à partir de la progression enregistrée.
 import Base from '../../layouts/Base.astro';
-import Feu from '../../components/Feu.astro';
+import Scene from '../../components/Scene.astro';
 import { getCollection } from 'astro:content';
 import themes from '../../data/themes.json';
 import { construireChemin, type LeconDuChemin } from '../../lib/jeu/chemin';
@@ -27,7 +27,7 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
     <a class="retour icone-bouton" href={`${base}/themes`} aria-label="Revenir au choix des thèmes">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
     </a>
-    <div class="scene"><Feu actif={t.animal === 'bélier' ? 'belier' : t.animal} /></div>
+    <Scene mode="theme" actif={t.id} />
     <section class="texte">
       <p class="animal">{article(t.animal)} s'approche du feu</p>
       <h1>{t.nom}</h1>
@@ -107,7 +107,7 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
   // Retour d'une épreuve réussie : la scène de passage de grade au feu.
   const promu = Number(new URLSearchParams(location.search).get('promu'));
   if (promu > 1 && promu === grade) {
-    const animal = racine.querySelector<SVGGElement>('.feu .animal.allume');
+    const animal = racine.querySelector<HTMLElement>('.scene-complot .perso.eclaire');
     animal?.classList.add('promotion');
     const annonce = document.getElementById('annonce')!;
     annonce.textContent = `${racine.dataset.article} devient ${noms[grade - 1]} !`;
@@ -121,9 +121,6 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
 <style>
   .ecran { min-height: 100dvh; color: var(--creme); text-align: center; position: relative; padding-bottom: calc(var(--hauteur-nav) + 48px + env(safe-area-inset-bottom)); overflow-x: clip; }
   .retour { position: absolute; top: 8px; left: 8px; z-index: 1; color: var(--creme); background: rgb(25 24 38 / .6); }
-  .scene { height: min(42dvh, 340px); overflow: hidden; }
-  @media (min-width: 700px) { .scene { height: min(46dvh, 380px); padding: 16px 16px 0; } .retour { top: 24px; left: 24px; } }
-  .scene :global(.feu), .scene :global(.feu.gros-plan) { height: 100%; }
   .texte { max-width: 448px; margin: 0 auto; padding: 8px 16px; display: grid; justify-items: center; gap: 4px; }
   .texte p { margin: 0; }
   .animal { font: italic 1.1rem var(--police-recit); color: var(--or); }

@@ -22,6 +22,8 @@ export type Etat = {
   grades: Record<string, number>;
   leconsFaites: Record<string, LeconFaite>;
   revision: Record<string, Fiche>;
+  /** Après le duel gagné : le renard règne (date du sacre et points de savoir à ce moment-là). Absent avant. */
+  regne?: { depuis: string; pointsAuSacre: number };
 };
 
 /** Le sous-ensemble de localStorage dont on a besoin (remplaçable dans les tests). */
@@ -124,7 +126,8 @@ export function terminerLecon(etat: Etat, fin: FinDeLecon, maintenant: number): 
   return {
     ...etat,
     profil: { ...etat.profil, points: etat.profil.points + fin.points, serie: apresLecon(etat.profil.serie, maintenant) },
-    conjures: etat.conjures.includes(fin.theme) ? etat.conjures : [...etat.conjures, fin.theme],
+    // L'animal vient s'asseoir au feu à la première leçon réussie de son thème.
+    conjures: !fin.reussie || etat.conjures.includes(fin.theme) ? etat.conjures : [...etat.conjures, fin.theme],
     grades: fin.epreuve ? { ...etat.grades, [fin.theme]: gradeApresEpreuve(grade, fin.etape, fin.reussie) } : etat.grades,
     leconsFaites: fin.reussie || avant
       ? {
@@ -165,6 +168,9 @@ export type LeconEnCours = {
   suivante: number;
   reponses: Record<string, boolean>;
   points: Record<string, number>;
+  /** Réponses brutes déjà données et début de la leçon : le serveur recorrige toute la leçon à la fin. */
+  brutes?: Record<string, unknown>;
+  debut?: number;
   /** Date de la dernière réponse, en millisecondes. */
   le: number;
 };
@@ -186,7 +192,7 @@ export function lireEnCours(stockage: Stockage | null, leconId: string, idsQuest
   const reponses = e.reponses ?? {};
   const dejaJouees = idsQuestions.slice(0, e.suivante);
   if (Object.keys(reponses).length !== dejaJouees.length || !dejaJouees.every((id) => id in reponses)) return null;
-  return { leconId, suivante: e.suivante, reponses, points: e.points ?? {}, le: e.le };
+  return { leconId, suivante: e.suivante, reponses, points: e.points ?? {}, brutes: e.brutes ?? {}, debut: e.debut, le: e.le };
 }
 
 export function effacerEnCours(stockage: Stockage | null): void {
@@ -195,4 +201,10 @@ export function effacerEnCours(stockage: Stockage | null): void {
   } catch {
     /* rien à effacer */
   }
+}
+
+/** Le duel est gagné : le renard prend le trône. Ne change ni les vies, ni les grades, ni les points. */
+export function couronner(etat: Etat, maintenant: number): Etat {
+  if (etat.regne) return etat;
+  return { ...etat, regne: { depuis: jourParis(maintenant), pointsAuSacre: etat.profil.points } };
 }

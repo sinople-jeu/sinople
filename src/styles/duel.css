@@ -1,0 +1,45 @@
+/* Le duel final (src/islands/Duel.tsx). Fond uni comme les autres quiz ; la scène est en pixel art agrandi d'un nombre entier. */
+.duel { min-height: calc(100dvh - 48px); display: flex; flex-direction: column; padding-bottom: 96px; }
+.duel-cadre { position: relative; margin: 0 -16px 16px; overflow: hidden; background: #191826; }
+.duel-scene { position: absolute; left: 50%; top: 0; width: 320px; height: 120px; margin-left: -160px; transform-origin: 50% 0; image-rendering: pixelated; }
+.duel-scene > * { position: absolute; left: 0; top: 0; }
+.duel .a-dessiner { --couleur: #5b5470; background: color-mix(in srgb, var(--couleur) 55%, #191826); outline: 1px dashed rgb(255 255 255 / .45); outline-offset: -1px; display: flex; justify-content: center; }
+.duel .a-dessiner span { font: 5px/1.2 ui-monospace, monospace; color: #f2ead8; padding: 1px; }
+.duel-scene .fond { width: 320px; height: 120px; background: #232036; outline: none; }
+.duel-scene .lion { transform: translate(256px, 46px); transition: transform .25s; }
+.duel-scene .corps-lion { width: 40px; height: 58px; --couleur: #c8913a; }
+.duel-scene .couronne { position: absolute; top: -6px; left: 13px; width: 14px; height: 6px; --couleur: #e3b448; transition: transform .4s; }
+.duel-scene .rugissement { position: absolute; top: -14px; left: -18px; font: 700 7px ui-monospace, monospace; color: #f2c94c; }
+.duel-scene .foule { transform: translateY(98px); }
+.duel-scene .petit { position: absolute; width: 10px; height: 14px; }
+.duel-scene .renard { transition: transform .6s steps(6); }
+.duel-scene .sprite-renard { width: 64px; height: 84px; overflow: hidden; }
+.duel-scene .sprite-renard img { display: block; max-width: none; width: 512px; height: 84px; image-rendering: pixelated; }
+.duel-scene .couronne-renard { position: absolute; top: 0; left: 30px; width: 14px; height: 6px; --couleur: #e3b448; }
+.duel-scene .trone { transform: translate(132px, 20px); width: 56px; height: 76px; --couleur: #7a3b2e; }
+.duel-scene .banniere { top: 30px; width: 12px; height: 40px; --couleur: #2f7d4a; }
+.duel-scene .canne { position: absolute; top: 4px; left: 34px; width: 3px; height: 30px; --couleur: #8a6a3a; }
+@media (prefers-reduced-motion: no-preference) {
+  .duel-scene .sprite-renard img { animation: idle-renard .96s steps(8) infinite; }
+  .duel-scene .lion.redresse { animation: redresse .7s ease-out; }
+  .duel-scene .foule.sursaut .petit { animation: sursaut .4s ease-out; }
+  .duel-scene.fin .lion.part { animation: part 4s ease-in forwards; }
+}
+.duel-scene.fin .lion { transform: translate(250px, 46px); }
+@keyframes idle-renard { from { transform: translateX(0); } to { transform: translateX(-512px); } }
+@keyframes redresse { 0% { transform: translate(256px, 46px); } 30% { transform: translate(256px, 40px); } 100% { transform: translate(256px, 46px); } }
+@keyframes sursaut { 50% { transform: translateY(-3px); } }
+@keyframes part { to { transform: translate(340px, 46px); opacity: 0; } }
+.duel-texte { max-width: 560px; width: 100%; margin: 0 auto; }
+.duel .avancee { margin: 0 0 8px; color: var(--sinople-fonce); font-weight: 600; font-size: .9rem; }
+.duel .sans-buche { font-weight: 400; color: var(--encre-douce); }
+.duel .question { font-size: 1.5rem; margin: 0 0 16px; }
+.duel .choix { display: grid; gap: 10px; }
+.duel .reponse { text-align: left; padding: 14px 16px; border-radius: var(--arrondi); border: 2px solid var(--sinople-clair); background: white; font: inherit; color: var(--encre); }
+.duel .reponse.juste { border-color: var(--sinople); background: var(--sinople-clair); }
+.duel .reponse.faux { border-color: var(--faux); }
+.duel .explication { color: var(--encre-douce); margin-top: 16px; }
+.duel .pied { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: var(--creme, #f6efe2); display: flex; justify-content: center; }
+.duel .pied .bouton { max-width: 560px; width: 100%; }
+.duel .titre-roi { font: italic 1.2rem var(--police-recit); }
+.duel .essai { color: var(--encre-douce); font-size: .9rem; }
