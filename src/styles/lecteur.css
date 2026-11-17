@@ -82,7 +82,8 @@
 .gains dd { margin: 0; font-weight: 700; color: var(--sinople-fonce); }
 .gains .total { background: var(--sinople-clair); }
 .ecran-centre .promotion { margin: 0 0 4px; font: italic 1.3rem var(--police-recit); color: var(--sinople-fonce); }
-.gains .total dd { color: var(--or); font-size: 1.2rem; text-shadow: 0 1px 0 #7a5d1c; }
+/* le total en vert foncé sur vert pâle (6,8:1) : l'or y était illisible (1,6:1) */
+.gains .total dd { color: var(--sinople-fonce); font-size: 1.2rem; }
 .feu-eteint .fumee { fill: none; stroke: #b9b2a5; stroke-width: 6; stroke-linecap: round; opacity: .7; }
 @media (prefers-reduced-motion: no-preference) {
   .feu-eteint .fumee { animation: fumee 3s ease-in-out infinite; }
