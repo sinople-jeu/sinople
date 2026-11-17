@@ -28,8 +28,11 @@
 .buche.brulee .cerne { fill: #d6d0c4; }
 .buche.brulee .flammeche { fill: none; }
 
-.lecteur .theme { margin: 0 0 8px; color: var(--sinople-fonce); font-weight: 600; font-size: .9rem; }
-.lecteur .question { font-size: 1.6rem; margin: 0 0 20px; }
+.lecteur .theme { margin: 0 0 14px; color: var(--sinople-fonce); font-weight: 600; font-size: .9rem; line-height: 1.4;
+                  display: flex; flex-wrap: wrap; column-gap: 10px; }
+/* Un point discret entre le thème, la leçon et le niveau, bien séparé des mots. */
+.lecteur .theme span + span::before { content: '·'; margin-right: 10px; opacity: .5; }
+.lecteur .question { font-size: 1.6rem; line-height: 1.2; margin: 0 0 24px; text-wrap: balance; }
 .lecteur .choix { display: grid; gap: 10px; }
 /* Image d'une question (un tableau) : jamais plus haute que le quart de l'écran, pour garder les choix visibles. */
 .lecteur .tableau { margin: -8px 0 20px; text-align: center; }

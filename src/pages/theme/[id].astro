@@ -16,7 +16,9 @@ const article = (a: string) => (/^[aeéiou]/i.test(a) ? "l'" : ['pie', 'grenouil
 
 const lecons = (await getCollection('questions', (l) => l.data.theme === t.id)).map((l) => l.data);
 const chemin: LeconDuChemin[] = lecons.map(({ id, etape, lecon, epreuve }) => ({ id, etape, lecon, epreuve }));
-const infos = Object.fromEntries(lecons.map((l) => [l.id, { titre: l.titre, href: `${base}/quiz/${t.id}/${l.etape}-${l.lecon}` }]));
+// Espace fine insécable avant ? ! : ; pour que la ponctuation ne parte pas seule à la ligne.
+const insecable = (x: string) => x.replace(/\s+([?!:;»])/g, '\u202F$1').replace(/«\s+/g, '«\u202F');
+const infos = Object.fromEntries(lecons.map((l) => [l.id, { titre: insecable(l.titre), href: `${base}/quiz/${t.id}/${l.etape}-${l.lecon}` }]));
 // Sans JavaScript, on affiche le chemin d'un joueur qui commence.
 const depart = construireChemin(chemin, new Set(), 1);
 const etapes = depart.filter((e) => e.lecons.length > 0 || e.epreuve);
@@ -44,14 +46,15 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
       <ol class="chemin">
         {etapes.map((e) => (
           <li class="etape" data-etape={e.etape}>
-            <h2>Étape {e.etape} · {t.grades[e.etape - 1]}</h2>
+            <h2>Étape {e.etape} <span aria-hidden="true">·</span> {t.grades[e.etape - 1]}</h2>
             <ol class="lecons">
               {e.lecons.map((l, i) => (
                 <li class="noeud" style={`--decalage: ${[0, 1, 0, -1][i % 4]}`}>
                   <a class={`lecon ${l.etat}`} data-id={l.id} data-href={infos[l.id].href}
                      href={l.etat === 'verrouillee' ? undefined : infos[l.id].href} aria-disabled={l.etat === 'verrouillee' ? 'true' : undefined}>
                     <span class="rond" aria-hidden="true">{i + 1}</span>
-                    <span class="titre">{infos[l.id].titre}<span class="etat"> · {libelle[l.etat]}</span></span>
+                    <span class="titre">{infos[l.id].titre}</span>
+                    <span class="etat">{libelle[l.etat]}</span>
                   </a>
                 </li>
               ))}
@@ -60,10 +63,8 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
                   <a class={`lecon epreuve ${e.epreuve.etat}`} data-id={e.epreuve.id} data-href={infos[e.epreuve.id].href}
                      href={e.epreuve.etat === 'verrouillee' ? undefined : infos[e.epreuve.id].href} aria-disabled={e.epreuve.etat === 'verrouillee' ? 'true' : undefined}>
                     <span class="rond" aria-hidden="true"><span class="picto">{t.pictos[Math.min(e.etape, t.pictos.length - 1)]}</span></span>
-                    <span class="titre">
-                      {e.etape < t.grades.length ? `Épreuve : devenir ${t.grades[e.etape]}` : 'Épreuve finale'}
-                      <span class="etat"> · {libelle[e.epreuve.etat]}</span>
-                    </span>
+                    <span class="titre">{e.etape < t.grades.length ? `Épreuve\u202F: devenir ${t.grades[e.etape]}` : 'Épreuve finale'}</span>
+                    <span class="etat">{libelle[e.epreuve.etat]}</span>
                   </a>
                 </li>
               )}
@@ -95,7 +96,7 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
     const e = etats.get(a.dataset.id!) ?? 'verrouillee';
     a.classList.remove('faite', 'suivante', 'ouverte', 'verrouillee', 'reussie');
     a.classList.add(e);
-    a.querySelector('.etat')!.textContent = ` · ${libelle[e]}`;
+    a.querySelector('.etat')!.textContent = libelle[e];
     if (e === 'verrouillee') {
       a.removeAttribute('href');
       a.setAttribute('aria-disabled', 'true');
@@ -121,7 +122,7 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
 <style>
   .ecran { min-height: 100dvh; color: var(--creme); text-align: center; position: relative; padding-bottom: calc(var(--hauteur-nav) + 48px + env(safe-area-inset-bottom)); overflow-x: clip; }
   .retour { position: absolute; top: 8px; left: 8px; z-index: 1; color: var(--creme); background: rgb(25 24 38 / .6); }
-  .texte { max-width: 448px; margin: 0 auto; padding: 8px 16px; display: grid; justify-items: center; gap: 4px; }
+  .texte { max-width: 448px; margin: 0 auto; padding: 12px 16px 16px; display: grid; justify-items: center; gap: 8px; }
   .texte p { margin: 0; }
   .animal { font: italic 1.1rem var(--police-recit); color: var(--or); }
   h1 { font-size: 2rem; margin: 0; }
@@ -134,16 +135,21 @@ const libelle: Record<string, string> = { faite: 'faite', suivante: 'à jouer', 
   .bientot { margin: 0; padding: 14px 20px; border-radius: var(--arrondi-bouton); background: rgb(255 255 255 / .08); }
 
   .chemin, .lecons { list-style: none; margin: 0; padding: 0; }
-  .chemin { max-width: 448px; margin: 0 auto; padding: 8px 16px; display: grid; gap: 28px; }
-  h2 { font: 1.05rem var(--police-texte); letter-spacing: .04em; margin: 8px 0 14px; padding: 8px 12px;
+  .chemin { max-width: 448px; margin: 0 auto; padding: 8px 16px; display: grid; gap: 40px; }
+  h2 { font: 1.05rem var(--police-texte); letter-spacing: .04em; margin: 8px 0 24px; padding: 8px 12px;
        border-radius: var(--arrondi); background: rgb(255 255 255 / .06); }
-  .lecons { display: grid; gap: 14px; }
+  .lecons { display: grid; gap: 28px; }
   .noeud { transform: translateX(calc(var(--decalage, 0) * 40px)); }
-  .lecon { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; color: var(--creme); text-decoration: none; }
+  /* L'espace sous le rond tient compte de son ombre et de l'anneau blanc de la leçon « à jouer ». */
+  .lecon { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; color: var(--creme); text-decoration: none; }
+  .lecon .rond { margin-bottom: calc(var(--epaisseur-ombre) + 12px); }
   .rond { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; font-weight: 600;
           background: var(--sinople); box-shadow: 0 var(--epaisseur-ombre) 0 var(--sinople-fonce); }
-  .titre { font-size: .95rem; max-width: 200px; }
-  .etat { opacity: .7; }
+  .titre { font-size: 1rem; line-height: 1.3; max-width: 220px; text-wrap: balance; }
+  .etat { font-size: .78rem; letter-spacing: .03em; line-height: 1; padding: 4px 10px; border-radius: var(--arrondi-bouton);
+          background: rgb(255 255 255 / .08); color: rgb(246 241 227 / .8); }
+  .suivante .etat { background: var(--creme); color: var(--encre); font-weight: 600; }
+  .faite .etat, .reussie .etat { color: var(--or); }
   .faite .rond, .reussie .rond { background: var(--or); box-shadow: 0 var(--epaisseur-ombre) 0 #a5802c; color: var(--encre); }
   .suivante .rond { outline: 4px solid rgb(255 255 255 / .85); outline-offset: 4px; }
   .verrouillee { cursor: not-allowed; }

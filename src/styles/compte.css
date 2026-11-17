@@ -2,7 +2,7 @@
 .compte { display: grid; gap: 16px; max-width: 34rem; margin: 0 auto; padding-bottom: 96px; }
 .compte h1 { margin: 8px 0 0; }
 .compte h2 { margin: 0 0 8px; font-size: 1.2rem; }
-.compte h3 { margin: 16px 0 8px; font-size: 1rem; }
+.compte h3 { margin: 28px 0 10px; font-size: 1rem; }
 .compte p { margin: 0 0 12px; line-height: 1.45; }
 .compte .carte { padding: 16px; }
 .compte-ligne { display: flex; flex-wrap: wrap; gap: 8px; }
