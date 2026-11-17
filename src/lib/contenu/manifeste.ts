@@ -22,6 +22,8 @@ export const asset = z.object({
   colonnes: z.number().int().positive().optional(),
   /** Point d'appui dans une image (les pieds, la base du feu), en pixels. Par défaut : milieu du bas. */
   ancre: z.tuple([z.number().int(), z.number().int()]).optional(),
+  /** Agrandissement entier à l'affichage (2 = chaque pixel du dessin couvre 2 × 2 pixels de la scène). */
+  zoom: z.number().int().positive().default(1),
   /** Placeholder signalé : le dessin manque encore, on affiche un bloc avec ce texte. */
   a_dessiner: z.string().optional(),
   /** Empreinte du fichier (contenu distant) : si elle ne change pas, on ne le retélécharge pas. */
@@ -100,8 +102,21 @@ export const manifeste = z
       intervalle_min_minutes: z.number().min(0),
     }),
     duel: z.object({ questions: z.number().int().positive() }),
-    /** Décors : couches de parallax, de la plus lointaine à la plus proche. `vitesse` 0 = immobile, 1 = avance avec la scène ; `bas` = ligne du bas de la couche (180 = bas de la scène). */
-    decors: z.record(z.string(), z.array(z.object({ id, asset: z.string(), vitesse: z.number().min(0), bas: z.number().int().optional() }))),
+    /** Décors : couches de parallax, de la plus lointaine à la plus proche. `vitesse` 0 = immobile, 1 = avance avec la scène ; `bas` = ligne du bas de la couche (par défaut, le bas de la scène).
+     *  Avec `pied`, l'élément est posé dans la clairière à `x` : un personnage dont les pieds sont plus haut que `pied` passe derrière (arbres, buissons, bûches). */
+    decors: z.record(
+      z.string(),
+      z.array(
+        z.object({
+          id,
+          asset: z.string(),
+          vitesse: z.number().min(0),
+          bas: z.number().int().optional(),
+          x: z.number().int().default(0),
+          pied: z.number().int().optional(),
+        }),
+      ),
+    ),
     assets: z.record(z.string(), asset).default({}),
     /** Leçons publiées à distance (vide dans le manifeste embarqué : ses leçons sont dans le site). */
     lecons: z.array(leconDistante).default([]),

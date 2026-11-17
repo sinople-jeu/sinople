@@ -3,8 +3,9 @@
 
 export const SCENE = {
   /** Taille du monde dessiné, en pixels d'origine. */
-  largeur: 720,
-  hauteur: 180,
+  /** La forêt (Documents/Claude/Feu de camp/scene-foret) fait 344 × 192, affichée ×2 pour être à l'échelle du renard. */
+  largeur: 688,
+  hauteur: 384,
   /** Le bandeau prend au moins cette part de la hauteur de l'écran (un peu plus d'un quart)… */
   partEcran: 0.27,
   /** …et au plus celle-ci, pour laisser la place au reste de la page. */
@@ -12,8 +13,10 @@ export const SCENE = {
   /** Le bandeau ne descend pas sous cette hauteur (en pixels CSS). */
   hauteurMinCss: 120,
   /** Base du feu (pieds du feu). */
-  feuX: 360,
-  feuY: 152,
+  feuX: 474,
+  feuY: 340,
+  /** Le foyer de pierres est peint dans le décor : pas de pierres dessinées en plus. */
+  foyerPeint: true,
 };
 
 export const CAMERA = {
@@ -25,7 +28,7 @@ export const MARCHE = {
   /** Vitesse de marche du renard, en pixels par seconde. */
   vitesse: 46,
   /** D'où part le renard à l'intro (hors champ, à gauche). */
-  departIntro: -50,
+  departIntro: 120,
   /** Pause avant de partir, à l'arrivée sur la page. */
   attenteDepart: 0.4,
   /** Distance à laquelle il s'arrête devant l'animal du thème. */
@@ -59,7 +62,7 @@ export const GARDE = {
   /** Vitesse du garde, en pixels par seconde (il traverse toute la scène). */
   vitesse: 60,
   /** Ligne de ses pieds, au fond de la clairière. */
-  y: 128,
+  y: 300,
   /** Délai avant son arrivée, à l'ouverture (après l'intro du renard s'il y en a une). */
   attente: 2.5,
   /** Temps pour se cacher et pour revenir (fondu). */

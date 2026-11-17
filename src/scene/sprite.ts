@@ -2,7 +2,7 @@
 // Sans dessin (`a_dessiner`), on affiche un placeholder signalé : un bloc et son nom.
 import type { Manifeste } from '../lib/contenu/manifeste';
 
-type Asset = Manifeste['assets'][string];
+type Asset = Omit<Manifeste['assets'][string], 'zoom'> & { zoom?: number };
 
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
 export const adresse = (src: string) => (src.startsWith('/') ? base + src : src);
@@ -31,9 +31,17 @@ export class Sprite {
     }
     this.el = document.createElement('div');
     this.el.className = 'sprite';
-    this.el.style.width = `${asset.largeur}px`;
-    this.el.style.height = `${asset.hauteur}px`;
+    const zoom = asset.zoom ?? 1;
+    this.el.style.width = `${asset.largeur * zoom}px`;
+    this.el.style.height = `${asset.hauteur * zoom}px`;
     const img = document.createElement('img');
+    if (zoom !== 1) {
+      // Planche agrandie à l'affichage : on fixe sa taille, le navigateur garde les pixels nets (pixelated).
+      const col = asset.colonnes ?? asset.images;
+      img.style.width = `${asset.largeur * col * zoom}px`;
+      img.style.height = `${asset.hauteur * Math.ceil(asset.images / col) * zoom}px`;
+      img.style.maxWidth = 'none';
+    }
     img.src = adresse(asset.src);
     img.alt = '';
     img.draggable = false;
@@ -44,14 +52,17 @@ export class Sprite {
   }
   /** Ancre (les pieds) : par défaut le milieu du bas. */
   get ancre(): [number, number] {
-    return this.asset.ancre ?? [Math.round(this.asset.largeur / 2), this.asset.hauteur];
+    const z = this.asset.zoom ?? 1;
+    const [x, y] = this.asset.ancre ?? [Math.round(this.asset.largeur / 2), this.asset.hauteur];
+    return [x * z, y * z];
   }
   montrer(n: number): void {
     if (!this.planche || n === this.image) return;
     this.image = n;
     const col = this.asset.colonnes ?? this.asset.images;
-    const x = (n % col) * this.asset.largeur;
-    const y = Math.floor(n / col) * this.asset.hauteur;
+    const z = this.asset.zoom ?? 1;
+    const x = (n % col) * this.asset.largeur * z;
+    const y = Math.floor(n / col) * this.asset.hauteur * z;
     this.planche.style.transform = `translate(${-x}px, ${-y}px)`;
   }
   /** Image à montrer au temps t (secondes depuis le début de l'animation). */
