@@ -35,7 +35,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <script>
       // Contenu distant : vérifie s'il y a du nouveau (il servira au prochain affichage). Ne bloque jamais la page.
       import { verifierContenu } from '../lib/contenu/navigateur';
-      const lancer = () => verifierContenu();
+      // Avec un compte : la progression est synchronisée (le code des comptes n'est chargé que s'il y en a un).
+      const avecCompte = () => {
+        try { return !!localStorage.getItem('sinople-compte'); } catch { return false; }
+      };
+      const lancer = () => {
+        verifierContenu();
+        if (avecCompte() && !location.pathname.endsWith('/compte')) import('../lib/compte/client').then((c) => c.synchroniser()).catch(() => {});
+      };
       if ('requestIdleCallback' in window) requestIdleCallback(lancer, { timeout: 3000 });
       else setTimeout(lancer, 1500);
     </script>
