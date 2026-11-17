@@ -28,6 +28,8 @@ Pour déplacer des blocs ou changer la mise en page, demandez à Claude.
 | Page introuvable (404) | `src/pages/404.astro` |
 
 - Thèmes, animaux et carrières : `src/data/themes.json`.
+- La scène du complot (animaux, rôle de chacun, 5 niveaux du feu, pierres et bannières, grades du règne, garde, duel, images) : `src/data/scene.json`. Avec `themes.json`, il forme le « manifeste » du contenu, vérifié par `src/lib/contenu/manifeste.ts` : ajouter un animal ou un thème se fait dans ces deux fichiers, sans toucher au code.
+- Ce que la scène montre (qui est assis, qui est éclairé, taille du feu, bûches, duel ouvert…) est calculé à partir de la progression du joueur dans `src/lib/scene/etat-scene.ts`.
 - Questions : une leçon par fichier dans `src/content/questions/<thème>/<étape>-<leçon>.json` (par exemple `religion/1-1.json`), avec le niveau, l'explication et la source de chaque question. Le format est décrit dans `src/lib/contenu/schema.ts`. Chaque question garde son `id` pour toujours (il sert à la révision).
 - Les façons de répondre (`type` d'une question) :
   - `qcm` : 4 choix, `juste` = le numéro du bon (en comptant à partir de 0) ;
@@ -41,7 +43,34 @@ Pour déplacer des blocs ou changer la mise en page, demandez à Claude.
 - Une question mal formée (QCM sans 4 choix, source vide, id déjà pris…) fait échouer la vérification avec un message qui nomme le fichier et la question.
 - Le feu et ses animaux : `src/components/Feu.astro`.
 - Le renard mascotte : `public/goupil/renard.svg` (les autres dessins du goupil sont rangés dans le même dossier).
-- En attendant les comptes, la progression est gardée dans le navigateur : `src/scripts/progres.ts`.
+- La progression est gardée dans le navigateur (`src/lib/stockage/local.ts`) et, avec un compte, synchronisée en ligne.
+
+## Contenu distant (sans redéployer le site)
+
+Thèmes, animaux, grades, leçons, décors et images peuvent être publiés sans toucher au site en ligne :
+
+1. Modifier les données : `src/data/themes.json`, `src/data/scene.json`, les leçons dans `src/content/questions/`, les images dans `public/scene/`.
+2. Lancer `npm run publier-contenu` (il faut `SUPABASE_URL` et `SUPABASE_SECRET_KEY` dans le Terminal ; la clé secrète ne se met jamais dans le dépôt).
+   La commande vérifie le contenu, fabrique le dossier `contenu/` (manifeste versionné + fichiers à empreinte), puis l'envoie dans le seau Supabase « contenu ».
+3. Les joueurs reçoivent le nouveau contenu à leur lancement suivant. Seuls les fichiers modifiés sont téléchargés, puis gardés hors ligne.
+
+Si le manifeste est mal formé ou si un fichier manque, l'app garde le contenu précédent. Au tout premier lancement sans réseau, elle utilise le contenu embarqué dans le site.
+Un thème publié seulement à distance se joue sur `/chemin?id=<thème>` (il apparaît tout seul dans « Choisir un quiz »).
+Pour essayer un autre manifeste sur un appareil : dans la console du navigateur, `localStorage.setItem('sinople-contenu-url', '<adresse du manifest.json>')`.
+
+## Comptes, scores et ligues (Supabase)
+
+- On joue sans compte. À la première leçon terminée, un compte anonyme est créé en silence (pseudo provisoire « Goupil-xxxxxx »).
+  Dans « Mon compte » (`/compte`), le joueur choisit son pseudo, lie son e-mail (même compte, rien n'est perdu),
+  se connecte sur un autre appareil par un lien reçu par e-mail, télécharge ses données ou supprime son compte.
+- La progression est fusionnée entre appareils sans rien perdre : `src/lib/compte/fusion.ts`.
+- Les points de ligue sont recalculés par le serveur : le navigateur envoie seulement ses réponses (fonction
+  `supabase/functions/terminer-lecon`), le serveur corrige avec le même code que le jeu. Après une modification
+  des règles ou de la correction : `npm run fonctions`, puis redéployer la fonction.
+- Ligues de la semaine (lundi → dimanche, heure de Paris), 30 joueurs par groupe, 7 montent et 5 descendent.
+  Noms et couleurs des 7 ligues : `src/data/regles.json` (`ligues`). Tables et règles : `supabase/migrations/`.
+- Réglages à faire une fois dans Supabase (Authentication) : activer « Anonymous sign-ins », et dans
+  « URL Configuration », mettre l'adresse du site comme Site URL et ajouter `<adresse du site>/compte` aux Redirect URLs.
 
 ## Les stats (vues, visiteurs, parties)
 

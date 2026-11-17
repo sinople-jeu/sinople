@@ -1,0 +1,375 @@
+{
+  "schema": 1,
+  "version": "2026-11-17.1",
+  "animaux": [
+    {
+      "id": "renard",
+      "nom": "Renard",
+      "theme": "generale",
+      "role": "joueur",
+      "phase": "complot",
+      "place": {
+        "x": 318,
+        "y": 158,
+        "l": 40,
+        "h": 70
+      },
+      "couleur": "#d9583c",
+      "sprites": {
+        "idle": "renard-idle",
+        "marche": "renard-marche"
+      }
+    },
+    {
+      "id": "cerf",
+      "nom": "Cerf",
+      "theme": "histoire",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 214,
+        "y": 142,
+        "l": 34,
+        "h": 62
+      },
+      "couleur": "#9a6a3e"
+    },
+    {
+      "id": "hibou",
+      "nom": "Hibou",
+      "theme": "geographie",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 420,
+        "y": 156,
+        "l": 22,
+        "h": 30
+      },
+      "couleur": "#8a6240"
+    },
+    {
+      "id": "paon",
+      "nom": "Paon",
+      "theme": "culture",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 512,
+        "y": 148,
+        "l": 34,
+        "h": 48
+      },
+      "couleur": "#2a6fd0"
+    },
+    {
+      "id": "belier",
+      "nom": "Bélier",
+      "theme": "religion",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 258,
+        "y": 150,
+        "l": 34,
+        "h": 30
+      },
+      "couleur": "#efe6d2"
+    },
+    {
+      "id": "pie",
+      "nom": "Pie",
+      "theme": "politique",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 466,
+        "y": 142,
+        "l": 22,
+        "h": 26
+      },
+      "couleur": "#2a2a38"
+    },
+    {
+      "id": "lapin",
+      "nom": "Lapin",
+      "theme": "savoir-vivre",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 556,
+        "y": 158,
+        "l": 20,
+        "h": 30
+      },
+      "couleur": "#a08a78"
+    },
+    {
+      "id": "sanglier",
+      "nom": "Sanglier",
+      "theme": "sport",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 170,
+        "y": 158,
+        "l": 44,
+        "h": 30
+      },
+      "couleur": "#5a3e2e"
+    },
+    {
+      "id": "grenouille",
+      "nom": "Grenouille",
+      "theme": "savoir-inutile",
+      "role": "conjure",
+      "phase": "complot",
+      "place": {
+        "x": 596,
+        "y": 160,
+        "l": 18,
+        "h": 12
+      },
+      "couleur": "#5f8f3e"
+    },
+    {
+      "id": "lion",
+      "nom": "Lion",
+      "theme": null,
+      "role": "roi",
+      "phase": "complot",
+      "couleur": "#c8913a"
+    }
+  ],
+  "feu": {
+    "noms": [
+      "Braise",
+      "Petit feu",
+      "Feu",
+      "Beau feu",
+      "Grand feu"
+    ],
+    "seuils": [
+      0,
+      3,
+      10,
+      20,
+      33
+    ],
+    "pierres_a": 3,
+    "bannieres_a": 6
+  },
+  "regne": {
+    "grades": [
+      {
+        "nom": "Roi",
+        "points": 0
+      },
+      {
+        "nom": "Sage",
+        "points": 2000
+      },
+      {
+        "nom": "Mage",
+        "points": 4000
+      },
+      {
+        "nom": "Archimage",
+        "points": 8000
+      },
+      {
+        "nom": "Grand Mage suprême",
+        "points": 16000
+      },
+      {
+        "nom": "Esprit universel",
+        "points": 32000
+      }
+    ]
+  },
+  "garde": {
+    "a_l_ouverture": 0.33,
+    "apres_buche_brulee": true,
+    "intervalle_min_minutes": 4
+  },
+  "duel": {
+    "questions": 20
+  },
+  "assets": {
+    "renard-idle": {
+      "src": "/scene/renard/idle.png",
+      "largeur": 64,
+      "hauteur": 84,
+      "images": 8,
+      "ips": 8.33,
+      "ancre": [
+        32,
+        82
+      ]
+    },
+    "renard-marche": {
+      "src": "/scene/renard/marche.png",
+      "largeur": 64,
+      "hauteur": 84,
+      "images": 8,
+      "ips": 10,
+      "ancre": [
+        32,
+        82
+      ]
+    },
+    "feu": {
+      "src": "/scene/feu/feu-3-buches.png",
+      "largeur": 128,
+      "hauteur": 104,
+      "images": 90,
+      "ips": 30,
+      "colonnes": 10,
+      "ancre": [
+        64,
+        88
+      ]
+    },
+    "ciel": {
+      "largeur": 2400,
+      "hauteur": 180,
+      "a_dessiner": "ciel de nuit"
+    },
+    "chateau": {
+      "largeur": 120,
+      "hauteur": 70,
+      "a_dessiner": "château du roi (le lion au rempart)"
+    },
+    "collines": {
+      "largeur": 2400,
+      "hauteur": 40,
+      "a_dessiner": "collines"
+    },
+    "arbres": {
+      "largeur": 2400,
+      "hauteur": 70,
+      "a_dessiner": "arbres de la forêt"
+    },
+    "premier-plan": {
+      "largeur": 2400,
+      "hauteur": 10,
+      "a_dessiner": "premier plan (fougères)"
+    },
+    "feu-niveaux": {
+      "largeur": 128,
+      "hauteur": 104,
+      "a_dessiner": "feu en 5 tailles (ici : la taille 3 pour toutes)"
+    },
+    "braises": {
+      "largeur": 48,
+      "hauteur": 12,
+      "a_dessiner": "braises du feu éteint"
+    },
+    "buche": {
+      "largeur": 14,
+      "hauteur": 5,
+      "a_dessiner": "bûche"
+    },
+    "pierres": {
+      "largeur": 110,
+      "hauteur": 14,
+      "a_dessiner": "pierres du foyer"
+    },
+    "banniere": {
+      "largeur": 14,
+      "hauteur": 40,
+      "a_dessiner": "bannière"
+    },
+    "garde": {
+      "largeur": 24,
+      "hauteur": 56,
+      "a_dessiner": "garde avec lanterne"
+    },
+    "ciel-aube": {
+      "largeur": 2400,
+      "hauteur": 180,
+      "a_dessiner": "ciel d'aube dorée (le règne)"
+    },
+    "chateau-renard": {
+      "largeur": 120,
+      "hauteur": 70,
+      "a_dessiner": "château aux bannières vertes du renard"
+    },
+    "arbres-lanternes": {
+      "largeur": 2400,
+      "hauteur": 70,
+      "a_dessiner": "arbres avec lanternes"
+    },
+    "trone-rondins": {
+      "largeur": 30,
+      "hauteur": 34,
+      "a_dessiner": "trône de rondins"
+    }
+  },
+  "decors": {
+    "nuit": [
+      {
+        "id": "ciel",
+        "asset": "ciel",
+        "vitesse": 0,
+        "bas": 180
+      },
+      {
+        "id": "chateau",
+        "asset": "chateau",
+        "vitesse": 0.08,
+        "bas": 112
+      },
+      {
+        "id": "collines",
+        "asset": "collines",
+        "vitesse": 0.25,
+        "bas": 132
+      },
+      {
+        "id": "arbres",
+        "asset": "arbres",
+        "vitesse": 0.55,
+        "bas": 146
+      },
+      {
+        "id": "premier-plan",
+        "asset": "premier-plan",
+        "vitesse": 1.3,
+        "bas": 180
+      }
+    ],
+    "regne": [
+      {
+        "id": "ciel",
+        "asset": "ciel-aube",
+        "vitesse": 0,
+        "bas": 180
+      },
+      {
+        "id": "chateau",
+        "asset": "chateau-renard",
+        "vitesse": 0.08,
+        "bas": 112
+      },
+      {
+        "id": "collines",
+        "asset": "collines",
+        "vitesse": 0.25,
+        "bas": 132
+      },
+      {
+        "id": "arbres",
+        "asset": "arbres-lanternes",
+        "vitesse": 0.55,
+        "bas": 146
+      },
+      {
+        "id": "premier-plan",
+        "asset": "premier-plan",
+        "vitesse": 1.3,
+        "bas": 180
+      }
+    ]
+  }
+}

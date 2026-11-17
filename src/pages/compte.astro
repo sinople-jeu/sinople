@@ -1,0 +1,13 @@
+---
+// Mon compte : pseudo, e-mail, synchro entre appareils, téléchargement et suppression des données (RGPD).
+import Base from '../layouts/Base.astro';
+import Compte from '../islands/Compte';
+import '../styles/compte.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Base titre="Mon compte">
+  <main class="page">
+    <Compte client:only="preact" base={base} />
+  </main>
+</Base>

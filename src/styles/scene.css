@@ -1,0 +1,125 @@
+/* La scène du complot. Les éléments sont créés par src/scene/*.ts, d'où des styles globaux. */
+
+.scene-complot {
+  position: relative;
+  width: 100%;
+  height: max(120px, 25dvh); /* remplacé par la hauteur exacte au démarrage */
+  overflow: hidden;
+  background: #14131f;
+  contain: strict;
+}
+
+.scene-complot .monde {
+  background: #191826;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 180px;
+  transform-origin: 0 0;
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+.scene-complot .couche {
+  position: absolute;
+  left: 0;
+  will-change: transform;
+}
+.scene-complot .couche-clairiere { top: 0; }
+
+.scene-complot img,
+.scene-complot .sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.scene-complot .sprite {
+  overflow: hidden;
+  position: relative;
+}
+.scene-complot .sprite img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  will-change: transform;
+}
+
+/* Placeholder signalé : un bloc et ce qui manque. */
+.scene-complot .a-dessiner {
+  --couleur: #5b5470;
+  position: relative;
+  background: color-mix(in srgb, var(--couleur) 55%, #14131f);
+  outline: 1px dashed color-mix(in srgb, var(--couleur) 60%, white);
+  outline-offset: -1px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+.scene-complot .a-dessiner span {
+  font: 5px/1.1 ui-monospace, monospace;
+  color: #f2ead8;
+  text-align: center;
+  padding: 1px;
+  opacity: 0.85;
+  white-space: normal;
+}
+.scene-complot .couche-ciel .a-dessiner { background: #191826; outline: none; }
+.scene-complot .couche-chateau .a-dessiner { --couleur: #3d3a5c; }
+.scene-complot .couche-collines .a-dessiner { --couleur: #2b2f4a; outline-style: dotted; }
+.scene-complot .couche-arbres .a-dessiner { --couleur: #1f3a34; background: color-mix(in srgb, var(--couleur) 70%, transparent); }
+.scene-complot .couche-premier-plan .a-dessiner { --couleur: #1b2a22; }
+.scene-complot .couche :is(.couche-collines, .couche-arbres, .couche-premier-plan) .a-dessiner span { margin-top: 1px; }
+.scene-complot .couche-ciel .a-dessiner span { margin-top: 2px; }
+.scene-complot .a-dessiner-texte {
+  font: 5px/1 ui-monospace, monospace;
+  color: #f2ead8;
+  opacity: 0.6;
+  width: 80px;
+  text-align: center;
+}
+
+/* Personnages. */
+.scene-complot .perso { position: absolute; left: 0; top: 0; will-change: transform; }
+.scene-complot .perso .corps { position: relative; }
+.scene-complot .perso .halo {
+  position: absolute;
+  width: 80px;
+  opacity: 0;
+  background: radial-gradient(closest-side, rgb(255 170 70 / 0.45), rgb(255 140 50 / 0.15) 60%, transparent);
+  pointer-events: none;
+}
+.scene-complot .perso.eclaire .halo { opacity: 1; }
+.scene-complot .perso.ombre .corps > :not(.yeux) { filter: brightness(0.13) saturate(0.4); }
+.scene-complot .perso .yeux {
+  position: absolute;
+  width: 4px;
+  height: 1px;
+  display: none;
+  background: linear-gradient(90deg, #f2c94c 0 1px, transparent 1px 3px, #f2c94c 3px 4px);
+}
+.scene-complot .perso.ombre .yeux { display: block; }
+.scene-complot .perso.ombre.cligne .yeux { opacity: 0; }
+.scene-complot .perso .etiquette {
+  position: absolute;
+  transform: translateX(-50%);
+  font: 6px/1 ui-monospace, monospace;
+  color: #f2ead8;
+  white-space: nowrap;
+  text-shadow: 1px 1px 0 #14131f;
+}
+.scene-complot .perso.ombre .etiquette { opacity: 0.45; }
+
+/* Le garde passe : tout le monde se cache derrière les arbres. */
+.scene-complot .perso { transition: opacity 0.4s; }
+.scene-complot.garde-passe .perso { opacity: 0; }
+
+/* Bûches : une bûche brûlée s'efface. */
+.scene-complot .tas-de-buches { position: absolute; left: 0; top: 0; }
+.scene-complot .buche { transition: opacity 0.8s; }
+.scene-complot .buche.brulee { opacity: 0.12; }
+.scene-complot [hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-complot .buche { transition: none; }
+}

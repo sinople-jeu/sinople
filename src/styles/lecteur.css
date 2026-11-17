@@ -7,6 +7,20 @@
 .lecteur .remplissage { height: 100%; background: var(--sinople); border-radius: inherit; transition: width .3s; }
 
 .buches { display: inline-flex; gap: 1px; flex: none; }
+/* L'animal du thème à côté des bûches : il secoue la tête et soupire à chaque erreur. */
+.compagnon { position: relative; flex: none; width: 24px; height: 24px; display: grid; place-items: center; }
+.tete-renard { width: 24px; height: 24px; background-repeat: no-repeat; background-position: -38px -5px; image-rendering: pixelated; }
+.tete-a-dessiner { width: 18px; height: 18px; border-radius: 4px; outline: 1px dashed rgb(0 0 0 / .4); outline-offset: -1px; }
+.compagnon .soupir { position: absolute; top: -12px; right: -6px; font: italic .75rem var(--police-recit); color: var(--encre, #333); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .compagnon.non > :first-child { animation: secoue .7s ease-in-out; }
+  .compagnon.non .soupir { animation: soupir 1.6s ease-out; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .compagnon.non .soupir { opacity: .8; }
+}
+@keyframes secoue { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-3px); } 40% { transform: translateX(3px); } 60% { transform: translateX(-2px); } 80% { transform: translateX(2px); } }
+@keyframes soupir { 0% { opacity: 0; transform: translateY(4px); } 25% { opacity: .9; } 100% { opacity: 0; transform: translateY(-8px); } }
 .buche .bois { fill: #8a5a35; }
 .buche .cerne { fill: #c9955f; }
 .buche .flammeche { fill: var(--goupil); }

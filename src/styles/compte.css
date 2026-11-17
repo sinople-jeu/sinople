@@ -1,0 +1,29 @@
+/* Page « Mon compte » et page de confidentialité. Couleurs et arrondis : voir theme.css. */
+.compte { display: grid; gap: 16px; max-width: 34rem; margin: 0 auto; padding-bottom: 96px; }
+.compte h1 { margin: 8px 0 0; }
+.compte h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.compte h3 { margin: 16px 0 8px; font-size: 1rem; }
+.compte p { margin: 0 0 12px; line-height: 1.45; }
+.compte .carte { padding: 16px; }
+.compte-ligne { display: flex; flex-wrap: wrap; gap: 8px; }
+.compte-ligne input {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding: 10px 12px;
+  font: 1rem var(--police-texte);
+  border: 2px solid color-mix(in srgb, var(--encre) 20%, transparent);
+  border-radius: var(--arrondi-bouton);
+  background: var(--blanc);
+  color: var(--encre);
+}
+.compte-ligne .bouton { flex: 0 0 auto; }
+.compte-boutons { display: flex; flex-wrap: wrap; gap: 8px; }
+.compte-note { font-size: .9rem; color: var(--encre-douce); margin: 8px 0 0 !important; }
+.compte-msg { padding: 10px 12px; border-radius: var(--arrondi-bouton); background: color-mix(in srgb, var(--sinople) 14%, var(--blanc)); }
+.compte-msg.erreur { background: color-mix(in srgb, var(--faux) 14%, var(--blanc)); }
+.compte-case { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+.compte .danger h2 { color: var(--faux-fonce); }
+.bouton.danger { background: var(--faux); box-shadow: 0 var(--epaisseur-ombre) 0 var(--faux-fonce); }
+.compte-attente { text-align: center; padding-top: 64px; }
+.texte-legal { max-width: 38rem; margin: 0 auto; padding-bottom: 96px; line-height: 1.5; }
+.texte-legal h2 { font-size: 1.15rem; margin-top: 24px; }
