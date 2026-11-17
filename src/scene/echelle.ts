@@ -14,7 +14,9 @@ export type Echelle = {
 
 export function calculerEchelle(largeurCss: number, hauteurEcranCss: number, dpr = devicePixelRatio || 1): Echelle {
   const cible = Math.max(SCENE.hauteurMinCss, hauteurEcranCss * SCENE.partEcran) * dpr;
-  const k = Math.max(1, Math.floor(cible / SCENE.hauteur));
+  // Le plus petit agrandissement entier qui atteint la part voulue, sauf s'il dépasse la part maximale.
+  let k = Math.max(1, Math.ceil(cible / SCENE.hauteur));
+  if (k > 1 && SCENE.hauteur * k > hauteurEcranCss * SCENE.partEcranMax * dpr) k -= 1;
   const pixelCss = k / dpr;
   return { k, pixelCss, vue: Math.ceil(largeurCss / pixelCss), hauteurCss: SCENE.hauteur * pixelCss };
 }

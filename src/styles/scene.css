@@ -3,7 +3,7 @@
 .scene-complot {
   position: relative;
   width: 100%;
-  height: max(120px, 25dvh); /* remplacé par la hauteur exacte au démarrage */
+  height: max(120px, 27dvh); /* remplacé par la hauteur exacte au démarrage */
   overflow: hidden;
   background: #14131f;
   contain: strict;
