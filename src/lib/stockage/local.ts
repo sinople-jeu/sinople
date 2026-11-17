@@ -192,7 +192,7 @@ export function lireEnCours(stockage: Stockage | null, leconId: string, idsQuest
   const reponses = e.reponses ?? {};
   const dejaJouees = idsQuestions.slice(0, e.suivante);
   if (Object.keys(reponses).length !== dejaJouees.length || !dejaJouees.every((id) => id in reponses)) return null;
-  return { leconId, suivante: e.suivante, reponses, points: e.points ?? {}, brutes: e.brutes ?? {}, debut: e.debut, le: e.le };
+  return { leconId, suivante: e.suivante, reponses, points: e.points ?? {}, ...(e.brutes ? { brutes: e.brutes } : {}), ...(e.debut ? { debut: e.debut } : {}), le: e.le };
 }
 
 export function effacerEnCours(stockage: Stockage | null): void {
