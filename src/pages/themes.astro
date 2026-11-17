@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Goupil from '../components/Goupil.astro';
+import Scene from '../components/Scene.astro';
 import themes from '../data/themes.json';
 import { getCollection } from 'astro:content';
 
@@ -15,13 +15,14 @@ const aVenir = (themes as Theme[]).filter((t) => !t.pret);
 const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.toLowerCase()}`;
 ---
 <Base titre="Choisir un quiz">
+  <!-- Le bandeau de la scène du complot : le renard et les animaux déjà venus au feu. -->
+  <Scene mode="accueil" />
   <main class="page large">
     <header class="entete">
       <div>
         <p class="salut">Bonjour, gueux&#8239;!</p>
         <h1>Quel savoir veux-tu conquérir&#8239;?</h1>
       </div>
-      <Goupil taille={80} class="goupil" />
     </header>
 
     <!-- Les thèmes jouables d'abord ; les autres attendent, sans lien, dans « Bientôt au feu ». -->
@@ -93,8 +94,6 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
   .entete > div { min-width: 0; }
   .salut { margin: 0 0 6px; color: var(--encre-douce); font-weight: 500; }
   h1 { font-size: clamp(1.5rem, 1.1rem + 2vw, 2.2rem); }
-  @media (max-width: 340px) { .goupil { display: none; } } /* très petit écran : le titre d'abord */
-  .goupil { flex-shrink: 0; }
 
   .grille {
     list-style: none;

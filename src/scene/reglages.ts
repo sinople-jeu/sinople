@@ -47,6 +47,10 @@ export const FEU = {
   halo: { min: 0.7, max: 1, vitesse: 5 },
   /** Écart entre deux bûches du tas. */
   ecartBuches: 12,
+  /** Halo derrière le feu : il oscille de ± cette part de son intensité, à cette vitesse (par seconde). */
+  haloFeu: { oscillation: 0.1, vitesse: 8 },
+  /** Intro : le feu s'allume taille après taille (braises, étincelles, puis flammes) pendant que le renard arrive. */
+  allumage: { attente: 0.6, parTaille: 0.7 },
 };
 
 export const GARDE = {

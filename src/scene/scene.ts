@@ -8,7 +8,7 @@ import { calculerEchelle, type Echelle } from './echelle';
 import { creerCouches, placerCouches, type Couche } from './parallax';
 import { creerPerso, eclairer, animerPerso, placer, type Perso } from './animaux';
 import { aller, avancer, type Marche } from './marche';
-import { creerFeu, majFeu, animerFeu } from './feu';
+import { creerFeu, majFeu, animerFeu, montrerTaille, tailleDuFeu, tailleAllumage } from './feu';
 import { Sprite } from './sprite';
 import { creerTas, majTas } from './vies';
 import { majGrade } from './grades';
@@ -81,7 +81,9 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
   const feu = creerFeu(m);
   const tas = creerTas(m);
   clairiere.append(feu.el, tas.el);
-  majFeu(feu, vue, m);
+  majFeu(feu, vue);
+  // Intro : le feu s'allume pendant que le renard arrive (temps du moteur au début, sinon null).
+  let allumage: number | null = null;
   majTas(tas, vue.buches);
 
   // Les animaux présents (le roi reste au château).
@@ -118,6 +120,8 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
       // Intro : le renard traverse la forêt et arrive au feu.
       renard.x = MARCHE.departIntro;
       placer(renard);
+      allumage = -1;
+      montrerTaille(feu, 0);
       setTimeout(() => aller(renard, marcheRenard, placeRenard, () => ecrire(session(), CLE_INTRO, '1')), MARCHE.attenteDepart * 1000);
     }
     const animalActif = options.actif ? vue.animaux.find((a) => a.theme === options.actif && a.role === 'conjure') : undefined;
@@ -203,13 +207,17 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
     const cache = phase === 'passe';
     if (racine.classList.contains('garde-passe') !== cache) {
       racine.classList.toggle('garde-passe', cache);
-      feu.flammes.el.hidden = cache || vue.eteint;
-      feu.braises.hidden = !(cache || vue.eteint);
     }
+    // Le feu : braises quand le garde passe, allumage à l'intro, sinon la taille gagnée.
+    if (allumage === -1) allumage = t;
+    const cible = tailleDuFeu(vue);
+    const enAllumage = allumage !== null ? tailleAllumage(t - allumage, cible) : cible;
+    if (allumage !== null && enAllumage >= cible) allumage = null;
+    montrerTaille(feu, cache ? 0 : enAllumage);
     animerFeu(feu, t);
-    const cible = viser();
-    camera += (cible - camera) * Math.min(1, dt * CAMERA.suivi);
-    if (moteur.reduit) camera = cible;
+    const vise = viser();
+    camera += (vise - camera) * Math.min(1, dt * CAMERA.suivi);
+    if (moteur.reduit) camera = vise;
     placerCouches(couches, Math.round(camera), echelle.vue);
   });
 }

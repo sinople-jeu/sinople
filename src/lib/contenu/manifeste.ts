@@ -85,6 +85,8 @@ export const manifeste = z
       seuils: z.array(z.number().int().min(0)).length(5).refine(croissant, 'les seuils du feu doivent croître'),
       pierres_a: z.number().int().positive(),
       bannieres_a: z.number().int().positive(),
+      /** Force du halo derrière le feu, pour les 6 dessins (0 = braises, 1 à 5 = tailles du feu). */
+      halo_intensite: z.array(z.number().min(0).max(1)).length(6).default([0.25, 0.3, 0.45, 0.6, 0.8, 1]),
     }),
     regne: z.object({
       grades: z
