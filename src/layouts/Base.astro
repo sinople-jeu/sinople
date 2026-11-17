@@ -32,6 +32,27 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <body class:list={{ nuit }} style={fond ? `background:${fond}` : undefined}>
     <slot />
     {nav && <BarreNav />}
+    <script>
+      // Compte une vue de la page pour la page Stats (rien n'est envoyé tant que Supabase n'est pas branché).
+      import { compterVue, idVisiteur, nomDePage } from '../lib/stats/compteur';
+      import { stockageNavigateur } from '../lib/stockage/local';
+      compterVue(nomDePage(location.pathname, import.meta.env.BASE_URL.replace(/\/$/, '')), idVisiteur(stockageNavigateur()));
+      // Contenu distant : vérifie s'il y a du nouveau (il servira au prochain affichage). Ne bloque jamais la page.
+      import { verifierContenu } from '../lib/contenu/navigateur';
+      // Avec un compte : la progression est synchronisée (le code des comptes n'est chargé que s'il y en a un).
+      const avecCompte = () => {
+        try { return !!localStorage.getItem('sinople-compte'); } catch { return false; }
+      };
+      const lancer = () => {
+        verifierContenu();
+        let attente = false;
+        try { attente = !!localStorage.getItem('sinople-scores-en-attente'); } catch {}
+        if (attente) import('../lib/compte/score').then((m) => m.viderFile()).catch(() => {});
+        if (avecCompte() && !location.pathname.endsWith('/compte')) import('../lib/compte/client').then((c) => c.synchroniser()).catch(() => {});
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(lancer, { timeout: 3000 });
+      else setTimeout(lancer, 1500);
+    </script>
     {import.meta.env.PROD && (
       <script is:inline define:vars={{ base }}>
         // Garde le site et les leçons sur l'appareil, pour jouer sans réseau.

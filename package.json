@@ -9,15 +9,20 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
-    "verifier": "astro check && vitest run && astro build"
+    "verifier": "astro check && vitest run && astro build",
+    "paquet-contenu": "node scripts/paquet-contenu.mjs",
+    "publier-contenu": "vitest run tests/contenu-distant.test.ts && node scripts/paquet-contenu.mjs && node scripts/publier-contenu.mjs",
+    "fonctions": "node scripts/fonctions.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.1",
+    "@supabase/supabase-js": "^2.119.0",
     "astro": "6.4.8",
     "preact": "^11.1.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "@electric-sql/pglite": "^0.3.16",
     "@types/node": "^22.20.5",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"

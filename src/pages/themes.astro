@@ -2,16 +2,20 @@
 import Base from '../layouts/Base.astro';
 import Goupil from '../components/Goupil.astro';
 import themes from '../data/themes.json';
+import { getCollection } from 'astro:content';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 type Theme = (typeof themes)[number] & { pret?: boolean; lien?: string };
+// Nombre de leçons écrites par thème : un thème qui en a se joue en entier, sinon c'est l'essai de 3 questions.
+const lecons = await getCollection('questions');
+const nbLecons = (id: string) => lecons.filter((l) => l.data.theme === id).length;
 // les vrais quiz avant l'essai de géographie
-const prets = (themes as Theme[]).filter((t) => t.pret).sort((a, b) => Number(!!b.lien) - Number(!!a.lien));
+const prets = (themes as Theme[]).filter((t) => t.pret).sort((a, b) => nbLecons(b.id) - nbLecons(a.id));
 const aVenir = (themes as Theme[]).filter((t) => !t.pret);
 const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.toLowerCase()}`;
 ---
 <Base titre="Choisir un quiz">
-  <main class="page">
+  <main class="page large">
     <header class="entete">
       <div>
         <p class="salut">Bonjour, gueux&#8239;!</p>
@@ -29,11 +33,14 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
             <span class="nom">{t.nom}</span>
             <span class="matieres">{t.matieres}</span>
             <span class="carriere">{voie(t.carriere)}</span>
-            <span class="jouer">{t.lien ? 'Jouer' : 'Essai · 3 questions'}</span>
+            <span class="jouer">{nbLecons(t.id) ? `Jouer · ${nbLecons(t.id)} leçons` : 'Essai · 3 questions'}</span>
           </a>
         </li>
       ))}
     </ul>
+
+    <!-- Thèmes publiés à distance (sans redéployer le site) : ajoutés ici dans le navigateur. -->
+    <ul class="grille" id="themes-distants" data-connus={JSON.stringify(themes.map((t) => t.id))} data-base={base}></ul>
 
     <h2 class="rubrique">Bientôt au feu</h2>
     <ul class="grille">
@@ -50,6 +57,31 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
   </main>
 </Base>
 
+<script>
+  import { contenuCourant } from '../lib/contenu/navigateur';
+  const ul = document.getElementById('themes-distants')!;
+  const connus = new Set<string>(JSON.parse(ul.dataset.connus!));
+  const m = contenuCourant();
+  // Les styles de la page sont « scopés » : on reprend l'attribut d'Astro pour que les nouvelles cartes aient le même look.
+  const portee = [...ul.attributes].filter((a) => a.name.startsWith('data-astro-cid'));
+  const styler = <T extends Element>(el: T) => (portee.forEach((a) => el.setAttribute(a.name, a.value)), el);
+  for (const t of m.themes.filter((x) => !connus.has(x.id) && m.lecons.some((l) => l.theme === x.id))) {
+    const li = styler(document.createElement('li'));
+    li.className = 'large';
+    const a = styler(document.createElement('a'));
+    a.className = 'theme pret';
+    a.href = `${ul.dataset.base}/chemin?id=${encodeURIComponent(t.id)}`;
+    for (const [classe, texte] of [['nom', t.nom], ['matieres', t.matieres], ['carriere', `Voie : ${t.carriere}`], ['jouer', 'Jouer']]) {
+      const span = styler(document.createElement('span'));
+      span.className = classe;
+      span.textContent = texte;
+      a.append(span);
+    }
+    li.append(a);
+    ul.append(li);
+  }
+</script>
+
 <style>
   .entete {
     display: flex;
@@ -57,10 +89,11 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 24px;
-    flex-wrap: wrap;
   }
+  .entete > div { min-width: 0; }
   .salut { margin: 0 0 6px; color: var(--encre-douce); font-weight: 500; }
-  h1 { font-size: 1.9rem; }
+  h1 { font-size: clamp(1.5rem, 1.1rem + 2vw, 2.2rem); }
+  @media (max-width: 340px) { .goupil { display: none; } } /* très petit écran : le titre d'abord */
   .goupil { flex-shrink: 0; }
 
   .grille {
@@ -97,6 +130,11 @@ const voie = (c: string) => `Voie ${/^[AEÉIOU]/.test(c) ? "de l'" : 'du '}${c.t
   .rubrique { margin: 28px 0 12px; font-size: 1.05rem; color: var(--encre-douce); font-weight: 600; }
   .entete + .rubrique { margin-top: 0; }
   .large { grid-column: 1 / -1; }
+  /* Tablette et ordinateur : les thèmes jouables côte à côte, les autres en trois colonnes. */
+  @media (min-width: 768px) {
+    .grille { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .large { grid-column: auto; }
+  }
   .theme.a-venir { min-height: 0; background: transparent; border: 2px dashed color-mix(in srgb, var(--encre-douce) 35%, transparent); }
   .a-venir .nom { font-size: 1rem; }
   .jouer {

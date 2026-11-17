@@ -9,13 +9,15 @@
     "qcm_juste": 10,
     "carte_max": 10,
     "saisie_max": 10,
+    "estimation_juste": 10,
+    "pastilles_max": 10,
     "bonus_sans_faute_par_question": 5,
     "bonus_serie_pourcent": 10,
     "bonus_serie_plafond_pourcent": 50
   },
   "reussite": {
-    "lecon": 0.7,
-    "epreuve": 0.8
+    "lecon": 1,
+    "epreuve": 1
   },
   "serie": {
     "fuseau": "Europe/Paris",
@@ -32,7 +34,12 @@
   "saisie": {
     "fautes_tolerees": 1,
     "lettres_min_pour_tolerance": 5,
-    "articles_ignores": ["le", "la", "les", "l'"],
+    "articles_ignores": [
+      "le",
+      "la",
+      "les",
+      "l'"
+    ],
     "part_pour_juste": 0.7
   },
   "garde_fous": {
@@ -42,6 +49,24 @@
   "ligues": {
     "taille_groupe": 30,
     "montent": 7,
-    "descendent": 5
+    "descendent": 5,
+    "noms": [
+      "Sable",
+      "Gueules",
+      "Azur",
+      "Sinople",
+      "Pourpre",
+      "Argent",
+      "Or"
+    ],
+    "couleurs": [
+      "#c9b48a",
+      "#c0392b",
+      "#2f5fa8",
+      "#2b8450",
+      "#7b3f8c",
+      "#b9c0c4",
+      "#e3b448"
+    ]
   }
 }

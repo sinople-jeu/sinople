@@ -8,6 +8,8 @@ export interface Regles {
     qcm_juste: number;
     carte_max: number;
     saisie_max: number;
+    estimation_juste: number;
+    pastilles_max: number;
     bonus_sans_faute_par_question: number;
     bonus_serie_pourcent: number;
     bonus_serie_plafond_pourcent: number;
@@ -18,7 +20,7 @@ export interface Regles {
   grades: { max: number };
   saisie: { fautes_tolerees: number; lettres_min_pour_tolerance: number; articles_ignores: string[]; part_pour_juste: number };
   garde_fous: { secondes_min_par_question: number; parties_max_par_heure: number };
-  ligues: { taille_groupe: number; montent: number; descendent: number };
+  ligues: { taille_groupe: number; montent: number; descendent: number; noms: string[]; couleurs: string[] };
 }
 
 export const regles: Regles = donnees;

@@ -86,9 +86,10 @@ describe('points', () => {
     const sansFaute = bilanLecon([juste, juste, juste, juste]);
     expect(sansFaute).toMatchObject({ reussie: true, points: 40, bonusSansFaute: 20, bonusSerie: 0, totalPoints: 60 });
 
-    expect(bilanLecon([juste, juste, juste, juste, juste, juste, juste, faux, faux, faux]).reussie).toBe(true); // 70 %
-    expect(bilanLecon([juste, juste, juste, juste, juste, juste, faux, faux, faux, faux]).reussie).toBe(false); // 60 %
-    expect(bilanLecon([juste, juste, juste, juste, juste, juste, juste, faux, faux, faux], { epreuve: true }).reussie).toBe(false); // 70 % < 80 %
+    // Une leçon ou une épreuve n'est réussie qu'à 100 % de bonnes réponses.
+    expect(bilanLecon([juste, juste, juste, juste, juste, juste, juste, juste, juste, faux]).reussie).toBe(false); // 90 %
+    expect(bilanLecon([juste, juste, juste], { epreuve: true }).reussie).toBe(true);
+    expect(bilanLecon([juste, juste, faux], { epreuve: true }).reussie).toBe(false);
 
     expect(bilanLecon([juste, juste, faux], { joursSerie: 2 }).bonusSerie).toBe(4); // 20 × 20 %
     expect(bilanLecon([juste, juste, faux], { joursSerie: 30 }).bonusSerie).toBe(10); // plafonné à 50 %

@@ -39,7 +39,7 @@ export type Bilan = {
 };
 
 /**
- * Bilan d'une leçon : réussite (70 %, ou 80 % pour une épreuve), bonus sans faute (+5 par question)
+ * Bilan d'une leçon : réussite (seuils dans regles.json : 100 % de bonnes réponses), bonus sans faute (+5 par question)
  * et bonus de série (+10 % par jour de série, plafonné à +50 %), appliqué à tout le reste.
  */
 export function bilanLecon(resultats: Resultat[], options: { epreuve?: boolean; joursSerie?: number } = {}): Bilan {
