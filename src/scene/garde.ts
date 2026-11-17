@@ -53,13 +53,32 @@ export type Garde = {
   corps: HTMLElement;
   lanterne: HTMLElement | null;
   lueur: HTMLElement | null;
-  x: number;
-  /** 1 = vers la droite, -1 = vers la gauche. */
+  ancre: [number, number];
+  /** Distance parcourue sur le chemin, en pixels. */
+  d: number;
+  /** 1 = du fond vers la clairière, -1 = de la clairière vers le fond. */
   sens: 1 | -1;
   actif: boolean;
-  fin: number;
   t: number;
 };
+
+/** Longueur du chemin du garde (somme de ses segments). */
+const longueur = (c: readonly (readonly [number, number])[]) => c.slice(1).reduce((l, p, i) => l + Math.hypot(p[0] - c[i][0], p[1] - c[i][1]), 0);
+
+/** Le point du chemin à la distance d, et la direction (1 = vers la droite) du segment. */
+export function surLeChemin(c: readonly (readonly [number, number])[], d: number): { x: number; y: number; dx: number } {
+  for (let i = 1; i < c.length; i++) {
+    const [ax, ay] = c[i - 1];
+    const [bx, by] = c[i];
+    const l = Math.hypot(bx - ax, by - ay);
+    if (d <= l || i === c.length - 1) {
+      const u = l ? Math.min(1, Math.max(0, d / l)) : 0;
+      return { x: ax + (bx - ax) * u, y: ay + (by - ay) * u, dx: Math.sign(bx - ax) };
+    }
+    d -= l;
+  }
+  return { x: c[0][0], y: c[0][1], dx: 0 };
+}
 
 export function creerGarde(m: Manifeste): Garde {
   const a = m.assets.garde;
@@ -97,18 +116,25 @@ export function creerGarde(m: Manifeste): Garde {
   el.append(retourne);
   el.style.position = 'absolute';
   el.style.left = '0';
-  el.style.top = `${GARDE.y - a.hauteur}px`;
+  el.style.top = '0';
   el.style.zIndex = '10';
   el.hidden = true;
-  return { el, retourne, corps, lanterne, lueur, x: -60, sens: 1, actif: false, fin: SCENE.largeur + 60, t: 0 };
+  const ancre: [number, number] = a.ancre ?? [Math.round(a.largeur / 2), a.hauteur];
+  return { el, retourne, corps, lanterne, lueur, ancre, d: 0, sens: 1, actif: false, t: 0 };
 }
 
-/** Avance le garde ; renvoie la phase pour que la scène cache les animaux et baisse le feu. */
+/** Avance le garde sur son chemin ; renvoie la phase pour que la scène cache les animaux et baisse le feu. */
 export function avancerGarde(g: Garde, dt: number): 'absent' | 'passe' {
   if (!g.actif) return 'absent';
+  const total = longueur(GARDE.chemin);
   g.t += dt;
-  g.x += GARDE.vitesse * dt * g.sens;
-  // Un pas : le corps se soulève d'un ou deux pixels, la lanterne balance à contretemps, la flamme vacille.
+  const parcouru = g.t * GARDE.vitesse;
+  g.d = g.sens === 1 ? parcouru : total - parcouru;
+  const p = surLeChemin(GARDE.chemin, g.d);
+  // Son dessin regarde à gauche : on le retourne quand il va vers la droite.
+  const versDroite = p.dx * g.sens > 0;
+  g.retourne.style.transform = versDroite ? 'scaleX(-1)' : '';
+  // Un pas : le corps se soulève d'un pixel, la lanterne balance à contretemps, la flamme vacille.
   const pas = g.t * GARDE.pasParSeconde * Math.PI;
   const levee = Math.round(Math.abs(Math.sin(pas)) * GARDE.levee);
   g.corps.style.transform = `translateY(${-levee}px)`;
@@ -116,10 +142,13 @@ export function avancerGarde(g: Garde, dt: number): 'absent' | 'passe' {
   if (g.lueur) {
     const v = 0.5 + 0.5 * Math.sin(g.t * 13) * Math.sin(g.t * 5.3 + 1);
     g.lueur.style.opacity = (0.55 + 0.35 * v).toFixed(2);
-    g.lueur.style.transform = `translate(${Math.round(Math.sin(pas - 0.6) * 2)}px, ${-levee}px)`;
+    g.lueur.style.transform = `translate(${Math.round(Math.sin(pas - 0.6) * 1.5)}px, ${-levee}px)`;
   }
-  g.el.style.transform = `translateX(${Math.round(g.x)}px)`;
-  if ((g.sens === 1 && g.x > g.fin) || (g.sens === -1 && g.x < g.fin)) {
+  // Il sort des arbres et y rentre : fondu aux deux bouts du chemin.
+  const bord = Math.min(parcouru, total - parcouru) / 14;
+  g.el.style.opacity = String(Math.max(0, Math.min(1, bord)));
+  g.el.style.transform = `translate(${Math.round(p.x - g.ancre[0])}px, ${Math.round(p.y - g.ancre[1])}px)`;
+  if (parcouru >= total) {
     g.actif = false;
     g.el.hidden = true;
     return 'absent';
@@ -127,17 +156,11 @@ export function avancerGarde(g: Garde, dt: number): 'absent' | 'passe' {
   return 'passe';
 }
 
-/**
- * Le garde traverse ce que l'écran montre, d'un bord à l'autre (gauche et droite en x du monde),
- * dans un sens tiré au hasard. Son dessin regarde à gauche : on le retourne pour aller à droite.
- */
-export function lancerGarde(g: Garde, gauche = 0, droite = SCENE.largeur, sens: 1 | -1 = Math.random() < 0.5 ? 1 : -1): void {
-  const l = g.el.offsetWidth || 60;
+/** Le garde suit le chemin de la forêt, dans un sens tiré au hasard. */
+export function lancerGarde(g: Garde, sens: 1 | -1 = Math.random() < 0.5 ? 1 : -1): void {
   g.sens = sens;
-  g.x = sens === 1 ? gauche - l - 10 : droite + 10;
-  g.fin = sens === 1 ? droite + 10 : gauche - l - 10;
   g.t = 0;
-  g.retourne.style.transform = sens === 1 ? 'scaleX(-1)' : '';
   g.actif = true;
   g.el.hidden = false;
+  avancerGarde(g, 0);
 }

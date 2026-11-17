@@ -172,7 +172,7 @@ export function monterScene(racine: HTMLElement, options: OptionsScene, m: Manif
   clairiere.append(garde.el);
   if (!moteur.reduit && gardeDoitPasser(m, vue.buches, Date.now(), local(), session())) {
     // Il attend que le renard ait fini de marcher.
-    const attendre = (): unknown => ((marches.get(renard.id)?.cible ?? null) !== null ? setTimeout(attendre, 500) : lancerGarde(garde, Math.round(camera), Math.round(camera) + echelle.vue));
+    const attendre = (): unknown => ((marches.get(renard.id)?.cible ?? null) !== null ? setTimeout(attendre, 500) : lancerGarde(garde));
     setTimeout(attendre, GARDE.attente * 1000);
   }
 
