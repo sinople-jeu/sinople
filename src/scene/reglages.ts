@@ -5,8 +5,10 @@ export const SCENE = {
   /** Taille du monde dessiné, en pixels d'origine. */
   largeur: 720,
   hauteur: 180,
-  /** Part de la hauteur de l'écran prise par le bandeau. */
-  partEcran: 0.25,
+  /** Le bandeau prend au moins cette part de la hauteur de l'écran (un peu plus d'un quart)… */
+  partEcran: 0.27,
+  /** …et au plus celle-ci, pour laisser la place au reste de la page. */
+  partEcranMax: 0.42,
   /** Le bandeau ne descend pas sous cette hauteur (en pixels CSS). */
   hauteurMinCss: 120,
   /** Base du feu (pieds du feu). */

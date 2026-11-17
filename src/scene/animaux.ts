@@ -5,7 +5,7 @@ import type { AnimalEnScene } from '../lib/scene/etat-scene';
 import { Sprite, placeholder } from './sprite';
 import { ANIMAUX, FEU } from './reglages';
 
-export type Mode = 'idle' | 'marche';
+export type Mode = 'idle' | 'marche' | 'assis';
 
 export type Perso = {
   id: string;
@@ -48,11 +48,11 @@ export function creerPerso(a: Animal, m: Manifeste, rang: number): Perso {
   let l = place.l;
   let h = place.h;
   if (a.sprites.idle) {
-    for (const mode of ['idle', 'marche'] as const) {
+    for (const mode of ['idle', 'marche', 'assis'] as const) {
       const id = a.sprites[mode];
       if (!id) continue;
       const s = new Sprite(m.assets[id]);
-      s.el.hidden = mode !== 'idle';
+      s.el.hidden = mode !== (a.sprites.assis ? 'assis' : 'idle');
       sprites[mode] = s;
       corps.append(s.el);
     }
@@ -83,7 +83,7 @@ export function creerPerso(a: Animal, m: Manifeste, rang: number): Perso {
   etiquette.style.left = `${ancre[0]}px`;
   etiquette.style.fontSize = `${ANIMAUX.tailleEtiquette}px`;
   el.append(halo, retourne, etiquette);
-  const p: Perso = { id: a.id, el, retourne, halo, etiquette, x: place.x, y: place.y, ancre, sprites, mode: 'idle', sens: place.x > 360 ? -1 : 1, tMode: 0, eclaire: false };
+  const p: Perso = { id: a.id, el, retourne, halo, etiquette, x: place.x, y: place.y, ancre, sprites, mode: a.sprites.assis ? 'assis' : 'idle', sens: place.x > 360 ? -1 : 1, tMode: 0, eclaire: false };
   placer(p);
   return p;
 }
@@ -95,7 +95,16 @@ export function placer(p: Perso): void {
 }
 
 export function changerMode(p: Perso, mode: Mode): void {
+  // Un personnage qui sait s'asseoir s'assied dès qu'il s'arrête de marcher.
+  if (mode === 'idle' && p.sprites.assis) mode = 'assis';
   if (p.mode === mode) return;
+  // Il s'assied : un petit tassement, puis la pose assise.
+  if (mode === 'assis' && p.mode === 'marche' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    (p.retourne.firstElementChild as HTMLElement | null)?.animate(
+      [{ transform: 'translateY(2px) scaleY(0.94)' }, { transform: 'none' }],
+      { duration: 260, easing: 'ease-out' },
+    );
+  }
   p.mode = mode;
   p.tMode = 0;
   if (!p.sprites.idle) return;

@@ -3,7 +3,7 @@
 .scene-complot {
   position: relative;
   width: 100%;
-  height: max(120px, 25dvh); /* remplacé par la hauteur exacte au démarrage */
+  height: max(120px, 27dvh); /* remplacé par la hauteur exacte au démarrage */
   overflow: hidden;
   background: #14131f;
   contain: strict;
@@ -81,7 +81,7 @@
 
 /* Personnages. */
 .scene-complot .perso { position: absolute; left: 0; top: 0; will-change: transform; }
-.scene-complot .perso .corps { position: relative; }
+.scene-complot .perso .corps { position: relative; transform-origin: 50% 100%; }
 .scene-complot .perso .halo {
   position: absolute;
   width: 80px;

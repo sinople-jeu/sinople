@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.2",
+  "version": "2026-11-17.3",
   "animaux": [
     {
       "id": "renard",
@@ -9,7 +9,7 @@
       "role": "joueur",
       "phase": "complot",
       "place": {
-        "x": 318,
+        "x": 306,
         "y": 158,
         "l": 40,
         "h": 70
@@ -17,7 +17,8 @@
       "couleur": "#d9583c",
       "sprites": {
         "idle": "renard-idle",
-        "marche": "renard-marche"
+        "marche": "renard-marche",
+        "assis": "renard-assis"
       }
     },
     {
@@ -428,6 +429,18 @@
       "largeur": 30,
       "hauteur": 34,
       "a_dessiner": "trône de rondins"
+    },
+    "renard-assis": {
+      "src": "/scene/renard/assis.png",
+      "largeur": 64,
+      "hauteur": 84,
+      "images": 2,
+      "ips": 1.2,
+      "boucle": true,
+      "ancre": [
+        32,
+        82
+      ]
     }
   },
   "decors": {

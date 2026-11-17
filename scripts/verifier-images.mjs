@@ -10,11 +10,23 @@ const images = readdirSync(dossier, { recursive: true })
     .filter((q) => q.image?.src?.startsWith('https://'))
     .map((q) => ({ fichier: String(f), id: q.id, src: q.image.src })));
 
+const pause = (ms) => new Promise((ok) => setTimeout(ok, ms));
+// Wikimedia limite le débit (HTTP 429) : on attend ce qu'il demande (Retry-After), puis on réessaie, 4 fois au plus.
+async function demander(src) {
+  for (let essai = 0; ; essai++) {
+    const r = await fetch(src, { redirect: 'follow', headers: { 'User-Agent': 'SinopleQuiz/1.0 (verification des images)' } });
+    if (r.status !== 429 || essai >= 4) return r;
+    await r.body?.cancel();
+    const attente = Number(r.headers.get('retry-after'));
+    await pause(Number.isFinite(attente) && attente > 0 ? Math.min(attente, 30) * 1000 : 2000 * 2 ** essai);
+  }
+}
+
 let erreurs = 0;
 for (const { fichier, id, src } of images) {
   let message = '';
   try {
-    const r = await fetch(src, { redirect: 'follow', headers: { 'User-Agent': 'SinopleQuiz/1.0 (verification des images)' } });
+    const r = await demander(src);
     const type = r.headers.get('content-type') ?? '';
     if (!r.ok) message = `HTTP ${r.status}`;
     else if (!type.startsWith('image/')) message = `ce n'est pas une image (${type})`;
@@ -26,6 +38,7 @@ for (const { fichier, id, src } of images) {
     erreurs++;
     console.error(`✗ ${fichier} › ${id} : ${message}\n  ${src}`);
   } else console.log(`✓ ${fichier} › ${id}`);
+  await pause(300); // une demande à la fois, sans presser le serveur
 }
 console.log(`${images.length} image(s) vérifiée(s), ${erreurs} en erreur.`);
 process.exit(erreurs ? 1 : 0);
