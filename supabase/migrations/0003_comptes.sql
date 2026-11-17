@@ -34,19 +34,26 @@ create policy "progression : la sienne" on public.progressions for all to authen
   using ((select auth.uid()) = joueur) with check ((select auth.uid()) = joueur);
 grant select, insert, update on public.progressions to authenticated;
 
--- Un profil est créé avec chaque compte (anonyme compris), avec un pseudo provisoire.
+-- Pseudo provisoire « Goupil-xxxxxx », tiré de l'identifiant ; plus long s'il est déjà pris.
+create or replace function public.pseudo_provisoire(j uuid) returns text
+language sql stable security definer set search_path = '' as $$
+  select case when exists (select 1 from public.profils where pseudo = 'Goupil-' || substr(replace(j::text, '-', ''), 1, 6))
+    then 'Goupil-' || right(replace(j::text, '-', ''), 12)
+    else 'Goupil-' || substr(replace(j::text, '-', ''), 1, 6) end
+$$;
+
+-- Un profil est créé avec chaque compte (anonyme compris). Ne doit jamais faire échouer l'inscription.
 create or replace function public.creer_profil() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
-  insert into public.profils (id, pseudo)
-  values (new.id, 'Goupil-' || substr(replace(new.id::text, '-', ''), 1, 6))
-  on conflict (id) do nothing;
+  insert into public.profils (id, pseudo) values (new.id, public.pseudo_provisoire(new.id)) on conflict do nothing;
   return new;
 end $$;
 
 drop trigger if exists creer_profil on auth.users;
 create trigger creer_profil after insert on auth.users for each row execute function public.creer_profil();
 revoke execute on function public.creer_profil() from public, anon, authenticated;
+revoke execute on function public.pseudo_provisoire(uuid) from public, anon, authenticated;
 
 -- La suppression du compte passe par la fonction serveur supabase/functions/supprimer-compte
 -- (elle efface l'utilisateur, donc profil, progression, scores et ligues, grâce aux « on delete cascade »).

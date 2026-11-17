@@ -85,8 +85,7 @@ begin
   perform public.cloturer_ligues();
   select ligue into l from public.profils where id = j;
   if l is null then
-    insert into public.profils (id, pseudo) values (j, 'Goupil-' || substr(replace(j::text, '-', ''), 1, 6))
-    on conflict (id) do nothing;
+    insert into public.profils (id, pseudo) values (j, public.pseudo_provisoire(j)) on conflict do nothing;
     l := 1;
   end if;
   select m.groupe into gid from public.membres m join public.groupes g on g.id = m.groupe
