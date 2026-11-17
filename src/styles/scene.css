@@ -113,10 +113,12 @@
 /* Le garde passe : tout le monde se cache derrière les arbres. */
 .scene-complot .garde-retourne, .scene-complot .garde-corps { position: relative; }
 .scene-complot .garde-lanterne { position: absolute; }
+/* Il avance dans la nuit : son corps reste dans l'ombre, seule la lanterne brille et l'éclaire autour d'elle. */
+.scene-complot .garde-corps > .sprite { filter: brightness(0.42) saturate(0.7); }
 .scene-complot .garde-lueur {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(255 196 104 / 0.55) 0 12%, rgb(255 150 60 / 0.22) 35%, transparent 70%);
+  background: radial-gradient(circle, rgb(255 196 104 / 0.6) 0 10%, rgb(255 150 60 / 0.28) 32%, transparent 68%);
   mix-blend-mode: screen;
   pointer-events: none;
 }
