@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.1",
+  "version": "2026-11-17.2",
   "animaux": [
     {
       "id": "renard",
@@ -157,7 +157,15 @@
       33
     ],
     "pierres_a": 3,
-    "bannieres_a": 6
+    "bannieres_a": 6,
+    "halo_intensite": [
+      0.25,
+      0.3,
+      0.45,
+      0.6,
+      0.8,
+      1.0
+    ]
   },
   "regne": {
     "grades": [
@@ -218,16 +226,142 @@
         82
       ]
     },
-    "feu": {
-      "src": "/scene/feu/feu-3-buches.png",
-      "largeur": 128,
-      "hauteur": 104,
-      "images": 90,
-      "ips": 30,
-      "colonnes": 10,
+    "feu-0": {
+      "src": "/scene/feu/feu-0.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
       "ancre": [
-        64,
-        88
+        30,
+        63
+      ]
+    },
+    "feu-1": {
+      "src": "/scene/feu/feu-1.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        30,
+        63
+      ]
+    },
+    "feu-2": {
+      "src": "/scene/feu/feu-2.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        30,
+        63
+      ]
+    },
+    "feu-3": {
+      "src": "/scene/feu/feu-3.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        30,
+        63
+      ]
+    },
+    "feu-4": {
+      "src": "/scene/feu/feu-4.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        30,
+        63
+      ]
+    },
+    "feu-5": {
+      "src": "/scene/feu/feu-5.png",
+      "largeur": 60,
+      "hauteur": 66,
+      "images": 8,
+      "ips": 10,
+      "boucle": true,
+      "ancre": [
+        30,
+        63
+      ]
+    },
+    "halo-feu-0": {
+      "src": "/scene/feu/halo-0.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
+      ]
+    },
+    "halo-feu-1": {
+      "src": "/scene/feu/halo-1.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
+      ]
+    },
+    "halo-feu-2": {
+      "src": "/scene/feu/halo-2.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
+      ]
+    },
+    "halo-feu-3": {
+      "src": "/scene/feu/halo-3.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
+      ]
+    },
+    "halo-feu-4": {
+      "src": "/scene/feu/halo-4.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
+      ]
+    },
+    "halo-feu-5": {
+      "src": "/scene/feu/halo-5.png",
+      "largeur": 256,
+      "hauteur": 256,
+      "images": 1,
+      "ips": 1,
+      "ancre": [
+        128,
+        128
       ]
     },
     "ciel": {
@@ -254,16 +388,6 @@
       "largeur": 2400,
       "hauteur": 10,
       "a_dessiner": "premier plan (fougères)"
-    },
-    "feu-niveaux": {
-      "largeur": 128,
-      "hauteur": 104,
-      "a_dessiner": "feu en 5 tailles (ici : la taille 3 pour toutes)"
-    },
-    "braises": {
-      "largeur": 48,
-      "hauteur": 12,
-      "a_dessiner": "braises du feu éteint"
     },
     "buche": {
       "largeur": 14,

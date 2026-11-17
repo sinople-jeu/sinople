@@ -123,3 +123,4 @@
 @media (prefers-reduced-motion: reduce) {
   .scene-complot .buche { transition: none; }
 }
+.halo-feu { mix-blend-mode: screen; pointer-events: none; }
