@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.6",
+  "version": "2026-11-17.7",
   "animaux": [
     {
       "id": "renard",
@@ -54,9 +54,9 @@
         "assis": "hibou-assis"
       },
       "yeux": [
-        20,
-        23,
-        11
+        27,
+        30,
+        12
       ]
     },
     {
@@ -392,14 +392,15 @@
     },
     "garde": {
       "src": "/scene/garde/garde.png",
-      "largeur": 32,
-      "hauteur": 46,
-      "images": 1,
+      "largeur": 61,
+      "hauteur": 88,
+      "images": 6,
       "ips": 1,
       "ancre": [
-        16,
-        46
-      ]
+        30,
+        88
+      ],
+      "boucle": false
     },
     "trone-rondins": {
       "largeur": 30,
@@ -494,14 +495,15 @@
     },
     "garde-lanterne": {
       "src": "/scene/garde/lanterne.png",
-      "largeur": 7,
-      "hauteur": 13,
-      "images": 1,
+      "largeur": 13,
+      "hauteur": 23,
+      "images": 6,
       "ips": 1,
       "ancre": [
-        3,
+        0,
         0
-      ]
+      ],
+      "boucle": false
     },
     "foret-bord-gauche": {
       "src": "/scene/foret/bord-gauche.png",
@@ -525,38 +527,38 @@
     },
     "hibou-idle": {
       "src": "/scene/hibou/idle.png",
-      "largeur": 48,
-      "hauteur": 64,
+      "largeur": 60,
+      "hauteur": 80,
       "images": 6,
       "ips": 6,
       "boucle": true,
       "ancre": [
-        24,
-        63
+        30,
+        79
       ]
     },
     "hibou-marche": {
       "src": "/scene/hibou/marche.png",
-      "largeur": 48,
-      "hauteur": 64,
+      "largeur": 60,
+      "hauteur": 80,
       "images": 8,
       "ips": 10,
       "boucle": true,
       "ancre": [
-        24,
-        63
+        30,
+        79
       ]
     },
     "hibou-assis": {
       "src": "/scene/hibou/assis.png",
-      "largeur": 48,
-      "hauteur": 64,
+      "largeur": 60,
+      "hauteur": 80,
       "images": 6,
       "ips": 5,
       "boucle": true,
       "ancre": [
-        24,
-        63
+        30,
+        79
       ]
     }
   },

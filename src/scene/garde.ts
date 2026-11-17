@@ -53,6 +53,11 @@ export type Garde = {
   corps: HTMLElement;
   lanterne: HTMLElement | null;
   lueur: HTMLElement | null;
+  /** Les dessins du garde et de sa lanterne : une image par taille (perspective). */
+  sprite: Sprite;
+  spriteLanterne: Sprite | null;
+  /** Taille montrée (index dans GARDE.tailles), -1 = aucune encore. */
+  taille: number;
   ancre: [number, number];
   /** Distance parcourue sur le chemin, en pixels. */
   d: number;
@@ -93,22 +98,16 @@ export function creerGarde(m: Manifeste): Garde {
   corps.append(s.el);
   let lanterne: HTMLElement | null = null;
   let lueur: HTMLElement | null = null;
+  let spriteLanterne: Sprite | null = null;
   const al = m.assets['garde-lanterne'];
   if (a.src && al?.src) {
     // La lanterne pend à la main : elle oscille autour de son anneau (le haut de la chaîne).
-    lanterne = new Sprite(al, 'lanterne').el;
+    spriteLanterne = new Sprite(al, 'lanterne');
+    lanterne = spriteLanterne.el;
     lanterne.classList.add('garde-lanterne');
-    const [px, py] = al.ancre ?? [Math.round(al.largeur / 2), 0];
-    lanterne.style.left = `${GARDE.lanterne.x}px`;
-    lanterne.style.top = `${GARDE.lanterne.y}px`;
-    lanterne.style.transformOrigin = `${px}px ${py}px`;
     // Sa lueur chaude, qui vacille.
     lueur = document.createElement('div');
     lueur.className = 'garde-lueur';
-    const r = GARDE.lueur;
-    lueur.style.width = lueur.style.height = `${r * 2}px`;
-    lueur.style.left = `${GARDE.lanterne.x + Math.round(al.largeur / 2) - r}px`;
-    lueur.style.top = `${GARDE.lanterne.y + Math.round(al.hauteur * 0.6) - r}px`;
     corps.append(lanterne);
   }
   retourne.append(corps);
@@ -120,7 +119,33 @@ export function creerGarde(m: Manifeste): Garde {
   el.style.zIndex = '10';
   el.hidden = true;
   const ancre: [number, number] = a.ancre ?? [Math.round(a.largeur / 2), a.hauteur];
-  return { el, retourne, corps, lanterne, lueur, ancre, d: 0, sens: 1, actif: false, t: 0 };
+  return { el, retourne, corps, lanterne, lueur, sprite: s, spriteLanterne, taille: -1, ancre, d: 0, sens: 1, actif: false, t: 0 };
+}
+
+/** Taille du garde à la ligne y : la perspective (0 à l'horizon, 1 à la place du renard), arrondie à la plus proche des tailles dessinées. */
+export function tailleA(y: number): number {
+  const e = (y - GARDE.horizon) / (GARDE.yTailleReelle - GARDE.horizon);
+  let meilleure = 0;
+  GARDE.tailles.forEach((t, i) => {
+    if (Math.abs(t.echelle - e) < Math.abs(GARDE.tailles[meilleure].echelle - e)) meilleure = i;
+  });
+  return meilleure;
+}
+
+function montrerTaille(g: Garde, i: number): void {
+  if (g.taille === i) return;
+  g.taille = i;
+  g.sprite.montrer(i);
+  const t = GARDE.tailles[i];
+  if (g.spriteLanterne && g.lanterne && g.lueur) {
+    g.spriteLanterne.montrer(i);
+    g.lanterne.style.left = `${t.lanterne[0]}px`;
+    g.lanterne.style.top = `${t.lanterne[1]}px`;
+    g.lanterne.style.transformOrigin = `${t.pivot[0]}px ${t.pivot[1]}px`;
+    g.lueur.style.width = g.lueur.style.height = `${t.lueur * 2}px`;
+    g.lueur.style.left = `${t.lanterne[0] + t.pivot[0] - t.lueur}px`;
+    g.lueur.style.top = `${t.lanterne[1] + Math.round(t.lueur * 0.35) - t.lueur}px`;
+  }
 }
 
 /** Avance le garde sur son chemin ; renvoie la phase pour que la scène cache les animaux et baisse le feu. */
@@ -131,12 +156,14 @@ export function avancerGarde(g: Garde, dt: number): 'absent' | 'passe' {
   const parcouru = g.t * GARDE.vitesse;
   g.d = g.sens === 1 ? parcouru : total - parcouru;
   const p = surLeChemin(GARDE.chemin, g.d);
+  // Au fond il est petit ; il grandit en approchant de la clairière.
+  montrerTaille(g, tailleA(p.y));
   // Son dessin regarde à gauche : on le retourne quand il va vers la droite.
   const versDroite = p.dx * g.sens > 0;
   g.retourne.style.transform = versDroite ? 'scaleX(-1)' : '';
   // Un pas : le corps se soulève d'un pixel, la lanterne balance à contretemps, la flamme vacille.
   const pas = g.t * GARDE.pasParSeconde * Math.PI;
-  const levee = Math.round(Math.abs(Math.sin(pas)) * GARDE.levee);
+  const levee = Math.round(Math.abs(Math.sin(pas)) * GARDE.levee * GARDE.tailles[g.taille].echelle);
   g.corps.style.transform = `translateY(${-levee}px)`;
   if (g.lanterne) g.lanterne.style.transform = `rotate(${(Math.sin(pas - 0.6) * GARDE.balancement).toFixed(1)}deg)`;
   if (g.lueur) {

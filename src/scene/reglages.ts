@@ -60,7 +60,7 @@ export const FEU = {
 
 export const GARDE = {
   /** Vitesse du garde sur le chemin, en pixels par seconde (lente : il est loin). */
-  vitesse: 14,
+  vitesse: 18,
   /** Le chemin peint dans la forêt (points des pieds) : il sort des arbres au fond et descend en lacets jusqu'à l'herbe de la clairière. */
   chemin: [[322, 264], [330, 269], [326, 274], [314, 278], [296, 282], [279, 287], [277, 292], [290, 296], [304, 300], [306, 307]] as [number, number][],
   /** Délai avant son arrivée, à l'ouverture (après l'intro du renard s'il y en a une). */
@@ -70,11 +70,19 @@ export const GARDE = {
   /** Pas par seconde (le corps se soulève à chaque pas). */
   pasParSeconde: 1.6,
   /** Hauteur du soulèvement, en pixels. */
-  levee: 1,
+  levee: 3,
   /** Oscillation de la lanterne, en degrés de chaque côté. */
   balancement: 9,
-  /** Où pend la lanterne dans le dessin du garde (coin haut gauche de son image). */
-  lanterne: { x: 0, y: 25 },
-  /** Rayon de la lueur de la lanterne. */
-  lueur: 20,
+  /** Perspective : ligne où il serait minuscule (l'horizon), et ligne où il a sa taille réelle (celle du renard, 88 px). */
+  horizon: 204,
+  yTailleReelle: 368,
+  /** Ses tailles dessinées (une image chacune dans garde.png et lanterne.png) : échelle, coin de la lanterne et son anneau, rayon de la lueur. */
+  tailles: [
+    { echelle: 0.36, lanterne: [19, 73], pivot: [2, 0], lueur: 16 },
+    { echelle: 0.42, lanterne: [17, 71], pivot: [2, 0], lueur: 19 },
+    { echelle: 0.48, lanterne: [16, 68], pivot: [3, 0], lueur: 22 },
+    { echelle: 0.55, lanterne: [14, 66], pivot: [4, 0], lueur: 25 },
+    { echelle: 0.62, lanterne: [11, 62], pivot: [4, 0], lueur: 28 },
+    { echelle: 0.7, lanterne: [8, 59], pivot: [4, 0], lueur: 32 },
+  ] as { echelle: number; lanterne: [number, number]; pivot: [number, number]; lueur: number }[],
 };
