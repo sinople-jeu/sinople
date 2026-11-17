@@ -6,7 +6,7 @@ var regles_default = {
     max: 5,
     recharge_minutes: 30,
     regagnee_par_revision: 1,
-    questions_min_revision: 5
+    questions_min_revision: 3
   },
   points: {
     qcm_juste: 10,
@@ -28,7 +28,7 @@ var regles_default = {
     gels_max: 2
   },
   revision: {
-    delais_jours: [1, 2, 4, 8, 16],
+    delais_jours: [0, 1, 2, 4, 8, 16],
     questions_par_seance: 10
   },
   grades: {
@@ -37,7 +37,12 @@ var regles_default = {
   saisie: {
     fautes_tolerees: 1,
     lettres_min_pour_tolerance: 5,
-    articles_ignores: ["le", "la", "les", "l'"],
+    articles_ignores: [
+      "le",
+      "la",
+      "les",
+      "l'"
+    ],
     part_pour_juste: 0.7
   },
   garde_fous: {
@@ -47,7 +52,25 @@ var regles_default = {
   ligues: {
     taille_groupe: 30,
     montent: 7,
-    descendent: 5
+    descendent: 5,
+    noms: [
+      "Sable",
+      "Gueules",
+      "Azur",
+      "Sinople",
+      "Pourpre",
+      "Argent",
+      "Or"
+    ],
+    couleurs: [
+      "#c9b48a",
+      "#c0392b",
+      "#2f5fa8",
+      "#2b8450",
+      "#7b3f8c",
+      "#b9c0c4",
+      "#e3b448"
+    ]
   }
 };
 
