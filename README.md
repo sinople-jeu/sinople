@@ -44,6 +44,19 @@ Pour déplacer des blocs ou changer la mise en page, demandez à Claude.
 - Le renard mascotte : `public/goupil/renard.svg` (les autres dessins du goupil sont rangés dans le même dossier).
 - En attendant les comptes, la progression est gardée dans le navigateur : `src/scripts/progres.ts`.
 
+## Contenu distant (sans redéployer le site)
+
+Thèmes, animaux, grades, leçons, décors et images peuvent être publiés sans toucher au site en ligne :
+
+1. Modifier les données : `src/data/themes.json`, `src/data/scene.json`, les leçons dans `src/content/questions/`, les images dans `public/scene/`.
+2. Lancer `npm run publier-contenu` (il faut `SUPABASE_URL` et `SUPABASE_SECRET_KEY` dans le Terminal ; la clé secrète ne se met jamais dans le dépôt).
+   La commande vérifie le contenu, fabrique le dossier `contenu/` (manifeste versionné + fichiers à empreinte), puis l'envoie dans le seau Supabase « contenu ».
+3. Les joueurs reçoivent le nouveau contenu à leur lancement suivant. Seuls les fichiers modifiés sont téléchargés, puis gardés hors ligne.
+
+Si le manifeste est mal formé ou si un fichier manque, l'app garde le contenu précédent. Au tout premier lancement sans réseau, elle utilise le contenu embarqué dans le site.
+Un thème publié seulement à distance se joue sur `/chemin?id=<thème>` (il apparaît tout seul dans « Choisir un quiz »).
+Pour essayer un autre manifeste sur un appareil : dans la console du navigateur, `localStorage.setItem('sinople-contenu-url', '<adresse du manifest.json>')`.
+
 ## Voir le site sur son ordinateur
 
 Dans le Terminal, depuis ce dossier :

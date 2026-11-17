@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
-    "verifier": "astro check && vitest run && astro build"
+    "verifier": "astro check && vitest run && astro build",
+    "paquet-contenu": "node scripts/paquet-contenu.mjs",
+    "publier-contenu": "vitest run tests/contenu-distant.test.ts && node scripts/paquet-contenu.mjs && node scripts/publier-contenu.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "^6.1.1",

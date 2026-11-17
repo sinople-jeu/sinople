@@ -32,6 +32,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <body class:list={{ nuit }} style={fond ? `background:${fond}` : undefined}>
     <slot />
     {nav && <BarreNav />}
+    <script>
+      // Contenu distant : vérifie s'il y a du nouveau (il servira au prochain affichage). Ne bloque jamais la page.
+      import { verifierContenu } from '../lib/contenu/navigateur';
+      const lancer = () => verifierContenu();
+      if ('requestIdleCallback' in window) requestIdleCallback(lancer, { timeout: 3000 });
+      else setTimeout(lancer, 1500);
+    </script>
     {import.meta.env.PROD && (
       <script is:inline define:vars={{ base }}>
         // Garde le site et les leçons sur l'appareil, pour jouer sans réseau.

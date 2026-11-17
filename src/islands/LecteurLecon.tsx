@@ -30,6 +30,8 @@ type Props = {
   chemin: LeconDuChemin[];
   /** Mode révision : pas de bûche perdue, pas de verrou ; la fin rend une bûche (5 questions minimum). */
   revision?: boolean;
+  /** Page du chemin où revenir (thèmes publiés à distance) ; par défaut /theme/<thème>. */
+  retourChemin?: string;
 };
 
 type Ecran = 'question' | 'eteint' | 'fin' | 'fin-revision';
@@ -106,8 +108,8 @@ function formatDuree(ms: number) {
   return min >= 60 ? `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, '0')}` : `${min} min`;
 }
 
-export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin, animal, grades, revision = false }: Props) {
-  const retour = revision ? `${base}/` : `${base}/theme/${lecon.theme}`;
+export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin, animal, grades, revision = false, retourChemin }: Props) {
+  const retour = revision ? `${base}/` : (retourChemin ?? `${base}/theme/${lecon.theme}`);
   const [vies, setVies] = useState(MAX);
   const [ecran, setEcran] = useState<Ecran>('question');
   const [i, setI] = useState(0);

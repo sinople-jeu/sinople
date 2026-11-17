@@ -37,7 +37,7 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
   import { serieDuJour, jourParis } from '../lib/jeu/serie';
   import { aReviser } from '../lib/jeu/revision';
   import { vueScene } from '../lib/scene/etat-scene';
-  import { manifesteEmbarque } from '../lib/contenu/manifeste';
+  import { contenuCourant } from '../lib/contenu/navigateur';
   const etat = lireEtat(stockageNavigateur());
   const maintenant = Date.now();
   // La flamme : jours de série (0 si un jour manqué n'a pas été couvert par un gel), et les gels en réserve.
@@ -57,7 +57,7 @@ const joueur = { points: 0, grade: 'Gueux', recit: 'Le renard rumine seul son co
     lien.hidden = false;
   }
   // Le grade affiché est celui du renard (culture générale), puis, après le sacre, son grade de roi.
-  const vue = vueScene(etat, manifesteEmbarque(), maintenant);
+  const vue = vueScene(etat, contenuCourant(), maintenant);
   const essaiRegne = new URLSearchParams(location.search).get('essai') === 'regne';
   document.getElementById('grade')!.textContent = vue.regne?.nomGrade ?? (essaiRegne ? 'Roi (essai)' : themes.find((t) => t.id === 'generale')!.grades[(etat.grades.generale ?? 1) - 1]);
   // Les 9 animaux au 6e grade : le duel contre le roi est ouvert.

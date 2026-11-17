@@ -24,6 +24,22 @@ export const asset = z.object({
   ancre: z.tuple([z.number().int(), z.number().int()]).optional(),
   /** Placeholder signalé : le dessin manque encore, on affiche un bloc avec ce texte. */
   a_dessiner: z.string().optional(),
+  /** Empreinte du fichier (contenu distant) : si elle ne change pas, on ne le retélécharge pas. */
+  hash: z.string().optional(),
+  /** Poids du fichier, en octets (contenu distant). */
+  octets: z.number().int().min(0).optional(),
+});
+
+/** Une leçon du contenu distant : où la trouver, et son empreinte. */
+export const leconDistante = z.object({
+  id,
+  theme: id,
+  etape: z.number().int().min(1),
+  lecon: z.number().int().min(1),
+  titre: texte,
+  epreuve: z.boolean().default(false),
+  src: z.string(),
+  hash: z.string().optional(),
 });
 
 export const theme = z.object({
@@ -85,6 +101,8 @@ export const manifeste = z
     /** Décors : couches de parallax, de la plus lointaine à la plus proche. `vitesse` 0 = immobile, 1 = avance avec la scène ; `bas` = ligne du bas de la couche (180 = bas de la scène). */
     decors: z.record(z.string(), z.array(z.object({ id, asset: z.string(), vitesse: z.number().min(0), bas: z.number().int().optional() }))),
     assets: z.record(z.string(), asset).default({}),
+    /** Leçons publiées à distance (vide dans le manifeste embarqué : ses leçons sont dans le site). */
+    lecons: z.array(leconDistante).default([]),
   })
   .superRefine((m, ctx) => {
     const animaux = new Set(m.animaux.map((a) => a.id));
@@ -107,6 +125,7 @@ export const manifeste = z
 export type Manifeste = z.output<typeof manifeste>;
 export type Theme = z.output<typeof theme>;
 export type Animal = z.output<typeof animal>;
+export type LeconDistante = z.output<typeof leconDistante>;
 
 /** Les anciens fichiers écrivent l'animal avec accent (« bélier ») : l'id n'en a pas. */
 export const idAnimal = (nom: string) => nom.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
