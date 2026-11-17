@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "2026-11-17.7",
+  "version": "2026-11-17.8",
   "animaux": [
     {
       "id": "renard",
@@ -509,20 +509,18 @@
       "src": "/scene/foret/bord-gauche.png",
       "largeur": 480,
       "hauteur": 192,
-      "images": 48,
+      "images": 1,
       "zoom": 2,
-      "colonnes": 8,
-      "ips": 12,
+      "ips": 1,
       "boucle": true
     },
     "foret-bord-droite": {
       "src": "/scene/foret/bord-droite.png",
       "largeur": 528,
       "hauteur": 192,
-      "images": 48,
+      "images": 1,
       "zoom": 2,
-      "colonnes": 8,
-      "ips": 12,
+      "ips": 1,
       "boucle": true
     },
     "hibou-idle": {
