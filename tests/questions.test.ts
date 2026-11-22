@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { controlerLecons, type FichierLecon } from '../src/lib/contenu/controles';
@@ -21,6 +21,18 @@ describe('questions du dépôt', () => {
     // En cas d'échec, la liste affichée dit quel fichier et quelle question corriger.
     expect(controlerLecons(fichiers)).toEqual([]);
   });
+
+  it('ont leurs images locales (choix en images, tableaux) dans public/', () => {
+    const manquantes = lireTout(DOSSIER).flatMap(({ chemin, donnees }) =>
+      ((donnees as { questions?: { id: string; image?: { src: string }; choix_images?: { src: string }[] }[] }).questions ?? []).flatMap((q) =>
+        [q.image, ...(q.choix_images ?? [])]
+          .filter((i): i is { src: string } => !!i && i.src.startsWith('/'))
+          .filter((i) => !existsSync(join('public', i.src)))
+          .map((i) => `${chemin} › ${q.id} : ${i.src} introuvable`),
+      ),
+    );
+    expect(manquantes).toEqual([]);
+  });
 });
 
 const qcm = (id: string, autre: Record<string, unknown> = {}) => ({
@@ -42,6 +54,13 @@ describe('contrôles de contenu', () => {
     expect(erreurs).toContain('geographie/1-1.json › questions.0.choix (geo-a-0001) : un QCM a exactement 4 choix');
     expect(erreurs).toContain('geographie/1-1.json › questions.0.juste (geo-a-0001) : juste doit être entre 0 et 3');
     expect(erreurs).toContain('geographie/1-1.json › questions.0.source (geo-a-0001) : la source est vide');
+  });
+
+  it('demandent 4 images quand un QCM a ses choix en images', () => {
+    const img = { src: '/questions/noeuds/windsor.svg', alt: 'Un nœud large.' };
+    expect(controlerLecons([lecon(1, [qcm('geo-a-0001', { choix_images: [img, img, img, img] })])])).toEqual([]);
+    expect(controlerLecons([lecon(1, [qcm('geo-a-0001', { choix_images: [img, img, img] })])]))
+      .toContain('geographie/1-1.json › questions.0.choix_images (geo-a-0001) : il faut 4 images, une par choix');
   });
 
   it('refusent les choix en double et les id réutilisés', () => {

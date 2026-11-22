@@ -1,0 +1,143 @@
+{
+  "id": "savoir-vivre-1-4",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 4,
+  "titre": "Les tenues de soirée",
+  "intro": "Revers de soie, gants d'opéra, petite robe noire : le soir, le lapin sort ses plus beaux atours.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-soi-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "De quoi sont faits les revers d'un smoking ?",
+      "choix": [
+        "Du même tissu que la veste",
+        "De velours côtelé",
+        "De soie, satin ou gros-grain",
+        "De cuir"
+      ],
+      "juste": 2,
+      "explication": "Les revers du smoking sont couverts de soie, en satin brillant ou en gros-grain côtelé. C'est ce qui le distingue d'un simple costume noir.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-soi-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Quel détail distingue le pantalon de smoking ?",
+      "choix": [
+        "Une bande de soie le long de la couture extérieure",
+        "Un revers en bas",
+        "Des poches plaquées",
+        "Une ceinture en cuir verni"
+      ],
+      "juste": 0,
+      "explication": "Le pantalon de smoking porte un galon de soie sur le côté, assorti aux revers. Il n'a pas de revers en bas et se tient avec des bretelles plutôt qu'une ceinture.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-soi-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Avec un smoking, que porte-t-on à la taille ?",
+      "choix": [
+        "Une ceinture en cuir noir",
+        "Une écharpe de couleur nouée sur le côté",
+        "Une ceinture de smoking en soie plissée, ou un gilet",
+        "Une chaîne de montre seulement"
+      ],
+      "juste": 2,
+      "explication": "La ceinture de smoking, large bande de soie aux plis tournés vers le haut, ou bien un gilet du soir, cache la taille du pantalon et le bas de la chemise.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-soi-0004",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "En cravate blanche, pourquoi évite-t-on traditionnellement la montre-bracelet ?",
+      "choix": [
+        "Elle abîme les manchettes",
+        "Regarder l'heure laisserait croire qu'on a hâte de partir",
+        "Elle est interdite par le protocole de l'Élysée",
+        "Elle accroche les gants des dames"
+      ],
+      "juste": 1,
+      "explication": "En grande soirée, l'heure n'est pas censée compter : consulter sa montre serait impoli envers ses hôtes. Ceux qui y tiennent glissent une montre de gousset dans le gilet.",
+      "source": "Gentleman's Gazette, « White Tie Guide »"
+    },
+    {
+      "id": "viv-soi-0005",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quelle robe attend-on d'une femme à une soirée « cravate blanche » ?",
+      "choix": [
+        "Une robe de cocktail",
+        "Une robe longue",
+        "Un tailleur-pantalon",
+        "Une petite robe noire"
+      ],
+      "juste": 1,
+      "explication": "En cravate blanche, la robe longue jusqu'au sol est de rigueur, souvent avec de longs gants. En cravate noire, la robe longue reste la règle classique, même si la robe de cocktail est souvent tolérée.",
+      "source": "Wikipédia (anglais), « White tie »"
+    },
+    {
+      "id": "viv-soi-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Qui a imposé la « petite robe noire », saluée par Vogue en 1926 ?",
+      "choix": [
+        "Christian Dior",
+        "Jeanne Lanvin",
+        "Coco Chanel",
+        "Yves Saint Laurent"
+      ],
+      "juste": 2,
+      "explication": "En 1926, Vogue publie un dessin d'une robe noire toute simple de Chanel et la compare à la Ford T : sobre, pratique, faite pour toutes. Le noir, couleur du deuil, devient chic.",
+      "source": "Smithsonian Magazine, « Why Coco Chanel Created the Little Black Dress »"
+    },
+    {
+      "id": "viv-soi-0007",
+      "type": "molette",
+      "niveau": "moyen",
+      "q": "En quelle année Vogue publie-t-il la « petite robe noire » de Chanel ?",
+      "min": 1900,
+      "max": 1960,
+      "juste": 1926,
+      "tolerance": 2,
+      "explication": "C'était en octobre 1926, dans le Vogue américain. La molette compte juste à 2 ans près.",
+      "source": "Smithsonian Magazine, « Why Coco Chanel Created the Little Black Dress »"
+    },
+    {
+      "id": "viv-soi-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À quoi reconnaît-on des gants d'opéra ?",
+      "choix": [
+        "Ils n'ont pas de doigts",
+        "Ils montent au-dessus du coude",
+        "Ils sont toujours en dentelle noire",
+        "Ils se portent avec les bagues par-dessus"
+      ],
+      "juste": 1,
+      "explication": "Les gants d'opéra sont de longs gants qui dépassent le coude, souvent blancs, portés avec une robe du soir sans manches. On les retire pour manger.",
+      "source": "Wikipédia (anglais), « White tie »"
+    },
+    {
+      "id": "viv-soi-0009",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Une robe de cocktail, c'est…",
+      "choix": [
+        "Une robe longue jusqu'au sol",
+        "Une robe de jour en coton",
+        "Une robe habillée qui s'arrête autour du genou",
+        "Une robe de mariée courte"
+      ],
+      "juste": 2,
+      "explication": "La robe de cocktail est une robe habillée de longueur genou, née dans les années 1920 pour les réceptions de fin d'après-midi. Plus courte que la robe du soir, plus chic qu'une robe de jour.",
+      "source": "Wikipédia (anglais), « Cocktail dress »"
+    }
+  ]
+}

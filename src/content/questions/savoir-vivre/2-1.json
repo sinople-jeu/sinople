@@ -1,0 +1,116 @@
+{
+  "id": "savoir-vivre-2-1",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 1,
+  "titre": "En ville",
+  "intro": "Richelieu ou derby ? Marron ou noir ? En ville, le lapin soigne les détails qui font l'élégance.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-vil-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quelle différence entre un richelieu et un derby ?",
+      "choix": [
+        "Le derby n'a pas de lacets",
+        "Le richelieu a un laçage fermé, le derby un laçage ouvert",
+        "Le richelieu est toujours marron",
+        "Le derby a un talon haut"
+      ],
+      "juste": 1,
+      "explication": "Sur le richelieu, les deux pièces qui portent les œillets sont cousues sous le dessus du soulier : le laçage est fermé. Sur le derby, elles sont cousues par-dessus et s'écartent : le laçage est ouvert.",
+      "source": "Wikipédia, « Richelieu (chaussure) » et « Derby (chaussure) »"
+    },
+    {
+      "id": "viv-vil-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Pour un costume sombre, quelle chaussure est la plus habillée ?",
+      "choix": [
+        "Le derby en daim marron",
+        "Le mocassin à pompons",
+        "La bottine Chelsea en daim",
+        "Le richelieu noir"
+      ],
+      "juste": 3,
+      "explication": "Le richelieu noir, lisse et sobre, est le soulier le plus habillé de la garde-robe de jour. Le daim et les mocassins sont plus décontractés.",
+      "source": "Wikipédia (anglais), « Oxford shoe »"
+    },
+    {
+      "id": "viv-vil-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment les Anglais appellent-ils le richelieu ?",
+      "choix": [
+        "Brogue",
+        "Loafer",
+        "Oxford",
+        "Monk"
+      ],
+      "juste": 2,
+      "explication": "Les Anglais l'appellent « Oxford ». « Brogue » désigne un soulier fleuri (percé de petits trous), « loafer » un mocassin et « monk » un soulier à boucle.",
+      "source": "Wikipédia (anglais), « Oxford shoe »"
+    },
+    {
+      "id": "viv-vil-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Qu'appelle-t-on un soulier « fleuri » ?",
+      "choix": [
+        "Un soulier orné de petits trous décoratifs",
+        "Un soulier brodé d'une fleur",
+        "Un soulier en cuir de couleur vive",
+        "Un soulier à boucle"
+      ],
+      "juste": 0,
+      "explication": "Les perforations décoratives du soulier fleuri (« brogue » en anglais) servaient autrefois à laisser l'eau s'écouler des chaussures de marche dans la lande irlandaise et écossaise.",
+      "source": "Wikipédia (anglais), « Brogue shoe »"
+    },
+    {
+      "id": "viv-vil-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "« No brown in town » : que dit ce vieil adage anglais ?",
+      "choix": [
+        "Pas de costume marron le dimanche",
+        "Pas de chaussures marron en ville, avec le costume de travail",
+        "Pas de pain bis à la table du roi",
+        "Pas de cravate marron en hiver"
+      ],
+      "juste": 1,
+      "explication": "Le marron était réservé à la campagne et au week-end ; en ville, avec le costume de bureau, on portait du noir. La règle s'est beaucoup assouplie, mais le noir reste le plus habillé.",
+      "source": "Wikipédia (anglais), « Oxford shoe » ; usage britannique"
+    },
+    {
+      "id": "viv-vil-0006",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Avec quoi assortit-on sa ceinture en cuir ?",
+      "choix": [
+        "Avec ses chaussures",
+        "Avec sa cravate",
+        "Avec sa pochette",
+        "Avec ses chaussettes"
+      ],
+      "juste": 0,
+      "explication": "Ceinture et chaussures sont du même cuir, ou au moins de la même couleur : noir avec noir, marron avec marron.",
+      "source": "Mr Porter, The Journal, guides de style (ceinture et chaussures)"
+    },
+    {
+      "id": "viv-vil-0007",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Pochette et cravate : quelle est la règle ?",
+      "choix": [
+        "Elles doivent être taillées dans le même tissu",
+        "La pochette est de la couleur du costume",
+        "Elles s'accordent sans être identiques",
+        "Jamais de pochette avec une cravate"
+      ],
+      "juste": 2,
+      "explication": "La pochette reprend une couleur de la cravate ou de la chemise sans la copier. Les coffrets cravate et pochette assorties sont justement ce qu'on évite.",
+      "source": "Mr Porter, The Journal, guides de style (la pochette)"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles } f
 import { Molette, Jauge, Pastilles, Registre, nombre, type ImageQuestion, type QuestionMolette, type QuestionJauge, type QuestionPastilles, type QuestionRegistre } from './Formats';
 
 type Commun = { id: string; q: string; niveau: string; explication: string; source: string; image?: ImageQuestion };
-export type QuestionQcm = Commun & { type: 'qcm'; choix: string[]; juste: number };
+export type QuestionQcm = Commun & { type: 'qcm'; choix: string[]; juste: number; choix_images?: { src: string; alt: string }[] };
 /** Réponse à taper : une seule réponse attendue, ou une liste à compléter avant la fin du chrono. */
 export type QuestionSaisie = Commun & { type: 'saisie'; reponses: string[][]; duree_s: number };
 export type QuestionJeu = QuestionQcm | QuestionSaisie | QuestionMolette | QuestionJauge | QuestionPastilles | QuestionRegistre;
@@ -480,7 +480,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
         ) : q.type === 'registre' ? (
           <Registre q={q} choisi={choisi} choisir={setChoisi} corrige={corrige} />
         ) : (
-        <div class="choix" role="radiogroup" aria-labelledby="question">
+        <div class={`choix${q.choix_images ? ' en-images' : ''}`} role="radiogroup" aria-labelledby="question">
           {q.choix.map((c, k) => (
             <button
               type="button"
@@ -490,7 +490,13 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
               class={`reponse${corrige && k === q.juste ? ' juste' : ''}${corrige && k === choisi && !ok ? ' faux' : ''}`}
               onClick={() => setChoisi(k)}
             >
-              {c}
+              {q.choix_images ? (
+                <span class="vignette">
+                  <img src={q.choix_images[k].src.startsWith('/') ? `${base}${q.choix_images[k].src}` : q.choix_images[k].src} alt={q.choix_images[k].alt} decoding="async" />
+                  {/* Le nom n'apparaît qu'une fois corrigé, sinon il donnerait la réponse. */}
+                  {corrige && <span class="nom">{c}</span>}
+                </span>
+              ) : c}
               {corrige && k === q.juste && <span class="invisible"> (bonne réponse)</span>}
               {corrige && k === choisi && !ok && <span class="invisible"> (votre réponse, fausse)</span>}
             </button>

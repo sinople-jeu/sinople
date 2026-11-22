@@ -1,0 +1,218 @@
+{
+  "id": "savoir-vivre-2-3",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 3,
+  "titre": "Les nœuds de cravate",
+  "intro": "Windsor, demi-Windsor, nœud simple : le lapin reconnaît un nœud au premier coup d'œil. Et toi ?",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-noe-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le nœud Windsor ?",
+      "choix": [
+        "Nœud simple",
+        "Windsor",
+        "Eldredge",
+        "Demi-Windsor"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/noeuds/simple.svg",
+          "alt": "Un nœud étroit et allongé, un peu de travers."
+        },
+        {
+          "src": "/questions/noeuds/windsor.svg",
+          "alt": "Un nœud très large et épais, en grand triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/eldredge.svg",
+          "alt": "Un nœud tressé, barré de bandes croisées en arêtes de poisson."
+        },
+        {
+          "src": "/questions/noeuds/demi-windsor.svg",
+          "alt": "Un nœud moyen, en triangle symétrique."
+        }
+      ],
+      "explication": "Le Windsor est le plus large et le plus épais : un grand triangle bien symétrique, qui demande beaucoup de longueur de cravate.",
+      "source": "Wikipédia (anglais), « Windsor knot » ; Thomas Fink et Yong Mao, « The 85 Ways to Tie a Tie » (1999)"
+    },
+    {
+      "id": "viv-noe-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le nœud simple, le plus courant ?",
+      "choix": [
+        "Demi-Windsor",
+        "Eldredge",
+        "Windsor",
+        "Nœud simple"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/noeuds/demi-windsor.svg",
+          "alt": "Un nœud moyen, en triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/eldredge.svg",
+          "alt": "Un nœud tressé, barré de bandes croisées en arêtes de poisson."
+        },
+        {
+          "src": "/questions/noeuds/windsor.svg",
+          "alt": "Un nœud très large et épais, en grand triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/simple.svg",
+          "alt": "Un nœud étroit et allongé, un peu de travers."
+        }
+      ],
+      "explication": "Le nœud simple est étroit, allongé et un peu asymétrique. C'est le plus facile et le plus porté.",
+      "source": "Wikipédia (anglais), « Four-in-hand knot » ; Thomas Fink et Yong Mao, « The 85 Ways to Tie a Tie » (1999)"
+    },
+    {
+      "id": "viv-noe-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le demi-Windsor ?",
+      "choix": [
+        "Demi-Windsor",
+        "Windsor",
+        "Nœud simple",
+        "Eldredge"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/noeuds/demi-windsor.svg",
+          "alt": "Un nœud moyen, en triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/windsor.svg",
+          "alt": "Un nœud très large et épais, en grand triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/simple.svg",
+          "alt": "Un nœud étroit et allongé, un peu de travers."
+        },
+        {
+          "src": "/questions/noeuds/eldredge.svg",
+          "alt": "Un nœud tressé, barré de bandes croisées en arêtes de poisson."
+        }
+      ],
+      "explication": "Le demi-Windsor est symétrique comme le Windsor, mais plus petit. C'est le compromis passe-partout.",
+      "source": "Wikipédia (anglais), « Half-Windsor knot » ; Thomas Fink et Yong Mao, « The 85 Ways to Tie a Tie » (1999)"
+    },
+    {
+      "id": "viv-noe-0004",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Lequel est le nœud Eldredge ?",
+      "choix": [
+        "Windsor",
+        "Nœud simple",
+        "Eldredge",
+        "Demi-Windsor"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/noeuds/windsor.svg",
+          "alt": "Un nœud très large et épais, en grand triangle symétrique."
+        },
+        {
+          "src": "/questions/noeuds/simple.svg",
+          "alt": "Un nœud étroit et allongé, un peu de travers."
+        },
+        {
+          "src": "/questions/noeuds/eldredge.svg",
+          "alt": "Un nœud tressé, barré de bandes croisées en arêtes de poisson."
+        },
+        {
+          "src": "/questions/noeuds/demi-windsor.svg",
+          "alt": "Un nœud moyen, en triangle symétrique."
+        }
+      ],
+      "explication": "L'Eldredge, inventé en 2007 par Jeffrey Eldredge, est un nœud tressé : ses bandes croisées dessinent des arêtes de poisson. On le noue avec la petite pointe de la cravate.",
+      "source": "Wikipédia (anglais), « Eldredge knot »"
+    },
+    {
+      "id": "viv-noe-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "D'où vient le nom du nœud Windsor ?",
+      "choix": [
+        "Du château de Windsor, où on l'aurait noué la première fois",
+        "Du duc de Windsor, l'ancien roi Édouard VIII",
+        "D'une chemiserie de Windsor Street, à Londres",
+        "De la reine Victoria"
+      ],
+      "juste": 1,
+      "explication": "Il porte le nom du duc de Windsor, l'ancien roi Édouard VIII, célèbre pour ses gros nœuds. Ironie : le duc obtenait cet effet avec des cravates épaisses et un nœud simple, et n'a sans doute jamais noué de Windsor.",
+      "source": "Wikipédia (anglais), « Windsor knot »"
+    },
+    {
+      "id": "viv-noe-0006",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Le nœud simple porte en anglais un nom venu des attelages. Lequel ?",
+      "choix": [
+        "Half hitch",
+        "Bowline",
+        "Four-in-hand",
+        "Cross-over"
+      ],
+      "juste": 2,
+      "explication": "« Four-in-hand » : les quatre rênes d'un attelage à quatre chevaux, tenues dans une main. Le nom viendrait d'un club de cochers londoniens. Le « bowline » est le nœud de chaise des marins.",
+      "source": "Wikipédia (anglais), « Four-in-hand knot »"
+    },
+    {
+      "id": "viv-noe-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Avec quel col de chemise le large Windsor va-t-il le mieux ?",
+      "choix": [
+        "Un col boutonné",
+        "Un col italien, très ouvert",
+        "Un col Mao",
+        "Un col cassé"
+      ],
+      "juste": 1,
+      "explication": "Un gros nœud demande de la place : le col italien, aux pointes très écartées, l'encadre bien. Le col cassé, lui, accompagne le nœud papillon de l'habit, et le col Mao se porte sans cravate.",
+      "source": "Wikipédia (anglais), « Windsor knot »"
+    },
+    {
+      "id": "viv-noe-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Une fois la cravate nouée, où doit arriver sa pointe ?",
+      "choix": [
+        "Au milieu du ventre",
+        "Sous la ceinture",
+        "À la boucle de la ceinture",
+        "Au sternum"
+      ],
+      "juste": 2,
+      "explication": "La pointe s'arrête à la boucle de la ceinture, ni au-dessus ni en dessous. On règle la longueur en choisissant un nœud plus ou moins gros.",
+      "source": "Mr Porter, The Journal, guides de style (nouer sa cravate)"
+    },
+    {
+      "id": "viv-noe-0009",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment s'appelle le petit creux qu'on forme juste sous le nœud ?",
+      "choix": [
+        "Le pli",
+        "La fossette",
+        "La cassure",
+        "La pince"
+      ],
+      "juste": 1,
+      "explication": "C'est la fossette : un petit creux pincé sous le nœud, qui donne du relief à la cravate.",
+      "source": "Mr Porter, The Journal, guides de style (nouer sa cravate)"
+    }
+  ]
+}

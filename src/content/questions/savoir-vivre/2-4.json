@@ -1,0 +1,206 @@
+{
+  "id": "savoir-vivre-2-4",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 4,
+  "titre": "Les cols de chemise",
+  "intro": "Pointes sages ou très écartées, boutonnées ou rabattues : le lapin reconnaît un col au premier regard.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-col-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le col boutonné ?",
+      "choix": [
+        "Col classique",
+        "Col boutonné",
+        "Col italien",
+        "Col club"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/cols/classique.svg",
+          "alt": "Un col aux pointes moyennes, assez rapprochées, qui descendent en V."
+        },
+        {
+          "src": "/questions/cols/boutonne.svg",
+          "alt": "Un col aux pointes longues, fixées sur la chemise par deux petits boutons."
+        },
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        },
+        {
+          "src": "/questions/cols/club.svg",
+          "alt": "Un col aux pointes arrondies."
+        }
+      ],
+      "explication": "Le col boutonné (« button-down ») a des pointes fixées à la chemise par deux petits boutons. Il est décontracté : on le porte volontiers sans cravate.",
+      "source": "Wikipédia (anglais), « Button-down collar »"
+    },
+    {
+      "id": "viv-col-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le col italien ?",
+      "choix": [
+        "Col club",
+        "Col classique",
+        "Col Mao",
+        "Col italien"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/cols/club.svg",
+          "alt": "Un col aux pointes arrondies."
+        },
+        {
+          "src": "/questions/cols/classique.svg",
+          "alt": "Un col aux pointes moyennes, assez rapprochées, qui descendent en V."
+        },
+        {
+          "src": "/questions/cols/mao.svg",
+          "alt": "Un col droit qui monte autour du cou, sans pointes rabattues."
+        },
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        }
+      ],
+      "explication": "Le col italien a des pointes très écartées, presque à l'horizontale. Il laisse de la place à un gros nœud, comme le Windsor, et se porte bien ouvert.",
+      "source": "Wikipédia, « Col (vêtement) »"
+    },
+    {
+      "id": "viv-col-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le col cassé ?",
+      "choix": [
+        "Col cassé",
+        "Col Mao",
+        "Col boutonné",
+        "Col classique"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/cols/casse.svg",
+          "alt": "Un col droit et haut dont seules deux petites pointes sont rabattues vers l'extérieur, avec un nœud papillon noir."
+        },
+        {
+          "src": "/questions/cols/mao.svg",
+          "alt": "Un col droit qui monte autour du cou, sans pointes rabattues."
+        },
+        {
+          "src": "/questions/cols/boutonne.svg",
+          "alt": "Un col aux pointes longues, fixées sur la chemise par deux petits boutons."
+        },
+        {
+          "src": "/questions/cols/classique.svg",
+          "alt": "Un col aux pointes moyennes, assez rapprochées, qui descendent en V."
+        }
+      ],
+      "explication": "Le col cassé est un col droit et haut dont seules deux petites pointes sont rabattues. On le porte avec le nœud papillon de l'habit, en cravate blanche.",
+      "source": "Wikipédia, « Col (vêtement) » ; Gentleman's Gazette, « White Tie Guide »"
+    },
+    {
+      "id": "viv-col-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le col Mao ?",
+      "choix": [
+        "Col italien",
+        "Col cassé",
+        "Col Mao",
+        "Col club"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        },
+        {
+          "src": "/questions/cols/casse.svg",
+          "alt": "Un col droit et haut dont seules deux petites pointes sont rabattues vers l'extérieur, avec un nœud papillon noir."
+        },
+        {
+          "src": "/questions/cols/mao.svg",
+          "alt": "Un col droit qui monte autour du cou, sans pointes rabattues."
+        },
+        {
+          "src": "/questions/cols/club.svg",
+          "alt": "Un col aux pointes arrondies."
+        }
+      ],
+      "explication": "Le col Mao, ou col officier, est une simple bande droite autour du cou, sans pointes. Il se porte sans cravate.",
+      "source": "Wikipédia, « Col (vêtement) »"
+    },
+    {
+      "id": "viv-col-0005",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Lequel est le col club ?",
+      "choix": [
+        "Col boutonné",
+        "Col club",
+        "Col cassé",
+        "Col italien"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/cols/boutonne.svg",
+          "alt": "Un col aux pointes longues, fixées sur la chemise par deux petits boutons."
+        },
+        {
+          "src": "/questions/cols/club.svg",
+          "alt": "Un col aux pointes arrondies."
+        },
+        {
+          "src": "/questions/cols/casse.svg",
+          "alt": "Un col droit et haut dont seules deux petites pointes sont rabattues vers l'extérieur, avec un nœud papillon noir."
+        },
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        }
+      ],
+      "explication": "Le col club a des pointes arrondies. Il serait né au collège d'Eton, à la fin du XIXe siècle, pour distinguer ses élèves.",
+      "source": "Wikipédia (anglais), « Club collar »"
+    },
+    {
+      "id": "viv-col-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "De quel sport vient le col boutonné ?",
+      "choix": [
+        "Le golf",
+        "Le polo",
+        "Le tennis",
+        "L'aviron"
+      ],
+      "juste": 1,
+      "explication": "John Brooks, de la maison américaine Brooks Brothers, aurait vu en Angleterre, vers 1896, des joueurs de polo boutonner leurs pointes de col pour qu'elles ne leur battent pas le visage au galop.",
+      "source": "Wikipédia (anglais), « Button-down collar »"
+    },
+    {
+      "id": "viv-col-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Avec quel col porte-t-on traditionnellement l'habit et son nœud papillon blanc ?",
+      "choix": [
+        "Le col boutonné",
+        "Le col Mao",
+        "Le col cassé",
+        "Le col club"
+      ],
+      "juste": 2,
+      "explication": "En cravate blanche, la chemise à plastron empesé a un col cassé, dont les petites pointes encadrent le nœud papillon.",
+      "source": "Gentleman's Gazette, « White Tie Guide »"
+    }
+  ]
+}

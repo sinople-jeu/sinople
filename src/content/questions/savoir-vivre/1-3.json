@@ -1,0 +1,136 @@
+{
+  "id": "savoir-vivre-1-3",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 3,
+  "titre": "Les codes de tenue",
+  "intro": "« Cravate noire », « tenue de ville »… Sur un carton d'invitation, ces deux mots en disent long. Le lapin traduit.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-cod-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "« Cravate noire » sur une invitation : que portent les hommes ?",
+      "choix": [
+        "Le smoking",
+        "L'habit à queue-de-pie",
+        "Un costume sombre avec une cravate noire",
+        "La jaquette"
+      ],
+      "juste": 0,
+      "explication": "« Cravate noire » (black tie) veut dire smoking, avec un nœud papillon noir. Malgré le nom, on n'y porte justement pas de cravate.",
+      "source": "Wikipédia (anglais), « Black tie » ; Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-cod-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Et « cravate blanche » ?",
+      "choix": [
+        "Un smoking blanc",
+        "Un costume clair et une cravate blanche",
+        "L'habit : queue-de-pie, gilet et nœud papillon blancs",
+        "La jaquette grise"
+      ],
+      "juste": 2,
+      "explication": "« Cravate blanche » (white tie) est la tenue la plus habillée : l'habit noir à queue-de-pie, avec gilet, plastron et nœud papillon blancs. On la voit aux grands bals et aux dîners d'État.",
+      "source": "Wikipédia (anglais), « White tie » ; Gentleman's Gazette, « White Tie Guide »"
+    },
+    {
+      "id": "viv-cod-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel de ces codes est le plus habillé ?",
+      "choix": [
+        "Tenue de ville",
+        "Cravate noire",
+        "Tenue correcte exigée",
+        "Cravate blanche"
+      ],
+      "juste": 3,
+      "explication": "Du plus habillé au moins habillé : cravate blanche (l'habit), cravate noire (le smoking), tenue de ville (le costume), puis tenue correcte exigée.",
+      "source": "Wikipédia (anglais), « White tie » ; Wikipédia (anglais), « Black tie »"
+    },
+    {
+      "id": "viv-cod-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "« Tenue de ville » sur une invitation : que met un homme ?",
+      "choix": [
+        "Un jean propre et une chemise",
+        "Un costume, plutôt sombre, avec une cravate",
+        "Le smoking",
+        "L'habit"
+      ],
+      "juste": 1,
+      "explication": "La tenue de ville, c'est le costume de tous les jours habillés : veste et pantalon assortis, chemise, cravate. Pour les femmes, une robe ou un tailleur de jour.",
+      "source": "Wikipédia (anglais), « Informal attire » (lounge suit, dit « tenue de ville » en France)"
+    },
+    {
+      "id": "viv-cod-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "« Tenue correcte exigée » : qu'est-ce que ça veut dire ?",
+      "choix": [
+        "Costume et cravate obligatoires",
+        "Smoking obligatoire",
+        "Une tenue propre et décente, sans code précis",
+        "Seule la tenue de sport est interdite"
+      ],
+      "juste": 2,
+      "explication": "C'est la formule la plus vague : une tenue soignée et décente, laissée à l'appréciation de la maison. En pratique, on évite surtout le short, les tongs et le survêtement.",
+      "source": "Wikipédia, « Code vestimentaire »"
+    },
+    {
+      "id": "viv-cod-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "D'où vient le mot « smoking » ?",
+      "choix": [
+        "De « smoking jacket », la veste que les Anglais mettaient pour fumer",
+        "Du nom de son inventeur, un tailleur nommé Smoking",
+        "De sa couleur gris fumée",
+        "Des fumoirs des trains de luxe"
+      ],
+      "juste": 0,
+      "explication": "Le mot vient de « smoking jacket », la veste d'intérieur que l'on enfilait pour fumer après le dîner. C'est un faux anglicisme : les Anglais disent « dinner jacket » et les Américains « tuxedo ».",
+      "source": "Trésor de la langue française informatisé (CNRTL), « smoking »"
+    },
+    {
+      "id": "viv-cod-0007",
+      "type": "pastilles",
+      "niveau": "difficile",
+      "q": "Quels noms désignent le smoking en anglais ?",
+      "choix": [
+        "Dinner jacket",
+        "Tuxedo",
+        "Smoking",
+        "Tailcoat",
+        "Morning coat",
+        "Blazer"
+      ],
+      "justes": [
+        0,
+        1
+      ],
+      "explication": "« Dinner jacket » au Royaume-Uni, « tuxedo » aux États-Unis, du nom du club de Tuxedo Park, près de New York. « Tailcoat » est l'habit, « morning coat » la jaquette.",
+      "source": "Wikipédia (anglais), « Black tie »"
+    },
+    {
+      "id": "viv-cod-0008",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Quand porte-t-on traditionnellement la jaquette ?",
+      "choix": [
+        "À un dîner de gala",
+        "À une cérémonie de jour, comme un mariage",
+        "À la chasse à courre",
+        "À un bal, après minuit"
+      ],
+      "juste": 1,
+      "explication": "La jaquette, à pans arrondis, est la grande tenue de jour : mariages, courses d'Ascot, cérémonies officielles. Le soir, on passe au smoking ou à l'habit.",
+      "source": "Wikipédia (anglais), « Morning dress »"
+    }
+  ]
+}

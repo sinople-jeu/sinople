@@ -1,0 +1,156 @@
+{
+  "id": "savoir-vivre-1-2",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 2,
+  "titre": "Boutons et martingale",
+  "intro": "Un bouton fermé de trop, et le lapin vous démasque. Les règles du boutonnage, et le joli nom de la patte boutonnée au dos des manteaux.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-bou-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Sur une veste droite à deux boutons, lequel ferme-t-on ?",
+      "choix": [
+        "Celui du haut seulement",
+        "Celui du bas seulement",
+        "Les deux",
+        "Aucun, la veste se porte ouverte"
+      ],
+      "juste": 0,
+      "explication": "On ferme le bouton du haut, jamais celui du bas. La veste est coupée pour s'évaser sous le bouton : fermer le bas la fait tirer et plisser.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-bou-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Veste droite à trois boutons : quelle est la règle, de haut en bas ?",
+      "choix": [
+        "Parfois, toujours, jamais",
+        "Toujours, toujours, jamais",
+        "Jamais, toujours, toujours",
+        "Toujours les trois"
+      ],
+      "juste": 0,
+      "explication": "« Parfois, toujours, jamais » : le bouton du haut selon le goût, celui du milieu toujours, celui du bas jamais. C'est la règle la plus connue du boutonnage.",
+      "source": "Mr Porter, « How To Button Your Jacket » ; BonneGueule, « Expliquez-moi la veste et le costume trois boutons »"
+    },
+    {
+      "id": "viv-bou-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Selon la légende, qui a lancé la mode du bouton du bas laissé ouvert ?",
+      "choix": [
+        "Édouard VII, roi d'Angleterre",
+        "Louis XIV",
+        "Napoléon Ier",
+        "George Brummell, le dandy"
+      ],
+      "juste": 0,
+      "explication": "On raconte qu'Édouard VII, très corpulent, laissait ouvert le bas de son gilet, et que la cour l'a imité par politesse. L'histoire n'est pas prouvée, mais l'habitude est restée et est passée du gilet à la veste.",
+      "source": "Mental Floss, « What's the Origin of the \"Sometimes, Always, Never\" Rule for Buttoning a Suit? »"
+    },
+    {
+      "id": "viv-bou-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Que fait-on de sa veste droite au moment de s'asseoir ?",
+      "choix": [
+        "On la déboutonne",
+        "On ferme tous ses boutons",
+        "On la garde comme elle est",
+        "On l'enlève, toujours"
+      ],
+      "juste": 0,
+      "explication": "On déboutonne sa veste droite pour s'asseoir, sinon elle tire et se froisse, et on la referme en se levant.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-bou-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Et la veste croisée, quand on s'assoit ?",
+      "choix": [
+        "On la garde boutonnée",
+        "On la déboutonne entièrement",
+        "On ne ferme que le bouton du bas",
+        "On ouvre un bouton sur deux"
+      ],
+      "juste": 0,
+      "explication": "La veste croisée reste fermée, assis comme debout. Ouverte, ses deux grands pans pendent et cachent mal la chemise : elle perd toute son allure.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-bou-0006",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Quelle veste se fait le plus souvent avec un seul bouton ?",
+      "choix": [
+        "Le smoking",
+        "Le caban",
+        "La veste croisée",
+        "La saharienne"
+      ],
+      "juste": 0,
+      "explication": "La veste de smoking classique, portée le soir en tenue de soirée, n'a qu'un bouton. Avec un seul bouton, pas de règle du bas : on le ferme debout et on l'ouvre assis.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-bou-0007",
+      "type": "registre",
+      "niveau": "moyen",
+      "q": "Comment s'appelle la demi-ceinture boutonnée dans le dos de certains manteaux et vestes ?",
+      "choix": [
+        "Martingale",
+        "Patte de boutonnage",
+        "Empiècement",
+        "Soufflet",
+        "Revers",
+        "Parement",
+        "Passepoil",
+        "Fente",
+        "Pince",
+        "Rabat",
+        "Basque",
+        "Ourlet"
+      ],
+      "juste": "Martingale",
+      "explication": "C'est la martingale : une demi-ceinture placée dans le dos, à la taille, souvent fixée par deux boutons. On parle donc de boutons de martingale.",
+      "source": "Dictionnaire de l'Académie française, 9e édition, « martingale »"
+    },
+    {
+      "id": "viv-bou-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À quoi servait la martingale, à l'origine ?",
+      "choix": [
+        "À resserrer le vêtement dans le dos, à la taille",
+        "À accrocher une épée",
+        "À tenir le col fermé par grand vent",
+        "À suspendre ses gants"
+      ],
+      "juste": 0,
+      "explication": "Sur les manteaux amples, de militaires, de cavaliers ou de chasseurs, elle reprenait l'ampleur du dos pour ajuster le vêtement à la taille. Aujourd'hui, elle est surtout décorative.",
+      "source": "Wikipédia (anglais), « Martingale (clothing) » ; Dictionnaire de l'Académie française, 9e édition, « martingale »"
+    },
+    {
+      "id": "viv-bou-0009",
+      "type": "pastilles",
+      "niveau": "difficile",
+      "q": "Le mot « martingale » a plusieurs sens. Lesquels sont justes ?",
+      "choix": [
+        "Une demi-ceinture au dos d'un vêtement",
+        "Une courroie du harnachement du cheval",
+        "Une façon de miser pour tenter de gagner au jeu",
+        "Un bouton caché sous le revers",
+        "Un nœud de cravate",
+        "Une danse provençale"
+      ],
+      "justes": [0, 1, 2],
+      "explication": "En couture, c'est la demi-ceinture du dos. En équitation, une courroie qui empêche le cheval de trop lever la tête. Au jeu, une méthode de mise, comme doubler après chaque perte.",
+      "source": "Dictionnaire de l'Académie française, 9e édition, « martingale »"
+    }
+  ]
+}

@@ -24,10 +24,20 @@ const commun = {
   source: texte('la source'),
 };
 
+/**
+ * Choix en images (des nœuds de cravate…) : on clique sur une des 4 images.
+ * Le nom du choix (dans `choix`) n'apparaît qu'après la réponse ; `alt` décrit l'image sans donner la réponse.
+ */
+export const imageChoix = z.object({
+  src: z.string().regex(/^(https:\/\/|\/)/, "l'adresse de l'image commence par https:// ou /"),
+  alt: texte("la description de l'image (alt)"),
+});
+
 export const questionQcm = z.object({
   ...commun,
   type: z.literal('qcm'),
   choix: z.array(texte('un choix')).length(4, 'un QCM a exactement 4 choix'),
+  choix_images: z.array(imageChoix).length(4, 'il faut 4 images, une par choix').optional(),
   juste: z.number().int().min(0, 'juste doit être entre 0 et 3').max(3, 'juste doit être entre 0 et 3'),
 });
 

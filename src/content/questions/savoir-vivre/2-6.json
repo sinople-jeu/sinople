@@ -1,0 +1,281 @@
+{
+  "id": "savoir-vivre-2-6",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 6,
+  "titre": "Épreuve du Valet",
+  "intro": "Pour quitter la livrée du valet, le lapin doit reconnaître souliers, nœuds, cols et tissus sans se tromper.",
+  "epreuve": true,
+  "questions": [
+    {
+      "id": "viv-epv-0001",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le demi-Windsor ?",
+      "choix": [
+        "Windsor",
+        "Eldredge",
+        "Demi-Windsor",
+        "Nœud simple"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/noeuds/windsor.svg",
+          "alt": "Nœud de cravate très large et épais, en grand triangle symétrique"
+        },
+        {
+          "src": "/questions/noeuds/eldredge.svg",
+          "alt": "Nœud de cravate tressé, avec des bandes croisées en arêtes de poisson"
+        },
+        {
+          "src": "/questions/noeuds/demi-windsor.svg",
+          "alt": "Nœud de cravate moyen, en triangle symétrique"
+        },
+        {
+          "src": "/questions/noeuds/simple.svg",
+          "alt": "Nœud de cravate étroit et allongé, un peu asymétrique"
+        }
+      ],
+      "explication": "Le demi-Windsor est symétrique comme le Windsor, mais plus petit et plus léger.",
+      "source": "Thomas Fink et Yong Mao, « The 85 Ways to Tie a Tie » (1999)"
+    },
+    {
+      "id": "viv-epv-0002",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quel soulier a un laçage fermé ?",
+      "choix": [
+        "Le derby",
+        "Le mocassin",
+        "Le richelieu",
+        "La bottine Chelsea"
+      ],
+      "juste": 2,
+      "explication": "Sur le richelieu, les pièces qui portent les œillets sont cousues sous le dessus du soulier : le laçage est fermé. C'est le plus habillé.",
+      "source": "Wikipédia, « Richelieu (chaussure) »"
+    },
+    {
+      "id": "viv-epv-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "« No brown in town » : quelles chaussures évitait-on en ville avec le costume de bureau ?",
+      "choix": [
+        "Les noires",
+        "Les marron",
+        "Les vernies",
+        "Les lacées"
+      ],
+      "juste": 1,
+      "explication": "Le marron était pour la campagne et le week-end. En ville, avec le costume de travail, le noir s'imposait.",
+      "source": "Wikipédia (anglais), « Oxford shoe » ; usage britannique"
+    },
+    {
+      "id": "viv-epv-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le col boutonné ?",
+      "choix": [
+        "Col italien",
+        "Col club",
+        "Col classique",
+        "Col boutonné"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        },
+        {
+          "src": "/questions/cols/club.svg",
+          "alt": "Un col aux pointes arrondies."
+        },
+        {
+          "src": "/questions/cols/classique.svg",
+          "alt": "Un col aux pointes moyennes, assez rapprochées, qui descendent en V."
+        },
+        {
+          "src": "/questions/cols/boutonne.svg",
+          "alt": "Un col aux pointes longues, fixées sur la chemise par deux petits boutons."
+        }
+      ],
+      "explication": "Ses pointes sont fixées à la chemise par deux petits boutons, une idée venue des joueurs de polo.",
+      "source": "Wikipédia (anglais), « Button-down collar »"
+    },
+    {
+      "id": "viv-epv-0005",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Lequel est le Prince-de-Galles ?",
+      "choix": [
+        "Chevrons",
+        "Vichy",
+        "Madras",
+        "Prince-de-Galles"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/madras.svg",
+          "alt": "Un tissu léger à carreaux irréguliers de couleurs vives : rose, jaune, bleu et vert."
+        },
+        {
+          "src": "/questions/tissus/prince-de-galles.svg",
+          "alt": "Un tissu gris à carreaux, où alternent des zones de petits motifs dentelés et de fines rayures croisées."
+        }
+      ],
+      "explication": "Le Prince-de-Galles alterne zones de petit pied-de-poule et fines rayures croisées.",
+      "source": "Wikipédia (anglais), « Glen plaid »"
+    },
+    {
+      "id": "viv-epv-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Où se trouve la boutonnière milanaise ?",
+      "choix": [
+        "Au poignet de la veste",
+        "Sur le revers",
+        "Dans la doublure",
+        "Sur la poche de poitrine"
+      ],
+      "juste": 1,
+      "explication": "Brodée main et en relief, elle se place sur le revers gauche, pour y glisser une fleur.",
+      "source": "Suitsupply, « The hallmarks of a quality suit »"
+    },
+    {
+      "id": "viv-epv-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quelle forme de revers est la plus courante sur une veste de costume ?",
+      "choix": [
+        "Le revers cranté",
+        "Le revers en pointe",
+        "Le revers châle",
+        "Pas de revers"
+      ],
+      "juste": 0,
+      "explication": "Le revers cranté, avec sa petite encoche sous le col, est celui de la plupart des costumes. La pointe est plus habillée, le châle réservé au smoking.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-epv-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le seersucker ?",
+      "choix": [
+        "Rayure craie",
+        "Vichy",
+        "Seersucker",
+        "Tartan"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/rayure-craie.svg",
+          "alt": "Un tissu gris anthracite à rayures blanches fines et floues, bien espacées."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/seersucker.svg",
+          "alt": "Un tissu léger à rayures bleues et blanches, au relief froissé."
+        },
+        {
+          "src": "/questions/tissus/tartan.svg",
+          "alt": "Un tissu vert et bleu marine à grands carreaux, barrés de fines lignes rouges et jaunes."
+        }
+      ],
+      "explication": "Le seersucker est un coton rayé au relief froissé, le tissu des costumes d'été.",
+      "source": "Wikipédia (anglais), « Seersucker »"
+    },
+    {
+      "id": "viv-epv-0009",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Une fois nouée, où doit arriver la pointe de la cravate ?",
+      "choix": [
+        "Au sternum",
+        "À la boucle de la ceinture",
+        "Sous la ceinture",
+        "Au nombril"
+      ],
+      "juste": 1,
+      "explication": "Ni plus haut, ni plus bas : la pointe touche la boucle de la ceinture.",
+      "source": "Mr Porter, The Journal, guides de style (nouer sa cravate)"
+    },
+    {
+      "id": "viv-epv-0010",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Avec des chaussures noires, quelle ceinture porte-t-on ?",
+      "choix": [
+        "Une ceinture marron",
+        "Une ceinture tressée de couleur",
+        "Une ceinture noire",
+        "Aucune ceinture"
+      ],
+      "juste": 2,
+      "explication": "Ceinture et chaussures s'accordent : noir avec noir, marron avec marron.",
+      "source": "Mr Porter, The Journal, guides de style (ceinture et chaussures)"
+    },
+    {
+      "id": "viv-epv-0011",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le col italien ?",
+      "choix": [
+        "Col cassé",
+        "Col italien",
+        "Col Mao",
+        "Col boutonné"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/cols/casse.svg",
+          "alt": "Un col droit et haut dont seules deux petites pointes sont rabattues vers l'extérieur, avec un nœud papillon noir."
+        },
+        {
+          "src": "/questions/cols/italien.svg",
+          "alt": "Un col aux pointes très écartées, presque à l'horizontale."
+        },
+        {
+          "src": "/questions/cols/mao.svg",
+          "alt": "Un col droit qui monte autour du cou, sans pointes rabattues."
+        },
+        {
+          "src": "/questions/cols/boutonne.svg",
+          "alt": "Un col aux pointes longues, fixées sur la chemise par deux petits boutons."
+        }
+      ],
+      "explication": "Ses pointes très écartées laissent de la place à un gros nœud de cravate.",
+      "source": "Wikipédia, « Col (vêtement) »"
+    },
+    {
+      "id": "viv-epv-0012",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Le pied-de-poule, c'est…",
+      "choix": [
+        "Un motif à petits damiers dentelés",
+        "Un nœud de cravate",
+        "Une forme de col",
+        "Un pliage de pochette"
+      ],
+      "juste": 0,
+      "explication": "C'est un motif de tissu, souvent noir et blanc, à petits damiers aux bords dentelés.",
+      "source": "Wikipédia, « Pied-de-poule »"
+    }
+  ]
+}

@@ -40,6 +40,8 @@ Pour déplacer des blocs ou changer la mise en page, demandez à Claude.
   - `pastilles` : plusieurs bonnes réponses à cocher ; `choix`, et `justes` = les numéros des bonnes ;
   - `registre` : une longue liste rangée de A à Z avec une recherche ; `choix` (8 au moins) et `juste` = la bonne réponse écrite comme dans `choix`.
 - Les écrans de ces quatre derniers formats sont dans `src/islands/Formats.tsx`.
+- Un QCM peut proposer ses 4 choix en images (on clique sur le bon nœud de cravate, le bon col…) : champ `choix_images`, une image par choix, dans le même ordre que `choix`, avec `src` et `alt` (description qui ne donne pas la réponse). Le nom du choix n'apparaît qu'après la réponse.
+- Savoir-vivre (le lapin) porte sur les tenues : coupe du costume, boutons et martingale, codes de tenue, soirée, chasse, ville, mots du tailleur, puis en images les nœuds de cravate, cols de chemise, motifs de tissu, chapeaux, pochettes et revers. Ces dessins sont dans `public/questions/` et se refont avec `python3 scripts/dessiner-questions.py`.
 - Une question peut montrer une image (un tableau…) au-dessus des choix : champ `image` avec `src` (adresse https:// ou chemin dans `public/`), `alt` (description qui ne donne pas la réponse), `legende` (titre, peintre, date, musée, montrée seulement après la réponse) et `credit`. Les tableaux du thème Culture viennent de Wikimedia Commons (domaine public) ; `node scripts/verifier-images.mjs` vérifie que chaque image répond (lancé aussi par la CI).
 - Une question mal formée (QCM sans 4 choix, source vide, id déjà pris…) fait échouer la vérification avec un message qui nomme le fichier et la question.
 - Le feu et ses animaux : `src/components/Feu.astro`.

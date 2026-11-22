@@ -1,0 +1,138 @@
+{
+  "id": "savoir-vivre-1-5",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 5,
+  "titre": "Chasse et campagne",
+  "intro": "Loin de la cour, le lapin connaît aussi les usages des bois : tweed, loden et boutons d'équipage.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-cha-0001",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "En vénerie (la chasse à courre), que portent les membres d'un équipage ?",
+      "choix": [
+        "Une tenue camouflage",
+        "La tenue aux couleurs de l'équipage",
+        "Un gilet orange fluo",
+        "Un costume de ville"
+      ],
+      "juste": 1,
+      "explication": "Chaque équipage a sa tenue : une redingote aux couleurs choisies (on dit « la tenue »), avec des boutons gravés à son emblème.",
+      "source": "Société de vénerie, « Principes, valeurs, us et coutumes de la vénerie »"
+    },
+    {
+      "id": "viv-cha-0002",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "En vénerie, que veut dire « avoir le bouton » ?",
+      "choix": [
+        "Être membre de l'équipage, admis à porter sa tenue",
+        "Avoir sauté son premier obstacle à cheval",
+        "Avoir sonné de la trompe pour la première fois",
+        "Être le plus jeune cavalier"
+      ],
+      "juste": 0,
+      "explication": "Le maître d'équipage remet le bouton aux membres qu'il admet. L'avoir, c'est être autorisé à porter la tenue et les boutons de l'équipage.",
+      "source": "Société de vénerie, « Principes, valeurs, us et coutumes de la vénerie »"
+    },
+    {
+      "id": "viv-cha-0003",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "En France, quelle couleur doivent porter les chasseurs en battue au grand gibier ?",
+      "choix": [
+        "Kaki",
+        "Rouge",
+        "Orange fluo",
+        "Blanc"
+      ],
+      "juste": 2,
+      "explication": "En chasse collective au grand gibier, chaque chasseur porte un gilet ou une veste orange fluo, pour être vu de loin par les autres tireurs.",
+      "source": "Office français de la biodiversité, plaquette « Sécurité à la chasse »"
+    },
+    {
+      "id": "viv-cha-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "D'où vient le loden, ce drap de laine vert presque imperméable ?",
+      "choix": [
+        "D'Écosse",
+        "D'Irlande",
+        "Du Tyrol, entre l'Autriche et la Bavière",
+        "De Normandie"
+      ],
+      "juste": 2,
+      "explication": "Le loden est une laine foulée et grattée, dense et déperlante, portée depuis des siècles par les bergers et chasseurs des Alpes autrichiennes et bavaroises.",
+      "source": "Wikipédia, « Loden »"
+    },
+    {
+      "id": "viv-cha-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Où est né le tweed ?",
+      "choix": [
+        "En Italie",
+        "En Écosse",
+        "En Autriche",
+        "En Suède"
+      ],
+      "juste": 1,
+      "explication": "Le tweed est un tissu de laine épais et rêche, né en Écosse. Son nom viendrait d'une erreur de lecture de « tweel » (sergé en écossais), confondu avec la rivière Tweed.",
+      "source": "Wikipédia (anglais), « Tweed (cloth) »"
+    },
+    {
+      "id": "viv-cha-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Qu'est-ce qu'une culotte « knickerbocker » ?",
+      "choix": [
+        "Un short en cuir bavarois",
+        "Un pantalon ample resserré sous le genou",
+        "Une jupe écossaise",
+        "Un pantalon de marin à pont"
+      ],
+      "juste": 1,
+      "explication": "Le knickerbocker est une culotte bouffante serrée sous le genou, portée avec de hautes chaussettes pour la chasse, le golf ou la randonnée. Le short en cuir, c'est la lederhose ; la jupe, le kilt.",
+      "source": "Wikipédia (anglais), « Knickerbockers (clothing) »"
+    },
+    {
+      "id": "viv-cha-0007",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "D'où vient le nom « knickerbocker » ?",
+      "choix": [
+        "D'un club de golf écossais",
+        "D'une ville des Pays-Bas",
+        "D'un personnage inventé par l'écrivain Washington Irving",
+        "D'un tailleur de Savile Row"
+      ],
+      "juste": 2,
+      "explication": "Diedrich Knickerbocker est le faux auteur d'une Histoire de New York (1809) de Washington Irving. Les illustrations montraient les colons hollandais en culottes serrées au genou, d'où le nom.",
+      "source": "Wikipédia (anglais), « Knickerbockers (clothing) »"
+    },
+    {
+      "id": "viv-cha-0008",
+      "type": "pastilles",
+      "niveau": "moyen",
+      "q": "Lesquelles de ces tenues sont nées à la campagne ou à la chasse ?",
+      "choix": [
+        "Le manteau loden",
+        "La veste de tweed",
+        "Les knickerbockers",
+        "Le smoking",
+        "L'habit à queue-de-pie",
+        "Les escarpins vernis",
+        "Les gants d'opéra"
+      ],
+      "justes": [
+        0,
+        1,
+        2
+      ],
+      "explication": "Loden, tweed et knickerbockers viennent des bois et des champs. Smoking, habit, escarpins vernis et gants d'opéra sont des tenues du soir.",
+      "source": "Wikipédia, « Loden » ; Wikipédia (anglais), « Tweed (cloth) » et « Knickerbockers (clothing) »"
+    }
+  ]
+}
