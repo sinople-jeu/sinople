@@ -13,14 +13,14 @@ import { pointsQcm, pointsSaisie, type Bilan } from '../lib/jeu/points';
 import { estAcceptee, trouverExacte, trouverReponse, saisieJuste } from '../lib/jeu/reponses';
 import { enregistrerFin, enregistrerRevision } from '../scripts/fin-de-lecon';
 import type { ReponseBrute } from '../lib/jeu/correction';
-import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles } from '../lib/jeu/formats';
-import { Molette, Jauge, Pastilles, Registre, nombre, type ImageQuestion, type QuestionMolette, type QuestionJauge, type QuestionPastilles, type QuestionRegistre } from './Formats';
+import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles, ordreJuste } from '../lib/jeu/formats';
+import { Molette, Jauge, Pastilles, Registre, Ordre, nombre, type ImageQuestion, type QuestionMolette, type QuestionJauge, type QuestionPastilles, type QuestionRegistre, type QuestionOrdre } from './Formats';
 
 type Commun = { id: string; q: string; niveau: string; explication: string; source: string; image?: ImageQuestion };
 export type QuestionQcm = Commun & { type: 'qcm'; choix: string[]; juste: number; choix_images?: { src: string; alt: string }[] };
 /** Réponse à taper : une seule réponse attendue, ou une liste à compléter avant la fin du chrono. */
 export type QuestionSaisie = Commun & { type: 'saisie'; reponses: string[][]; duree_s: number };
-export type QuestionJeu = QuestionQcm | QuestionSaisie | QuestionMolette | QuestionJauge | QuestionPastilles | QuestionRegistre;
+export type QuestionJeu = QuestionQcm | QuestionSaisie | QuestionMolette | QuestionJauge | QuestionPastilles | QuestionRegistre | QuestionOrdre;
 
 type Props = {
   base: string;
@@ -120,6 +120,8 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
   // Molette et jauge : la valeur choisie (null tant qu'on n'a pas bougé) ; pastilles : les numéros cochés.
   const [valeur, setValeur] = useState<number | null>(null);
   const [cochees, setCochees] = useState<number[]>([]);
+  // Ordre : les numéros des éléments, dans l'ordre où le joueur les a touchés.
+  const [rangs, setRangs] = useState<number[]>([]);
   const [corrige, setCorrige] = useState(false);
   const [reponses, setReponses] = useState<Record<string, boolean>>({});
   const [points, setPoints] = useState<Record<string, number>>({});
@@ -205,6 +207,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       case 'molette': case 'jauge': return valeur !== null && estimationJuste(valeur, q.juste, q.tolerance ?? (q.type === 'jauge' ? 5 : 0));
       case 'pastilles': return pastillesJustes(cochees, q.justes);
       case 'registre': return choisi >= 0 && q.choix[choisi] === q.juste;
+      case 'ordre': return ordreJuste(rangs, q.elements.length);
       default: return false;
     }
   }
@@ -268,6 +271,10 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       if (valeur === null) return;
       gagnes = pointsEstimation(valeur, q.juste, q.tolerance ?? (q.type === 'jauge' ? 5 : 0));
       brutes.current[q.id] = valeur;
+    } else if (q.type === 'ordre') {
+      if (rangs.length < q.elements.length) return;
+      gagnes = pointsQcm(juste);
+      brutes.current[q.id] = rangs;
     } else if (q.type === 'pastilles') {
       if (!cochees.length) return;
       gagnes = pointsPastilles(cochees, q.justes);
@@ -316,6 +323,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       case 'qcm': case 'registre': return choisi < 0;
       case 'molette': case 'jauge': return valeur === null;
       case 'pastilles': return cochees.length === 0;
+      case 'ordre': return rangs.length < q.elements.length;
       default: return !liste && !texte.trim();
     }
   }
@@ -344,6 +352,7 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
       setChoisi(-1);
       setValeur(null);
       setCochees([]);
+      setRangs([]);
       setCorrige(false);
       return;
     }
@@ -477,6 +486,8 @@ export default function LecteurLecon({ base, nomTheme, lecon, questions, chemin,
           <Jauge q={q} valeur={valeur} choisir={setValeur} corrige={corrige} />
         ) : q.type === 'pastilles' ? (
           <Pastilles q={q} cochees={cochees} corrige={corrige} basculer={(k) => setCochees((c) => (c.includes(k) ? c.filter((x) => x !== k) : [...c, k]))} />
+        ) : q.type === 'ordre' ? (
+          <Ordre q={q} rangs={rangs} corrige={corrige} basculer={(k) => setRangs((r) => (r.includes(k) ? r.filter((x) => x !== k) : [...r, k]))} />
         ) : q.type === 'registre' ? (
           <Registre q={q} choisi={choisi} choisir={setChoisi} corrige={corrige} />
         ) : (
@@ -532,6 +543,7 @@ function messageRate(q: QuestionJeu, trouvees: number, cochees: number[]) {
   if (q.type === 'registre') return `La bonne réponse : ${q.juste}`;
   if (q.type === 'molette') return `La bonne réponse : ${nombre(q.juste, q.unite)}`;
   if (q.type === 'jauge') return `La bonne réponse : ${nombre(q.juste, q.unite ?? '%')}`;
+  if (q.type === 'ordre') return 'Pas tout à fait : voici le bon ordre';
   if (q.type === 'pastilles') {
     const bonnes = cochees.filter((k) => q.justes.includes(k)).length;
     const pieges = cochees.length - bonnes;

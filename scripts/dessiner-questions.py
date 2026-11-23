@@ -197,3 +197,69 @@ eld_lines=''.join(line(f'M{100-w} {y} L100 {y+9}')+line(f'M{100+w} {y} L100 {y+9
 eld = svg_noeud(k('M70 38 Q100 33 130 38 Q126 60 108 86 Q100 90 92 86 Q74 60 70 38 Z', eld_lines), 86, 16, 'Nœud de cravate tressé, avec des bandes croisées en arêtes de poisson')
 for n,s in [('simple',simple),('demi-windsor',demi),('windsor',windsor),('eldredge',eld)]:
     open(os.path.join(OUT,n+'.svg'),'w').write(s)
+
+# ---------- Découpe des fromages (vue de dessus, traits de coupe en pointillés) ----------
+F='public/questions/fromages/'
+PATE='#f4e6b8'; CROUTE='#e9dcc0'; CHEVRE='#f7f4ec'; BLEU='#5f7fa0'
+def coupe(d): return f'<path d="{d}" fill="none" stroke="#b8423a" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>'
+def couteau_pose(): return ''
+def fromage(body, t): return svg(body, t)
+# Pointe de brie : la croûte sur l'arc (x 30→170, y 40), le nez en bas (100,175)
+brie_forme = f'<path d="M28 46 Q100 18 172 46 L100 176 Z" fill="{PATE}" stroke="{CROUTE}" stroke-width="9" stroke-linejoin="round"/><path d="M28 46 Q100 18 172 46 L100 176 Z" fill="none" {W}/>'
+brie = {
+ 'brie-long':(brie_forme+coupe('M52 40 L106 166')+coupe('M76 33 L111 156'),'Une pointe de brie, coupée en tranches fines le long d\'un côté, de la croûte jusqu\'à la pointe.'),
+ 'brie-nez':(brie_forme+coupe('M72 126 L128 126'),'Une pointe de brie dont on coupe le bout pointu.'),
+ 'brie-travers':(brie_forme+coupe('M46 80 Q100 60 154 80')+coupe('M62 110 Q100 96 138 110'),'Une pointe de brie coupée en bandes parallèles à la croûte arrondie.'),
+ 'brie-moitie':(brie_forme+coupe('M40 66 L140 120'),'Une pointe de brie coupée en travers, en biais, d\'un côté à l\'autre.'),
+}
+# Camembert vu de dessus
+cam = f'<circle cx="100" cy="100" r="78" fill="{PATE}" stroke="{CROUTE}" stroke-width="9"/><circle cx="100" cy="100" r="78" fill="none" {W}/>'
+camembert = {
+ 'camembert-parts':(cam+''.join(coupe(f'M100 100 L{100+78*__import__("math").cos(a):.1f} {100+78*__import__("math").sin(a):.1f}') for a in [i*__import__("math").pi/3 for i in range(6)]),'Un camembert coupé en parts triangulaires qui partent toutes du centre.'),
+ 'camembert-bandes':(cam+coupe('M60 34 L60 166')+coupe('M100 22 L100 178')+coupe('M140 34 L140 166'),'Un camembert coupé en bandes droites et parallèles.'),
+ 'camembert-grille':(cam+coupe('M74 26 L74 174')+coupe('M126 26 L126 174')+coupe('M26 74 L174 74')+coupe('M26 126 L174 126'),'Un camembert coupé en quadrillage, en petits carrés.'),
+ 'camembert-coeur':(cam+coupe('M100 62 A38 38 0 1 1 99.9 62'),'Un camembert dont on découpe un rond au centre.'),
+}
+# Bûche de chèvre vue de côté
+buche = f'<rect x="20" y="66" width="160" height="68" rx="30" fill="{CHEVRE}" stroke="#d8d2c2" stroke-width="7"/><rect x="20" y="66" width="160" height="68" rx="30" fill="none" {W}/>'
+chevre = {
+ 'chevre-rondelles':(buche+''.join(coupe(f'M{x} 58 L{x} 142') for x in (60,90,120,150)),'Une bûche de chèvre coupée en rondelles régulières, en travers.'),
+ 'chevre-long':(buche+coupe('M14 100 L186 100'),'Une bûche de chèvre coupée en deux dans sa longueur.'),
+ 'chevre-biseau':(buche+coupe('M40 140 L80 60')+coupe('M100 140 L140 60'),'Une bûche de chèvre coupée en longs biseaux obliques.'),
+ 'chevre-bout':(buche+coupe('M150 58 L150 142')+coupe('M50 58 L50 142'),'Une bûche de chèvre dont on ne coupe que les deux bouts.'),
+}
+# Roquefort : une pointe épaisse, le cœur persillé vers la pointe (en bas)
+import random as _r
+_r.seed(4)
+veines=''.join(f'<path d="M{x} {y} q{_r.randint(-6,6)} {_r.randint(4,10)} {_r.randint(-8,8)} {_r.randint(8,14)}" stroke="{BLEU}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85"/>' for x,y in [(100,140),(92,122),(110,118),(84,100),(118,96),(100,102),(76,78),(124,74),(100,80),(92,58),(110,56)] if True)
+roq_forme = f'<path d="M28 46 Q100 18 172 46 L100 176 Z" fill="#efe7d4" stroke="#e2d7bd" stroke-width="9" stroke-linejoin="round"/>'+veines+f'<path d="M28 46 Q100 18 172 46 L100 176 Z" fill="none" {W}/>'
+roquefort = {
+ 'roquefort-biais':(roq_forme+coupe('M100 176 L66 34')+coupe('M100 176 L134 34'),'Une pointe de roquefort coupée en biais depuis la pointe persillée jusqu\'à la croûte, en parts qui ont toutes un peu du cœur.'),
+ 'roquefort-pointe':(roq_forme+coupe('M70 120 L130 120'),'Une pointe de roquefort dont on coupe le bout persillé.'),
+ 'roquefort-bandes':(roq_forme+coupe('M40 66 Q100 46 160 66')+coupe('M54 94 Q100 80 146 94'),'Une pointe de roquefort coupée en bandes parallèles à la croûte.'),
+ 'roquefort-cote':(roq_forme+coupe('M150 46 L96 168'),'Une pointe de roquefort dont on coupe une tranche le long d\'un seul côté, sans le cœur.'),
+}
+for groupe in (brie, camembert, chevre, roquefort):
+    for n,(b,t) in groupe.items(): open(F+n+'.svg','w').write(fromage(b,t))
+
+# ---------- Couverts sur l'assiette (vue de dessus) ----------
+K='public/questions/couverts/'
+METAL='#c9ccd1'
+def fourchette(x,y,a,e=.8):
+    return (f'<g transform="translate({x} {y}) rotate({a}) scale({e})">'
+            f'<rect x="-5" y="0" width="10" height="70" rx="5" fill="{METAL}" stroke="{INK}" stroke-width="2"/>'
+            f'<path d="M-9 0 L-9 -34 M-3 0 L-3 -36 M3 0 L3 -36 M9 0 L9 -34" stroke="{INK}" stroke-width="3.5" stroke-linecap="round"/>'
+            f'<path d="M-11 -4 Q0 8 11 -4 L11 2 Q0 12 -11 2 Z" fill="{METAL}" stroke="{INK}" stroke-width="2"/></g>')
+def couteau(x,y,a,e=.8):
+    return (f'<g transform="translate({x} {y}) rotate({a}) scale({e})">'
+            f'<rect x="-5" y="0" width="10" height="70" rx="5" fill="{METAL}" stroke="{INK}" stroke-width="2"/>'
+            f'<path d="M-5 0 L-5 -44 Q-5 -54 3 -56 L5 -56 L5 0 Z" fill="#e4e6ea" stroke="{INK}" stroke-width="2" stroke-linejoin="round"/></g>')
+assiette = (f'<rect width="200" height="200" fill="#efe6d2"/><circle cx="100" cy="100" r="74" fill="#ffffff" stroke="{INK}" stroke-width="2.5"/>'
+            f'<circle cx="100" cy="100" r="50" fill="none" stroke="#e3dccd" stroke-width="2"/>')
+couverts = {
+ 'fini':(assiette+fourchette(84,84,-35)+couteau(96,76,-35),'Fourchette et couteau posés côte à côte dans l\'assiette, parallèles, en biais vers le bas à droite.'),
+ 'pause':(assiette+fourchette(80,88,35)+couteau(126,101,-35),'Fourchette et couteau posés en V renversé dans l\'assiette, pointes rapprochées vers le haut.'),
+ 'croises':(assiette+fourchette(100,100,-40)+couteau(100,100,40),'Fourchette et couteau croisés en X au milieu de l\'assiette.'),
+ 'nappe':(assiette+fourchette(13,88,0)+couteau(187,96,0),'Fourchette et couteau reposés sur la nappe, de chaque côté de l\'assiette vide.'),
+}
+for n,(b,t) in couverts.items(): open(K+n+'.svg','w').write(svg(b,t))

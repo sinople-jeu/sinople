@@ -121,8 +121,15 @@ export const questionRegistre = z
     if (!q.choix.includes(q.juste)) ctx.addIssue({ code: 'custom', path: ['juste'], message: 'juste doit être écrit exactement comme un des choix' });
   });
 
-export const question = z.discriminatedUnion('type', [questionQcm, questionCarte, questionSaisie, questionMolette, questionJauge, questionPastilles, questionRegistre], {
-  error: 'type doit valoir qcm, carte, saisie, molette, jauge, pastilles ou registre',
+/** Ordre : des étapes (les plats d'un repas…) à remettre dans l'ordre ; `elements` est écrit dans le bon ordre, le jeu les mélange. */
+export const questionOrdre = z.object({
+  ...commun,
+  type: z.literal('ordre'),
+  elements: z.array(texte('un élément')).min(3, "il faut au moins 3 éléments à remettre dans l'ordre").max(6, '6 éléments au maximum'),
+});
+
+export const question = z.discriminatedUnion('type', [questionQcm, questionCarte, questionSaisie, questionMolette, questionJauge, questionPastilles, questionRegistre, questionOrdre], {
+  error: 'type doit valoir qcm, carte, saisie, molette, jauge, pastilles, registre ou ordre',
 });
 
 export const lecon = z.object({

@@ -74,3 +74,26 @@ describe('contrôles des nouveaux formats', () => {
       .toEqual(['geographie/1-1.json › c-1 : deux choix sont identiques']);
   });
 });
+
+describe('ordre', () => {
+  it('est juste seulement quand toutes les étapes sont à leur place', async () => {
+    const { ordreJuste, melangeOrdre } = await import('../src/lib/jeu/formats');
+    expect(ordreJuste([0, 1, 2, 3], 4)).toBe(true);
+    expect(ordreJuste([0, 2, 1, 3], 4)).toBe(false);
+    expect(ordreJuste([0, 1, 2], 4)).toBe(false);
+    for (const id of ['viv-a', 'viv-b', 'viv-c', 'x']) {
+      const m = melangeOrdre(4, id);
+      expect([...m].sort()).toEqual([0, 1, 2, 3]);
+      expect(m).not.toEqual([0, 1, 2, 3]);
+      expect(melangeOrdre(4, id)).toEqual(m);
+    }
+  });
+
+  it('se corrige pareil sur le serveur', async () => {
+    const { corrigerQuestion } = await import('../src/lib/jeu/correction');
+    const q = { id: 'o', type: 'ordre' as const, elements: ['a', 'b', 'c'] };
+    expect(corrigerQuestion(q, [0, 1, 2]).juste).toBe(true);
+    expect(corrigerQuestion(q, [1, 0, 2]).juste).toBe(false);
+    expect(corrigerQuestion(q, 'n’importe quoi').juste).toBe(false);
+  });
+});

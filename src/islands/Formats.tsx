@@ -1,7 +1,7 @@
 // Les quatre formats de réponse venus de la maquette brune : molette, jauge du feu, pastilles et registre.
 // Chaque composant affiche la question et rend la réponse au lecteur de leçon (LecteurLecon), qui corrige et compte les points.
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
-import { crans, ordreAlphabetique, sansAccents } from '../lib/jeu/formats';
+import { crans, melangeOrdre, ordreAlphabetique, sansAccents } from '../lib/jeu/formats';
 
 /** Image facultative d'une question (un tableau…) ; la légende ne s'affiche qu'après la réponse. */
 export type ImageQuestion = { src: string; alt: string; legende: string; credit: string };
@@ -10,6 +10,7 @@ export type QuestionMolette = Commun & { type: 'molette'; min: number; max: numb
 export type QuestionJauge = Commun & { type: 'jauge'; min?: number; max?: number; juste: number; unite?: string; tolerance?: number };
 export type QuestionPastilles = Commun & { type: 'pastilles'; choix: string[]; justes: number[] };
 export type QuestionRegistre = Commun & { type: 'registre'; choix: string[]; juste: string };
+export type QuestionOrdre = Commun & { type: 'ordre'; elements: string[] };
 
 /** 1969, 71 %, 16 000 000 : les milliers ne sont séparés qu'à partir de 10 000 (une année reste collée). */
 export function nombre(n: number, unite?: string) {
@@ -300,5 +301,33 @@ export function Registre({ q, choisi, choisir, corrige }: { q: QuestionRegistre;
         {vues.length === 0 && <li class="vide">Rien ne correspond dans la liste.</li>}
       </ul>
     </div>
+  );
+}
+
+// ---------- L'ordre ----------
+/** On touche les étapes dans l'ordre : chacune prend son numéro ; la toucher à nouveau la retire. */
+export function Ordre({ q, rangs, basculer, corrige }: { q: QuestionOrdre; rangs: number[]; basculer: (k: number) => void; corrige: boolean }) {
+  const melange = useMemo(() => melangeOrdre(q.elements.length, q.id), [q.id]);
+  return (
+    <>
+      <p class="consigne">Touche les étapes dans le bon ordre.</p>
+      <ol class="ordre" aria-labelledby="question">
+        {/* Une fois corrigé, la liste se range dans le bon ordre : les étapes mal placées sont en rouge. */}
+        {(corrige ? q.elements.map((_, k) => k) : melange).map((k) => {
+          const rang = rangs.indexOf(k);
+          const etat = !corrige ? '' : rang === k ? ' juste' : ' faux';
+          return (
+            <li>
+              <button type="button" class={`etape-ordre${etat}`} aria-pressed={rang >= 0} disabled={corrige} onClick={() => basculer(k)}>
+                <span class="rang" aria-hidden="true">{corrige ? k + 1 : rang >= 0 ? rang + 1 : ''}</span>
+                <span>{q.elements[k]}</span>
+                {etat === ' faux' && <span class="ton-rang">tu l’avais mise en {rang + 1}<sup>e</sup></span>}
+                {!corrige && rang >= 0 && <span class="invisible"> (en position {rang + 1})</span>}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </>
   );
 }
