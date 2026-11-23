@@ -1,0 +1,251 @@
+{
+  "id": "savoir-vivre-3-1",
+  "theme": "savoir-vivre",
+  "etape": 3,
+  "lecon": 1,
+  "titre": "Les chapeaux",
+  "intro": "Feutre, paille ou soie : le lapin sait quel chapeau porter, et quand l'ôter.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-chp-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le melon ?",
+      "choix": [
+        "Fedora",
+        "Melon",
+        "Canotier",
+        "Haut-de-forme"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/chapeaux/fedora.svg",
+          "alt": "Un chapeau de feutre brun, à calotte pincée creusée sur le dessus et bord souple, avec un ruban sombre."
+        },
+        {
+          "src": "/questions/chapeaux/melon.svg",
+          "alt": "Un chapeau noir rigide à calotte bien ronde et petit bord recourbé."
+        },
+        {
+          "src": "/questions/chapeaux/canotier.svg",
+          "alt": "Un chapeau de paille rigide à calotte plate et cylindrique, bord plat et large ruban bleu."
+        },
+        {
+          "src": "/questions/chapeaux/haut-de-forme.svg",
+          "alt": "Un chapeau noir très haut, en forme de cylindre, au bord étroit."
+        }
+      ],
+      "explication": "Le melon est un chapeau de feutre rigide à calotte ronde et petit bord recourbé. Les Anglais l'appellent « bowler », les Américains « derby ».",
+      "source": "Wikipédia (anglais), « Bowler hat »"
+    },
+    {
+      "id": "viv-chp-0002",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le canotier ?",
+      "choix": [
+        "Canotier",
+        "Panama",
+        "Melon",
+        "Casquette plate"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/chapeaux/canotier.svg",
+          "alt": "Un chapeau de paille rigide à calotte plate et cylindrique, bord plat et large ruban bleu."
+        },
+        {
+          "src": "/questions/chapeaux/panama.svg",
+          "alt": "Un chapeau de paille claire tressée, à calotte pincée et ruban noir."
+        },
+        {
+          "src": "/questions/chapeaux/melon.svg",
+          "alt": "Un chapeau noir rigide à calotte bien ronde et petit bord recourbé."
+        },
+        {
+          "src": "/questions/chapeaux/casquette.svg",
+          "alt": "Une casquette plate en tweed, à petite visière."
+        }
+      ],
+      "explication": "Le canotier est un chapeau de paille rigide, à calotte plate et bord plat, souvent orné d'un ruban. Il doit son nom aux canotiers, les amateurs de promenades en barque.",
+      "source": "Wikipédia, « Canotier (chapeau) »"
+    },
+    {
+      "id": "viv-chp-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le panama ?",
+      "choix": [
+        "Fedora",
+        "Casquette plate",
+        "Panama",
+        "Canotier"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/chapeaux/fedora.svg",
+          "alt": "Un chapeau de feutre brun, à calotte pincée creusée sur le dessus et bord souple, avec un ruban sombre."
+        },
+        {
+          "src": "/questions/chapeaux/casquette.svg",
+          "alt": "Une casquette plate en tweed, à petite visière."
+        },
+        {
+          "src": "/questions/chapeaux/panama.svg",
+          "alt": "Un chapeau de paille claire tressée, à calotte pincée et ruban noir."
+        },
+        {
+          "src": "/questions/chapeaux/canotier.svg",
+          "alt": "Un chapeau de paille rigide à calotte plate et cylindrique, bord plat et large ruban bleu."
+        }
+      ],
+      "explication": "Le panama est un chapeau de paille souple et claire, tressée très finement, souvent à calotte pincée comme un fedora.",
+      "source": "UNESCO, « Le tissage traditionnel du chapeau de paille toquilla équatorien » (2012)"
+    },
+    {
+      "id": "viv-chp-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le fedora ?",
+      "choix": [
+        "Haut-de-forme",
+        "Panama",
+        "Melon",
+        "Fedora"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/chapeaux/haut-de-forme.svg",
+          "alt": "Un chapeau noir très haut, en forme de cylindre, au bord étroit."
+        },
+        {
+          "src": "/questions/chapeaux/panama.svg",
+          "alt": "Un chapeau de paille claire tressée, à calotte pincée et ruban noir."
+        },
+        {
+          "src": "/questions/chapeaux/melon.svg",
+          "alt": "Un chapeau noir rigide à calotte bien ronde et petit bord recourbé."
+        },
+        {
+          "src": "/questions/chapeaux/fedora.svg",
+          "alt": "Un chapeau de feutre brun, à calotte pincée creusée sur le dessus et bord souple, avec un ruban sombre."
+        }
+      ],
+      "explication": "Le fedora est un chapeau de feutre souple, à calotte pincée sur le devant et creusée sur le dessus, avec un bord qu'on peut relever ou rabattre.",
+      "source": "Wikipédia (anglais), « Fedora »"
+    },
+    {
+      "id": "viv-chp-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel accompagne l'habit et la jaquette ?",
+      "choix": [
+        "Casquette plate",
+        "Haut-de-forme",
+        "Canotier",
+        "Panama"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/chapeaux/casquette.svg",
+          "alt": "Une casquette plate en tweed, à petite visière."
+        },
+        {
+          "src": "/questions/chapeaux/haut-de-forme.svg",
+          "alt": "Un chapeau noir très haut, en forme de cylindre, au bord étroit."
+        },
+        {
+          "src": "/questions/chapeaux/canotier.svg",
+          "alt": "Un chapeau de paille rigide à calotte plate et cylindrique, bord plat et large ruban bleu."
+        },
+        {
+          "src": "/questions/chapeaux/panama.svg",
+          "alt": "Un chapeau de paille claire tressée, à calotte pincée et ruban noir."
+        }
+      ],
+      "explication": "Le haut-de-forme, grand cylindre de soie ou de feutre, complète les tenues les plus habillées : l'habit le soir, la jaquette le jour, par exemple aux courses d'Ascot.",
+      "source": "Wikipédia (anglais), « Top hat » et « Morning dress »"
+    },
+    {
+      "id": "viv-chp-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Dans quel pays fabrique-t-on les vrais panamas ?",
+      "choix": [
+        "Au Panama",
+        "À Cuba",
+        "En Équateur",
+        "Au Mexique"
+      ],
+      "juste": 2,
+      "explication": "Les panamas sont tressés en Équateur, avec la paille toquilla. Ils doivent leur nom au Panama, d'où ils étaient expédiés et où les portaient les ouvriers du canal. Leur tissage est inscrit au patrimoine immatériel de l'UNESCO.",
+      "source": "UNESCO, « Le tissage traditionnel du chapeau de paille toquilla équatorien » (2012)"
+    },
+    {
+      "id": "viv-chp-0007",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "D'où vient le nom « fedora » ?",
+      "choix": [
+        "D'une ville d'Italie",
+        "D'une pièce de théâtre de Victorien Sardou",
+        "D'un chapelier russe",
+        "D'une princesse grecque"
+      ],
+      "juste": 1,
+      "explication": "« Fédora » est une pièce de Victorien Sardou (1882). Sarah Bernhardt, qui jouait la princesse Fédora, y portait un chapeau de feutre souple qui a pris son nom.",
+      "source": "Wikipédia (anglais), « Fedora »"
+    },
+    {
+      "id": "viv-chp-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Qu'est-ce que Borsalino ?",
+      "choix": [
+        "Une paille d'Équateur",
+        "Une maison de chapellerie italienne",
+        "Un nœud de cravate",
+        "Un tissu de feutre anglais"
+      ],
+      "juste": 1,
+      "explication": "Borsalino est une maison italienne fondée en 1857 à Alessandria. Ses feutres sont si célèbres qu'en France, on appelle souvent « borsalino » n'importe quel fedora, surtout depuis le film « Borsalino » (1970) avec Alain Delon et Jean-Paul Belmondo.",
+      "source": "Wikipédia, « Borsalino »"
+    },
+    {
+      "id": "viv-chp-0009",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Pour qui le premier melon a-t-il été conçu, à Londres, en 1849 ?",
+      "choix": [
+        "Pour des cochers de fiacre",
+        "Pour des gardes-chasse à cheval",
+        "Pour des banquiers de la City",
+        "Pour des policiers"
+      ],
+      "juste": 1,
+      "explication": "La chapellerie Lock & Co. le commande pour un aristocrate, Coke, qui voulait protéger la tête de ses gardes-chasse des branches basses. Les chapeliers Bowler le fabriquent, d'où son nom anglais.",
+      "source": "Wikipédia (anglais), « Bowler hat »"
+    },
+    {
+      "id": "viv-chp-0010",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quel chanteur a fait du canotier sa signature ?",
+      "choix": [
+        "Charles Aznavour",
+        "Maurice Chevalier",
+        "Jacques Brel",
+        "Georges Brassens"
+      ],
+      "juste": 1,
+      "explication": "Maurice Chevalier ne montait pas sur scène sans son canotier, de Paris à Hollywood.",
+      "source": "Wikipédia, « Maurice Chevalier »"
+    }
+  ]
+}

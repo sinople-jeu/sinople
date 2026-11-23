@@ -1,0 +1,191 @@
+{
+  "id": "savoir-vivre-1-6",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 6,
+  "titre": "Épreuve du Rustre",
+  "intro": "Pour quitter ses sabots de rustre, le lapin doit prouver qu'il sait s'habiller pour la ville, le soir et la campagne.",
+  "epreuve": true,
+  "questions": [
+    {
+      "id": "viv-epr-0001",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Un homme essaie une veste dont la couture d'épaule tombe sur le haut du bras. Que lui conseille le tailleur ?",
+      "choix": [
+        "Faire reprendre les épaules, c'est facile",
+        "Prendre une taille au-dessous : les épaules ne se retouchent presque pas",
+        "Raccourcir les manches",
+        "La porter ouverte"
+      ],
+      "juste": 1,
+      "explication": "Une couture d'épaule qui tombe sur le bras veut dire que la veste est trop grande. Les épaules se retouchent très mal : mieux vaut changer de taille.",
+      "source": "Suitsupply, « How it should fit »"
+    },
+    {
+      "id": "viv-epr-0002",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Veste droite à deux boutons, debout. Qu'est-ce qui cloche si les deux sont fermés ?",
+      "choix": [
+        "Rien, c'est parfait",
+        "Le bouton du bas ne se ferme jamais",
+        "Il ne fallait fermer que celui du bas",
+        "Une veste à deux boutons se porte toujours ouverte"
+      ],
+      "juste": 1,
+      "explication": "Sur une veste droite, le bouton du bas reste ouvert : la veste est coupée pour s'évaser à cet endroit.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-epr-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À table, lequel de ces invités fait une faute ?",
+      "choix": [
+        "Celui qui garde sa veste croisée fermée",
+        "Celui qui a déboutonné sa veste droite pour s'asseoir",
+        "Celui qui reste assis en veste droite boutonnée",
+        "Celui qui laisse le bouton du bas ouvert"
+      ],
+      "juste": 2,
+      "explication": "Assis, on déboutonne sa veste droite, sinon elle tire et se froisse. La veste croisée, elle, reste fermée.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    },
+    {
+      "id": "viv-epr-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Bras le long du corps, on ne voit pas du tout la manchette de la chemise. Quel est le défaut ?",
+      "choix": [
+        "Les manches de la veste sont trop longues",
+        "Les manches de la chemise sont trop longues",
+        "La veste est trop courte",
+        "Il n'y a aucun défaut"
+      ],
+      "juste": 0,
+      "explication": "La manchette doit dépasser d'environ 1 à 1,5 cm. Si elle disparaît, ce sont les manches de la veste qu'il faut raccourcir.",
+      "source": "T.M. Lewin, « How a Suit Should Fit »"
+    },
+    {
+      "id": "viv-epr-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Une invitation dit « cravate blanche ». Que porte-t-on au cou ?",
+      "choix": [
+        "Une cravate blanche",
+        "Un nœud papillon noir",
+        "Un nœud papillon blanc",
+        "Une lavallière"
+      ],
+      "juste": 2,
+      "explication": "Le nom trompe : en « cravate blanche », on porte un nœud papillon blanc, avec l'habit. En « cravate noire », un nœud papillon noir avec le smoking.",
+      "source": "Wikipédia (anglais), « White tie »"
+    },
+    {
+      "id": "viv-epr-0006",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Où se trouve la martingale d'un manteau ?",
+      "choix": [
+        "Au col",
+        "Dans le dos, à la taille",
+        "Aux poignets",
+        "Sur la poche de poitrine"
+      ],
+      "juste": 1,
+      "explication": "La martingale est une demi-ceinture boutonnée dans le dos, à hauteur de la taille.",
+      "source": "Dictionnaire de l'Académie française, 9e édition, « martingale »"
+    },
+    {
+      "id": "viv-epr-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Quel tissu né en Écosse habille traditionnellement le gentleman à la campagne ?",
+      "choix": [
+        "Le satin",
+        "Le lin",
+        "Le tweed",
+        "Le velours de soie"
+      ],
+      "juste": 2,
+      "explication": "Le tweed, laine épaisse et rêche, est le tissu des vestes de campagne et de chasse depuis le XIXe siècle.",
+      "source": "Wikipédia (anglais), « Tweed (cloth) »"
+    },
+    {
+      "id": "viv-epr-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Que doit porter un chasseur, en France, pour participer à une battue au sanglier ?",
+      "choix": [
+        "Une tenue camouflage",
+        "La tenue de l'équipage",
+        "Un manteau loden vert",
+        "Un gilet ou une veste orange fluo"
+      ],
+      "juste": 3,
+      "explication": "En chasse collective au grand gibier, l'orange fluo est obligatoire pour que chacun soit vu des autres tireurs.",
+      "source": "Office français de la biodiversité, plaquette « Sécurité à la chasse »"
+    },
+    {
+      "id": "viv-epr-0009",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle de ces robes ne convient pas à une soirée « cravate blanche » ?",
+      "choix": [
+        "Une robe de cocktail au genou",
+        "Une robe longue en soie",
+        "Une robe longue avec des gants d'opéra",
+        "Une robe du soir jusqu'au sol"
+      ],
+      "juste": 0,
+      "explication": "En cravate blanche, la robe longue est de rigueur. La robe de cocktail, au genou, est trop courte pour ce code.",
+      "source": "Wikipédia (anglais), « White tie »"
+    },
+    {
+      "id": "viv-epr-0010",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Le pantalon fait plusieurs plis en accordéon sur la chaussure. Comment s'appelle cette cassure ?",
+      "choix": [
+        "Une cassure légère",
+        "Une cassure pleine",
+        "Pas de cassure",
+        "Un revers"
+      ],
+      "juste": 1,
+      "explication": "Plusieurs plis, c'est une cassure pleine. Aujourd'hui, on lui préfère une cassure légère, avec un seul pli, ou pas de cassure du tout.",
+      "source": "The Art of Manliness, « How a Suit Should Fit: A Visual Guide »"
+    },
+    {
+      "id": "viv-epr-0011",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Avec quelle tenue ne porte-t-on traditionnellement jamais de ceinture en cuir ?",
+      "choix": [
+        "Le costume de ville",
+        "Le pantalon de tweed",
+        "Le jean",
+        "Le smoking"
+      ],
+      "juste": 3,
+      "explication": "Le pantalon de smoking n'a pas de passants : il se tient avec des bretelles, et la taille se cache sous une ceinture de smoking en soie ou un gilet.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-epr-0012",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À quelle veste s'applique la règle « parfois, toujours, jamais » ?",
+      "choix": [
+        "La veste croisée",
+        "Le smoking à un bouton",
+        "La veste droite à trois boutons",
+        "L'habit"
+      ],
+      "juste": 2,
+      "explication": "Sur une veste droite à trois boutons : le bouton du haut parfois, celui du milieu toujours, celui du bas jamais.",
+      "source": "Mr Porter, « How To Button Your Jacket »"
+    }
+  ]
+}

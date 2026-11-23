@@ -27,6 +27,25 @@ export function pointsPastilles(cochees: number[], justes: number[]): number {
   return Math.round((P.pastilles_max * Math.max(0, bonnes - pieges)) / justes.length);
 }
 
+/** Ordre : juste seulement si toutes les étapes sont dans le bon ordre (rangs = numéros des éléments, dans l'ordre choisi). */
+export function ordreJuste(rangs: number[], n: number): boolean {
+  return rangs.length === n && rangs.every((k, i) => k === i);
+}
+
+/** Ordre : mélange fixe (le même à chaque partie, tiré de l'id), jamais déjà dans le bon ordre. */
+export function melangeOrdre(n: number, graine: string): number[] {
+  let h = 2166136261;
+  for (const c of graine) h = Math.imul(h ^ c.charCodeAt(0), 16777619) >>> 0;
+  const t = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0;
+    const j = h % (i + 1);
+    [t[i], t[j]] = [t[j], t[i]];
+  }
+  if (t.every((k, i) => k === i)) t.push(t.shift()!);
+  return t;
+}
+
 /** Registre : les choix rangés par ordre alphabétique, à la française (É avec les E). */
 export function ordreAlphabetique(choix: string[]): string[] {
   return [...choix].sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));

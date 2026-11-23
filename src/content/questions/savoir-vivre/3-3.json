@@ -1,0 +1,240 @@
+{
+  "id": "savoir-vivre-3-3",
+  "theme": "savoir-vivre",
+  "etape": 3,
+  "lecon": 3,
+  "titre": "Le plateau de fromages",
+  "intro": "Le plateau ne passe qu'une fois : le lapin sait quoi prendre, et surtout comment couper sans voler le meilleur aux autres.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-fro-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "En France, quand sert-on le fromage ?",
+      "choix": [
+        "Avant le plat",
+        "Avec l'entrée",
+        "Après le plat, avant le dessert",
+        "Après le dessert"
+      ],
+      "juste": 2,
+      "explication": "En France, le fromage vient entre le plat et le dessert, souvent avec un peu de salade verte.",
+      "source": "France Hotel Guide, « Les 11 commandements de l'étiquette française à table »"
+    },
+    {
+      "id": "viv-fro-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Et dans un dîner britannique traditionnel ?",
+      "choix": [
+        "Avant le plat",
+        "Après le dessert",
+        "Avec l'entrée",
+        "On n'en sert jamais"
+      ],
+      "juste": 1,
+      "explication": "Les Britanniques servent traditionnellement le fromage après le dessert, avec un porto par exemple.",
+      "source": "Wikipédia (anglais), « Cheese course »"
+    },
+    {
+      "id": "viv-fro-0003",
+      "type": "ordre",
+      "niveau": "facile",
+      "q": "Remets dans l'ordre un repas à la française.",
+      "elements": [
+        "Apéritif",
+        "Entrée",
+        "Plat",
+        "Fromage",
+        "Dessert",
+        "Café"
+      ],
+      "explication": "Apéritif, entrée, plat, fromage, dessert, puis le café, qui se prend après le dessert et non avec.",
+      "source": "France Hotel Guide, « Les 11 commandements de l'étiquette française à table »"
+    },
+    {
+      "id": "viv-fro-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Combien de fois le plateau de fromages passe-t-il ?",
+      "choix": [
+        "Une seule fois",
+        "Deux fois",
+        "Autant qu'on veut",
+        "Une fois par fromage"
+      ],
+      "juste": 0,
+      "explication": "Le plateau ne passe qu'une fois : on y prend deux ou trois fromages, raisonnablement, et on ne se ressert pas.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-fro-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment coupe-t-on une pointe de brie ?",
+      "choix": [
+        "En coupant le bout",
+        "En longueur, le long du côté",
+        "En bandes parallèles à la croûte",
+        "En travers, en biais"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/fromages/brie-nez.svg",
+          "alt": "Une pointe de brie dont on coupe le bout pointu."
+        },
+        {
+          "src": "/questions/fromages/brie-long.svg",
+          "alt": "Une pointe de brie, coupée en tranches fines le long d'un côté, de la croûte jusqu'à la pointe."
+        },
+        {
+          "src": "/questions/fromages/brie-travers.svg",
+          "alt": "Une pointe de brie coupée en bandes parallèles à la croûte arrondie."
+        },
+        {
+          "src": "/questions/fromages/brie-moitie.svg",
+          "alt": "Une pointe de brie coupée en travers, en biais, d'un côté à l'autre."
+        }
+      ],
+      "explication": "On coupe une pointe de brie en longueur, le long d'un côté, pour que chacun ait un peu de croûte et un peu de cœur. Couper le bout serait garder le meilleur pour soi.",
+      "source": "CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    },
+    {
+      "id": "viv-fro-0006",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Comment coupe-t-on un camembert entier ?",
+      "choix": [
+        "En bandes parallèles",
+        "En petits carrés",
+        "En prenant le cœur",
+        "En parts depuis le centre"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/fromages/camembert-bandes.svg",
+          "alt": "Un camembert coupé en bandes droites et parallèles."
+        },
+        {
+          "src": "/questions/fromages/camembert-grille.svg",
+          "alt": "Un camembert coupé en quadrillage, en petits carrés."
+        },
+        {
+          "src": "/questions/fromages/camembert-coeur.svg",
+          "alt": "Un camembert dont on découpe un rond au centre."
+        },
+        {
+          "src": "/questions/fromages/camembert-parts.svg",
+          "alt": "Un camembert coupé en parts triangulaires qui partent toutes du centre."
+        }
+      ],
+      "explication": "Comme un gâteau : en parts triangulaires qui partent du centre, pour que chaque part aille du cœur à la croûte.",
+      "source": "CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    },
+    {
+      "id": "viv-fro-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Comment coupe-t-on une bûche de chèvre ?",
+      "choix": [
+        "En rondelles",
+        "En deux dans la longueur",
+        "En longs biseaux",
+        "Seulement les bouts"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/fromages/chevre-rondelles.svg",
+          "alt": "Une bûche de chèvre coupée en rondelles régulières, en travers."
+        },
+        {
+          "src": "/questions/fromages/chevre-long.svg",
+          "alt": "Une bûche de chèvre coupée en deux dans sa longueur."
+        },
+        {
+          "src": "/questions/fromages/chevre-biseau.svg",
+          "alt": "Une bûche de chèvre coupée en longs biseaux obliques."
+        },
+        {
+          "src": "/questions/fromages/chevre-bout.svg",
+          "alt": "Une bûche de chèvre dont on ne coupe que les deux bouts."
+        }
+      ],
+      "explication": "La bûche se coupe en rondelles, en travers. Chaque tranche a son cœur et sa croûte.",
+      "source": "CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    },
+    {
+      "id": "viv-fro-0008",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Comment coupe-t-on une pointe de roquefort ?",
+      "choix": [
+        "En bandes parallèles à la croûte",
+        "Le long d'un seul côté",
+        "En biais depuis le cœur",
+        "En coupant le bout persillé"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/fromages/roquefort-bandes.svg",
+          "alt": "Une pointe de roquefort coupée en bandes parallèles à la croûte."
+        },
+        {
+          "src": "/questions/fromages/roquefort-cote.svg",
+          "alt": "Une pointe de roquefort dont on coupe une tranche le long d'un seul côté, sans le cœur."
+        },
+        {
+          "src": "/questions/fromages/roquefort-biais.svg",
+          "alt": "Une pointe de roquefort coupée en biais depuis la pointe persillée jusqu'à la croûte, en parts qui ont toutes un peu du cœur."
+        },
+        {
+          "src": "/questions/fromages/roquefort-pointe.svg",
+          "alt": "Une pointe de roquefort dont on coupe le bout persillé."
+        }
+      ],
+      "explication": "Le cœur, vers la pointe, est le plus persillé. On coupe donc en biais depuis la pointe, pour que chaque part en ait un peu.",
+      "source": "CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    },
+    {
+      "id": "viv-fro-0009",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment appelle-t-on la pointe du brie, qu'on ne doit pas couper ?",
+      "choix": [
+        "Le talon",
+        "Le nez",
+        "La crête",
+        "Le cœur de lion"
+      ],
+      "juste": 1,
+      "explication": "C'est le nez : le bout de la pointe, qui vient du cœur de la meule. Le prendre pour soi, c'est priver les autres du morceau le plus convoité. C'est la faute la plus célèbre du plateau.",
+      "source": "CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    },
+    {
+      "id": "viv-fro-0010",
+      "type": "pastilles",
+      "niveau": "moyen",
+      "q": "Lesquelles sont de bonnes manières au fromage ?",
+      "choix": [
+        "Le manger avec un couteau et un morceau de pain",
+        "Le manger à la fourchette",
+        "Couper de façon que chacun ait du cœur et de la croûte",
+        "Se resservir quand le plateau revient",
+        "Se faire un sandwich avec son pain",
+        "Couper le nez du brie"
+      ],
+      "justes": [
+        0,
+        1,
+        2
+      ],
+      "explication": "Couteau et pain, ou fourchette : les deux se font. On partage équitablement le cœur et la croûte. Mais on ne se ressert pas, on ne fait pas de sandwich et on ne coupe pas le nez.",
+      "source": "UFE, « Les bonnes manières à la française : à table » ; CNIEL (produits-laitiers.com), « Comment couper les fromages »"
+    }
+  ]
+}

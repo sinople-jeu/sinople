@@ -1,0 +1,290 @@
+{
+  "id": "savoir-vivre-2-5",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 5,
+  "titre": "Les motifs de tissu",
+  "intro": "Pied-de-poule, Prince-de-Galles, chevrons : le lapin lit un tissu comme un blason.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-tis-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le pied-de-poule ?",
+      "choix": [
+        "Chevrons",
+        "Pied-de-poule",
+        "Vichy",
+        "Prince-de-Galles"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        },
+        {
+          "src": "/questions/tissus/pied-de-poule.svg",
+          "alt": "Un tissu à petits motifs noirs et blancs dentelés, comme des crochets répétés."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/prince-de-galles.svg",
+          "alt": "Un tissu gris à carreaux, où alternent des zones de petits motifs dentelés et de fines rayures croisées."
+        }
+      ],
+      "explication": "Le pied-de-poule est fait de petits damiers dentelés, souvent noir et blanc. Les Anglais y voient des dents de chien (« houndstooth »).",
+      "source": "Wikipédia, « Pied-de-poule »"
+    },
+    {
+      "id": "viv-tis-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le Prince-de-Galles ?",
+      "choix": [
+        "Pied-de-poule",
+        "Tartan",
+        "Prince-de-Galles",
+        "Chevrons"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/pied-de-poule.svg",
+          "alt": "Un tissu à petits motifs noirs et blancs dentelés, comme des crochets répétés."
+        },
+        {
+          "src": "/questions/tissus/tartan.svg",
+          "alt": "Un tissu vert et bleu marine à grands carreaux, barrés de fines lignes rouges et jaunes."
+        },
+        {
+          "src": "/questions/tissus/prince-de-galles.svg",
+          "alt": "Un tissu gris à carreaux, où alternent des zones de petits motifs dentelés et de fines rayures croisées."
+        },
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        }
+      ],
+      "explication": "Le Prince-de-Galles mêle des zones de petit pied-de-poule et de fines rayures croisées, qui forment de grands carreaux, souvent soulignés d'un fin filet de couleur.",
+      "source": "Wikipédia (anglais), « Glen plaid »"
+    },
+    {
+      "id": "viv-tis-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le motif à chevrons ?",
+      "choix": [
+        "Vichy",
+        "Rayure craie",
+        "Seersucker",
+        "Chevrons"
+      ],
+      "juste": 3,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/rayure-craie.svg",
+          "alt": "Un tissu gris anthracite à rayures blanches fines et floues, bien espacées."
+        },
+        {
+          "src": "/questions/tissus/seersucker.svg",
+          "alt": "Un tissu léger à rayures bleues et blanches, au relief froissé."
+        },
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        }
+      ],
+      "explication": "Les chevrons forment des rayures en zigzag. Les Anglais parlent d'arêtes de hareng (« herringbone »). C'est un classique des vestes et manteaux d'hiver.",
+      "source": "Wikipédia (anglais), « Herringbone (cloth) »"
+    },
+    {
+      "id": "viv-tis-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Lequel est le vichy ?",
+      "choix": [
+        "Madras",
+        "Vichy",
+        "Tartan",
+        "Pied-de-poule"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/madras.svg",
+          "alt": "Un tissu léger à carreaux irréguliers de couleurs vives : rose, jaune, bleu et vert."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/tartan.svg",
+          "alt": "Un tissu vert et bleu marine à grands carreaux, barrés de fines lignes rouges et jaunes."
+        },
+        {
+          "src": "/questions/tissus/pied-de-poule.svg",
+          "alt": "Un tissu à petits motifs noirs et blancs dentelés, comme des crochets répétés."
+        }
+      ],
+      "explication": "Le vichy est un coton à petits carreaux réguliers, une couleur et du blanc, ce qui donne trois tons. Il doit son nom à la ville de Vichy, où on le tissait.",
+      "source": "Wikipédia, « Vichy (tissu) »"
+    },
+    {
+      "id": "viv-tis-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le tartan ?",
+      "choix": [
+        "Tartan",
+        "Madras",
+        "Prince-de-Galles",
+        "Vichy"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/tartan.svg",
+          "alt": "Un tissu vert et bleu marine à grands carreaux, barrés de fines lignes rouges et jaunes."
+        },
+        {
+          "src": "/questions/tissus/madras.svg",
+          "alt": "Un tissu léger à carreaux irréguliers de couleurs vives : rose, jaune, bleu et vert."
+        },
+        {
+          "src": "/questions/tissus/prince-de-galles.svg",
+          "alt": "Un tissu gris à carreaux, où alternent des zones de petits motifs dentelés et de fines rayures croisées."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        }
+      ],
+      "explication": "Le tartan est le tissu écossais à carreaux, fait de bandes de couleurs croisées. En Écosse, chaque clan a le sien.",
+      "source": "Wikipédia, « Tartan »"
+    },
+    {
+      "id": "viv-tis-0006",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Lequel est le madras ?",
+      "choix": [
+        "Vichy",
+        "Tartan",
+        "Madras",
+        "Seersucker"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        },
+        {
+          "src": "/questions/tissus/tartan.svg",
+          "alt": "Un tissu vert et bleu marine à grands carreaux, barrés de fines lignes rouges et jaunes."
+        },
+        {
+          "src": "/questions/tissus/madras.svg",
+          "alt": "Un tissu léger à carreaux irréguliers de couleurs vives : rose, jaune, bleu et vert."
+        },
+        {
+          "src": "/questions/tissus/seersucker.svg",
+          "alt": "Un tissu léger à rayures bleues et blanches, au relief froissé."
+        }
+      ],
+      "explication": "Le madras est un coton léger à carreaux irréguliers et vifs, venu de la région de Madras (aujourd'hui Chennai), en Inde.",
+      "source": "Wikipédia, « Madras (tissu) »"
+    },
+    {
+      "id": "viv-tis-0007",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel est le seersucker ?",
+      "choix": [
+        "Seersucker",
+        "Rayure craie",
+        "Chevrons",
+        "Vichy"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/seersucker.svg",
+          "alt": "Un tissu léger à rayures bleues et blanches, au relief froissé."
+        },
+        {
+          "src": "/questions/tissus/rayure-craie.svg",
+          "alt": "Un tissu gris anthracite à rayures blanches fines et floues, bien espacées."
+        },
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        },
+        {
+          "src": "/questions/tissus/vichy.svg",
+          "alt": "Un tissu à petits carreaux réguliers bleus et blancs, en trois tons."
+        }
+      ],
+      "explication": "Le seersucker est un coton rayé au relief froissé, qui ne colle pas à la peau : idéal l'été. Son nom vient du persan « shir o shakar », lait et sucre, pour l'alternance de bandes lisses et gaufrées.",
+      "source": "Wikipédia (anglais), « Seersucker »"
+    },
+    {
+      "id": "viv-tis-0008",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Laquelle est la rayure craie ?",
+      "choix": [
+        "Prince-de-Galles",
+        "Rayure craie",
+        "Seersucker",
+        "Chevrons"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/tissus/prince-de-galles.svg",
+          "alt": "Un tissu gris à carreaux, où alternent des zones de petits motifs dentelés et de fines rayures croisées."
+        },
+        {
+          "src": "/questions/tissus/rayure-craie.svg",
+          "alt": "Un tissu gris anthracite à rayures blanches fines et floues, bien espacées."
+        },
+        {
+          "src": "/questions/tissus/seersucker.svg",
+          "alt": "Un tissu léger à rayures bleues et blanches, au relief froissé."
+        },
+        {
+          "src": "/questions/tissus/chevrons.svg",
+          "alt": "Un tissu à rayures verticales en zigzag, comme des arêtes de poisson."
+        }
+      ],
+      "explication": "La rayure craie est une rayure claire, large et un peu floue, comme tracée à la craie de tailleur sur un drap sombre. C'est le costume du banquier.",
+      "source": "Wikipédia (anglais), « Chalk stripe »"
+    },
+    {
+      "id": "viv-tis-0009",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Quelle actrice a rendu le vichy rose célèbre en se mariant avec, en 1959 ?",
+      "choix": [
+        "Catherine Deneuve",
+        "Brigitte Bardot",
+        "Audrey Hepburn",
+        "Grace Kelly"
+      ],
+      "juste": 1,
+      "explication": "Brigitte Bardot épouse Jacques Charrier en 1959 dans une robe de vichy rose et blanc. Le tissu devient aussitôt à la mode.",
+      "source": "Wikipédia, « Vichy (tissu) »"
+    }
+  ]
+}

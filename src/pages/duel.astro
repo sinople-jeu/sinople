@@ -12,7 +12,7 @@ import '../styles/duel.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const questions: QuestionDuel[] = (await getCollection('questions')).flatMap(({ data }) =>
   data.questions.flatMap((q) =>
-    q.type === 'qcm' && !q.image
+    q.type === 'qcm' && !q.image && !q.choix_images
       ? [{ id: q.id, theme: data.theme, q: q.q, choix: q.choix, juste: q.juste, explication: q.explication, source: q.source }]
       : [],
   ),

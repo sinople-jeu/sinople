@@ -1,0 +1,287 @@
+{
+  "id": "savoir-vivre-3-2",
+  "theme": "savoir-vivre",
+  "etape": 3,
+  "lecon": 2,
+  "titre": "Pochettes et revers",
+  "intro": "Une pochette bien pliée, un revers bien choisi : les détails qui font le courtisan.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-poc-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Laquelle est pliée droite, dite « présidentielle » ?",
+      "choix": [
+        "Une pointe",
+        "Pli droit",
+        "En bouffant",
+        "Trois pointes"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/pochettes/une-pointe.svg",
+          "alt": "Une pochette blanche qui dépasse en un seul triangle."
+        },
+        {
+          "src": "/questions/pochettes/droite.svg",
+          "alt": "Une pochette blanche pliée en bande droite qui dépasse à peine, parallèle au bord de la poche."
+        },
+        {
+          "src": "/questions/pochettes/bouffant.svg",
+          "alt": "Une pochette de soie rouge glissée en boule, toute arrondie, sans pointes."
+        },
+        {
+          "src": "/questions/pochettes/trois-pointes.svg",
+          "alt": "Une pochette blanche qui dépasse en trois pointes, comme une couronne."
+        }
+      ],
+      "explication": "Le pli droit, ou présidentiel, ne laisse dépasser qu'une bande nette parallèle à la poche. C'est le pliage le plus sobre, parfait avec un costume sombre ou un smoking.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-poc-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle est pliée en une pointe ?",
+      "choix": [
+        "Trois pointes",
+        "En bouffant",
+        "Une pointe",
+        "Pli droit"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/pochettes/trois-pointes.svg",
+          "alt": "Une pochette blanche qui dépasse en trois pointes, comme une couronne."
+        },
+        {
+          "src": "/questions/pochettes/bouffant.svg",
+          "alt": "Une pochette de soie rouge glissée en boule, toute arrondie, sans pointes."
+        },
+        {
+          "src": "/questions/pochettes/une-pointe.svg",
+          "alt": "Une pochette blanche qui dépasse en un seul triangle."
+        },
+        {
+          "src": "/questions/pochettes/droite.svg",
+          "alt": "Une pochette blanche pliée en bande droite qui dépasse à peine, parallèle au bord de la poche."
+        }
+      ],
+      "explication": "Une seule pointe dépasse, en triangle. Un peu moins strict que le pli droit, il reste très classique.",
+      "source": "Mr Porter, The Journal, guides de style (la pochette)"
+    },
+    {
+      "id": "viv-poc-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle est pliée en trois pointes ?",
+      "choix": [
+        "Pli droit",
+        "Trois pointes",
+        "Une pointe",
+        "En bouffant"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/pochettes/droite.svg",
+          "alt": "Une pochette blanche pliée en bande droite qui dépasse à peine, parallèle au bord de la poche."
+        },
+        {
+          "src": "/questions/pochettes/trois-pointes.svg",
+          "alt": "Une pochette blanche qui dépasse en trois pointes, comme une couronne."
+        },
+        {
+          "src": "/questions/pochettes/une-pointe.svg",
+          "alt": "Une pochette blanche qui dépasse en un seul triangle."
+        },
+        {
+          "src": "/questions/pochettes/bouffant.svg",
+          "alt": "Une pochette de soie rouge glissée en boule, toute arrondie, sans pointes."
+        }
+      ],
+      "explication": "Trois pointes dépassent comme une couronne. C'est le pliage le plus apprêté, pour les cérémonies.",
+      "source": "Mr Porter, The Journal, guides de style (la pochette)"
+    },
+    {
+      "id": "viv-poc-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle est glissée en bouffant ?",
+      "choix": [
+        "En bouffant",
+        "Pli droit",
+        "Trois pointes",
+        "Une pointe"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/pochettes/bouffant.svg",
+          "alt": "Une pochette de soie rouge glissée en boule, toute arrondie, sans pointes."
+        },
+        {
+          "src": "/questions/pochettes/droite.svg",
+          "alt": "Une pochette blanche pliée en bande droite qui dépasse à peine, parallèle au bord de la poche."
+        },
+        {
+          "src": "/questions/pochettes/trois-pointes.svg",
+          "alt": "Une pochette blanche qui dépasse en trois pointes, comme une couronne."
+        },
+        {
+          "src": "/questions/pochettes/une-pointe.svg",
+          "alt": "Une pochette blanche qui dépasse en un seul triangle."
+        }
+      ],
+      "explication": "En bouffant, on pince la pochette en son centre et on la glisse arrondie dans la poche, sans pointes. C'est le pliage des pochettes de soie.",
+      "source": "Mr Porter, The Journal, guides de style (la pochette)"
+    },
+    {
+      "id": "viv-poc-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Pourquoi glisse-t-on plutôt une pochette de soie en bouffant ?",
+      "choix": [
+        "La soie glisse et garde mal un pli net",
+        "C'est la règle en cravate blanche",
+        "Elle est trop petite pour être pliée",
+        "Pour cacher ses motifs"
+      ],
+      "juste": 0,
+      "explication": "La soie est souple et glissante : elle ne tient pas un pli droit. Le lin et le coton, plus fermes, se prêtent aux pliages nets.",
+      "source": "Mr Porter, The Journal, guides de style (la pochette)"
+    },
+    {
+      "id": "viv-poc-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Quelle pochette met-on traditionnellement avec un smoking ?",
+      "choix": [
+        "Une pochette rouge en bouffant",
+        "Une pochette blanche pliée droite",
+        "Une pochette assortie au nœud papillon",
+        "Jamais de pochette"
+      ],
+      "juste": 1,
+      "explication": "Avec le smoking, la pochette classique est blanche, en lin ou en soie, pliée droite. Le blanc répond à la chemise.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-rev-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Laquelle a des revers crantés ?",
+      "choix": [
+        "Revers en pointe",
+        "Revers châle",
+        "Revers cranté",
+        "Sans revers"
+      ],
+      "juste": 2,
+      "choix_images": [
+        {
+          "src": "/questions/revers/pointe.svg",
+          "alt": "Une veste dont les revers remontent en pointes aiguës vers les épaules."
+        },
+        {
+          "src": "/questions/revers/chale.svg",
+          "alt": "Une veste dont le revers dessine une seule courbe arrondie, sans encoche ni pointe."
+        },
+        {
+          "src": "/questions/revers/cran.svg",
+          "alt": "Une veste dont les revers, sous le col, forment une petite encoche ouverte, comme un cran triangulaire."
+        },
+        {
+          "src": "/questions/revers/sans-revers.svg",
+          "alt": "Une veste sans revers, fermée jusqu'en haut par un petit col droit."
+        }
+      ],
+      "explication": "Le revers cranté a une petite encoche triangulaire là où il rejoint le col. C'est le revers de la plupart des costumes.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-rev-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle a des revers en pointe ?",
+      "choix": [
+        "Revers cranté",
+        "Revers en pointe",
+        "Sans revers",
+        "Revers châle"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/revers/cran.svg",
+          "alt": "Une veste dont les revers, sous le col, forment une petite encoche ouverte, comme un cran triangulaire."
+        },
+        {
+          "src": "/questions/revers/pointe.svg",
+          "alt": "Une veste dont les revers remontent en pointes aiguës vers les épaules."
+        },
+        {
+          "src": "/questions/revers/sans-revers.svg",
+          "alt": "Une veste sans revers, fermée jusqu'en haut par un petit col droit."
+        },
+        {
+          "src": "/questions/revers/chale.svg",
+          "alt": "Une veste dont le revers dessine une seule courbe arrondie, sans encoche ni pointe."
+        }
+      ],
+      "explication": "Le revers en pointe remonte vers l'épaule en pointe aiguë. Plus habillé, on le trouve sur les vestes croisées, les smokings et l'habit.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-rev-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Laquelle a un revers châle ?",
+      "choix": [
+        "Revers châle",
+        "Revers cranté",
+        "Revers en pointe",
+        "Sans revers"
+      ],
+      "juste": 0,
+      "choix_images": [
+        {
+          "src": "/questions/revers/chale.svg",
+          "alt": "Une veste dont le revers dessine une seule courbe arrondie, sans encoche ni pointe."
+        },
+        {
+          "src": "/questions/revers/cran.svg",
+          "alt": "Une veste dont les revers, sous le col, forment une petite encoche ouverte, comme un cran triangulaire."
+        },
+        {
+          "src": "/questions/revers/pointe.svg",
+          "alt": "Une veste dont les revers remontent en pointes aiguës vers les épaules."
+        },
+        {
+          "src": "/questions/revers/sans-revers.svg",
+          "alt": "Une veste sans revers, fermée jusqu'en haut par un petit col droit."
+        }
+      ],
+      "explication": "Le revers châle dessine une seule courbe, sans encoche. On le voit surtout sur les smokings.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-rev-0004",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Quels revers trouve-t-on presque toujours sur une veste croisée ?",
+      "choix": [
+        "Des revers en pointe",
+        "Des revers châle",
+        "Des revers crantés",
+        "Pas de revers"
+      ],
+      "juste": 0,
+      "explication": "La veste croisée porte presque toujours des revers en pointe, qui accompagnent la ligne des deux rangées de boutons.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    }
+  ]
+}

@@ -34,6 +34,14 @@
 .lecteur .theme span + span::before { content: '·'; margin-right: 10px; opacity: .5; }
 .lecteur .question { font-size: 1.6rem; line-height: 1.2; margin: 0 0 24px; text-wrap: balance; }
 .lecteur .choix { display: grid; gap: 10px; }
+/* Choix en images (nœuds de cravate…) : une grille de 2 × 2, l'image au centre, son nom dessous une fois corrigé. */
+.lecteur .choix.en-images { grid-template-columns: 1fr 1fr; }
+.lecteur .choix.en-images .reponse { position: relative; justify-content: center; padding: 30px 8px 8px; }
+.lecteur .choix.en-images .reponse::before { position: absolute; top: 10px; left: 10px; }
+.lecteur .choix.en-images .reponse::after { position: absolute; top: 8px; right: 8px; }
+.lecteur .vignette { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
+.lecteur .vignette img { display: block; width: 100%; max-width: 160px; max-height: 22dvh; object-fit: contain; }
+.lecteur .vignette .nom { font-size: .95rem; text-align: center; }
 /* Image d'une question (un tableau) : jamais plus haute que le quart de l'écran, pour garder les choix visibles. */
 .lecteur .tableau { margin: -8px 0 20px; text-align: center; }
 .lecteur .tableau img {
@@ -175,6 +183,26 @@
 .lecteur .jauge .borne { fill: var(--encre-douce); font: 500 12px var(--police-texte); }
 .lecteur .jauge-pas { display: flex; gap: 12px; }
 .lecteur .jauge-pas button { width: 44px; height: 44px; border-radius: 50%; background: var(--blanc); font: 600 1.4rem var(--police-texte); color: var(--encre); }
+
+/* L'ordre : on touche les étapes une à une, chacune prend son numéro. */
+.lecteur .ordre { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.lecteur .etape-ordre {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 12px 16px;
+  border: 3px solid transparent; border-radius: var(--arrondi); background: var(--blanc);
+  font: 500 1.05rem var(--police-texte); color: var(--encre); text-align: left; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.lecteur .etape-ordre:disabled { cursor: default; }
+.lecteur .etape-ordre .rang {
+  display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%;
+  border: 2px solid var(--encre-douce); font-weight: 700; font-size: .95rem;
+}
+.lecteur .etape-ordre[aria-pressed='true'] { border-color: var(--sinople); background: var(--sinople-clair); }
+.lecteur .etape-ordre[aria-pressed='true'] .rang { background: var(--sinople); border-color: var(--sinople); color: var(--blanc); }
+.lecteur .etape-ordre.juste { border-color: var(--juste); }
+.lecteur .etape-ordre.faux { border-color: var(--faux); background: color-mix(in srgb, var(--faux) 15%, var(--blanc)); }
+.lecteur .etape-ordre.faux .rang { background: var(--faux); border-color: var(--faux); }
+.lecteur .etape-ordre .ton-rang { margin-left: auto; font-size: .85rem; color: var(--faux); font-weight: 600; }
 
 /* Les pastilles : plusieurs bonnes réponses à cocher. */
 .lecteur .pastilles { display: flex; flex-wrap: wrap; gap: 8px; }

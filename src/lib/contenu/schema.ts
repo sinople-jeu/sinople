@@ -24,10 +24,20 @@ const commun = {
   source: texte('la source'),
 };
 
+/**
+ * Choix en images (des nœuds de cravate…) : on clique sur une des 4 images.
+ * Le nom du choix (dans `choix`) n'apparaît qu'après la réponse ; `alt` décrit l'image sans donner la réponse.
+ */
+export const imageChoix = z.object({
+  src: z.string().regex(/^(https:\/\/|\/)/, "l'adresse de l'image commence par https:// ou /"),
+  alt: texte("la description de l'image (alt)"),
+});
+
 export const questionQcm = z.object({
   ...commun,
   type: z.literal('qcm'),
   choix: z.array(texte('un choix')).length(4, 'un QCM a exactement 4 choix'),
+  choix_images: z.array(imageChoix).length(4, 'il faut 4 images, une par choix').optional(),
   juste: z.number().int().min(0, 'juste doit être entre 0 et 3').max(3, 'juste doit être entre 0 et 3'),
 });
 
@@ -111,8 +121,15 @@ export const questionRegistre = z
     if (!q.choix.includes(q.juste)) ctx.addIssue({ code: 'custom', path: ['juste'], message: 'juste doit être écrit exactement comme un des choix' });
   });
 
-export const question = z.discriminatedUnion('type', [questionQcm, questionCarte, questionSaisie, questionMolette, questionJauge, questionPastilles, questionRegistre], {
-  error: 'type doit valoir qcm, carte, saisie, molette, jauge, pastilles ou registre',
+/** Ordre : des étapes (les plats d'un repas…) à remettre dans l'ordre ; `elements` est écrit dans le bon ordre, le jeu les mélange. */
+export const questionOrdre = z.object({
+  ...commun,
+  type: z.literal('ordre'),
+  elements: z.array(texte('un élément')).min(3, "il faut au moins 3 éléments à remettre dans l'ordre").max(6, '6 éléments au maximum'),
+});
+
+export const question = z.discriminatedUnion('type', [questionQcm, questionCarte, questionSaisie, questionMolette, questionJauge, questionPastilles, questionRegistre, questionOrdre], {
+  error: 'type doit valoir qcm, carte, saisie, molette, jauge, pastilles, registre ou ordre',
 });
 
 export const lecon = z.object({

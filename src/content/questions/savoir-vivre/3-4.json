@@ -1,0 +1,228 @@
+{
+  "id": "savoir-vivre-3-4",
+  "theme": "savoir-vivre",
+  "etape": 3,
+  "lecon": 4,
+  "titre": "Les plats qui piègent",
+  "intro": "Caviar, moules, spaghettis : certains plats trahissent le rustre dès la première bouchée. Le lapin, lui, ne se fait pas prendre.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-pie-0001",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Avec quelle cuillère sert-on le caviar ?",
+      "choix": [
+        "En argent",
+        "En inox",
+        "En nacre",
+        "En vermeil"
+      ],
+      "juste": 2,
+      "explication": "On le sert avec une cuillère en nacre, en corne ou en os : le métal, l'argent surtout, laisse un goût métallique aux œufs.",
+      "source": "Wikipédia, « Caviar »"
+    },
+    {
+      "id": "viv-pie-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment déguste-t-on le caviar ?",
+      "choix": [
+        "En petite quantité, nature ou sur un blini, sans l'étaler",
+        "Étalé sur du pain beurré",
+        "Mélangé à de la crème",
+        "À grandes cuillerées"
+      ],
+      "juste": 0,
+      "explication": "On le prend en petite quantité, nature ou posé sur un blini, sans l'écraser ni l'étaler. Les connaisseurs le goûtent parfois sur le dos de la main, mais c'est un geste de dégustation, pas de table.",
+      "source": "Wikipédia, « Caviar »"
+    },
+    {
+      "id": "viv-pie-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À quoi sert le couteau à poisson ?",
+      "choix": [
+        "À couper le poisson comme une viande",
+        "À détacher les filets et écarter les arêtes",
+        "À retirer les écailles",
+        "À servir la sauce"
+      ],
+      "juste": 1,
+      "explication": "Le couteau à poisson, à lame large et sans tranchant, ne coupe pas : il soulève les filets et écarte les arêtes, la chair du poisson étant assez tendre.",
+      "source": "Wikipédia, « Couteau à poisson »"
+    },
+    {
+      "id": "viv-pie-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Une arête dans la bouche : que fait-on ?",
+      "choix": [
+        "On la crache dans sa serviette",
+        "On la retire discrètement avec les doigts et on la pose au bord de l'assiette",
+        "On l'avale",
+        "On la pose sur la nappe"
+      ],
+      "juste": 1,
+      "explication": "On la retire discrètement entre deux doigts et on la pose sur le bord de son assiette.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0005",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Comment mange-t-on des moules sans fourchette à moules ?",
+      "choix": [
+        "Avec un couteau",
+        "À la cuillère à soupe",
+        "Avec la première coquille vide, comme une pince",
+        "On aspire directement la coquille"
+      ],
+      "juste": 2,
+      "explication": "La première moule mangée fournit l'outil : sa coquille vide sert de pince pour attraper les suivantes.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "À quoi sert le rince-doigts ?",
+      "choix": [
+        "À y tremper le bout des doigts",
+        "À se laver les mains entièrement",
+        "À rincer ses couverts",
+        "À boire entre deux plats"
+      ],
+      "juste": 0,
+      "explication": "Cette petite coupelle d'eau tiède, souvent citronnée, arrive avec les fruits de mer : on y trempe seulement le bout des doigts, puis on les essuie dans sa serviette.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0007",
+      "type": "ordre",
+      "niveau": "moyen",
+      "q": "Remets dans l'ordre les gestes pour manger des spaghettis.",
+      "elements": [
+        "Piquer quelques brins avec la fourchette",
+        "Les enrouler contre le bord de l'assiette",
+        "Porter la fourchette à la bouche"
+      ],
+      "explication": "On pique quelques brins, on les enroule contre le bord de l'assiette, puis on les porte à la bouche. On ne coupe pas les spaghettis, et en Italie, les adultes se servent rarement d'une cuillère pour les enrouler.",
+      "source": "Wikipédia (anglais), « Spaghetti » (manières de table)"
+    },
+    {
+      "id": "viv-pie-0008",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Une grande feuille de salade dans l'assiette : que fait-on ?",
+      "choix": [
+        "On la coupe au couteau en petits morceaux",
+        "On la plie avec la fourchette",
+        "On la prend avec les doigts",
+        "On la laisse"
+      ],
+      "juste": 1,
+      "explication": "Traditionnellement, on plie la feuille avec la fourchette. L'explication habituelle : le vinaigre noircissait autrefois les lames en argent. Avec l'inox, la couper est toléré, mais la plier reste plus élégant.",
+      "source": "France Hotel Guide, « Les 11 commandements de l'étiquette française à table »"
+    },
+    {
+      "id": "viv-pie-0009",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Un noyau d'olive : comment s'en débarrasse-t-on ?",
+      "choix": [
+        "On le crache dans l'assiette",
+        "On le pose sur la nappe",
+        "On le retire dans le creux de la main ou sur la cuillère, puis on le pose au bord de l'assiette",
+        "On l'avale"
+      ],
+      "juste": 2,
+      "explication": "Discrètement : dans le creux de la main ou sur la cuillère, puis au bord de l'assiette. Jamais craché, jamais sur la nappe.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0010",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Une crème ou un sorbet se mangent…",
+      "choix": [
+        "À la fourchette",
+        "À la cuillère",
+        "Au couteau et à la fourchette",
+        "Avec les doigts"
+      ],
+      "juste": 1,
+      "explication": "Crèmes et sorbets se mangent à la cuillère ; une tarte, à la fourchette, aidée si besoin de la cuillère.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0011",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Dans un dîner formel, comment mange-t-on une poire ?",
+      "choix": [
+        "En croquant dedans",
+        "Pelée, au couteau et à la fourchette",
+        "Coupée en deux avec les doigts",
+        "À la cuillère"
+      ],
+      "juste": 1,
+      "explication": "En dîner formel, les fruits se mangent au couteau et à la fourchette : on pèle la poire, on la coupe en quartiers, on retire le cœur.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    },
+    {
+      "id": "viv-pie-0012",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Lequel de ces couverts dit « j'ai fini » ?",
+      "choix": [
+        "En V renversé",
+        "Parallèles, en biais",
+        "Croisés en X",
+        "Sur la nappe"
+      ],
+      "juste": 1,
+      "choix_images": [
+        {
+          "src": "/questions/couverts/pause.svg",
+          "alt": "Fourchette et couteau posés en V renversé dans l'assiette, pointes rapprochées vers le haut."
+        },
+        {
+          "src": "/questions/couverts/fini.svg",
+          "alt": "Fourchette et couteau posés côte à côte dans l'assiette, parallèles, en biais vers le bas à droite."
+        },
+        {
+          "src": "/questions/couverts/croises.svg",
+          "alt": "Fourchette et couteau croisés en X au milieu de l'assiette."
+        },
+        {
+          "src": "/questions/couverts/nappe.svg",
+          "alt": "Fourchette et couteau reposés sur la nappe, de chaque côté de l'assiette vide."
+        }
+      ],
+      "explication": "Fourchette et couteau côte à côte, parallèles, en biais vers le bas à droite (comme une aiguille sur 4 h 20) : le plat peut être débarrassé. Posés en V renversé, ils disent « je fais une pause ». On ne les repose jamais sur la nappe.",
+      "source": "Zwilling, magazine, « Placer les couverts correctement et dresser la table »"
+    },
+    {
+      "id": "viv-pie-0013",
+      "type": "pastilles",
+      "niveau": "difficile",
+      "q": "Lesquelles sont de bonnes manières à table ?",
+      "choix": [
+        "Servir le caviar à la cuillère en nacre",
+        "Plier sa feuille de salade avec la fourchette",
+        "Tremper le bout des doigts dans le rince-doigts",
+        "Couper ses spaghettis au couteau",
+        "Cracher son noyau dans l'assiette",
+        "Poser ses couverts sur la nappe à la fin"
+      ],
+      "justes": [
+        0,
+        1,
+        2
+      ],
+      "explication": "Nacre pour le caviar, salade pliée, bout des doigts dans le rince-doigts : oui. Spaghettis coupés, noyau craché et couverts sur la nappe : non.",
+      "source": "UFE, « Les bonnes manières à la française : à table »"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "id": "savoir-vivre-2-2",
+  "theme": "savoir-vivre",
+  "etape": 2,
+  "lecon": 2,
+  "titre": "Les mots du tailleur",
+  "intro": "Revers, boutonnière milanaise, Prince-de-Galles : le lapin parle couramment la langue des tailleurs.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-mot-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Sur une veste, que sont les revers ?",
+      "choix": [
+        "Le bas des manches",
+        "Les deux pans du col rabattus sur la poitrine",
+        "Les poches du bas",
+        "La doublure intérieure"
+      ],
+      "juste": 1,
+      "explication": "Les revers sont le prolongement du col, rabattus de chaque côté de la poitrine. Leur forme et leur largeur changent beaucoup l'allure d'une veste.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-mot-0002",
+      "type": "pastilles",
+      "niveau": "moyen",
+      "q": "Quelles sont les trois grandes formes de revers ?",
+      "choix": [
+        "Cran",
+        "Pointe",
+        "Châle",
+        "Plastron",
+        "Volant",
+        "Raglan"
+      ],
+      "justes": [
+        0,
+        1,
+        2
+      ],
+      "explication": "Le revers cranté (le plus courant), le revers en pointe (plus habillé) et le revers châle, arrondi et sans cran. Le plastron est le devant de la chemise de soirée ; le raglan, une forme de manche.",
+      "source": "Wikipédia (anglais), « Lapel »"
+    },
+    {
+      "id": "viv-mot-0003",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Sur un smoking, quels revers sont les plus traditionnels ?",
+      "choix": [
+        "En pointe ou en châle",
+        "Crantés uniquement",
+        "Sans revers",
+        "En velours côtelé"
+      ],
+      "juste": 0,
+      "explication": "Le smoking classique a des revers en pointe ou en châle, couverts de soie. Le revers cranté existe, mais il fait plus costume de jour.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    },
+    {
+      "id": "viv-mot-0004",
+      "type": "qcm",
+      "niveau": "difficile",
+      "q": "Qu'est-ce qu'une boutonnière milanaise ?",
+      "choix": [
+        "Un bouton recouvert de tissu",
+        "Une boutonnière cachée sous le col",
+        "Une boutonnière brodée main, en relief, sur le revers",
+        "Une boutonnière en cuir"
+      ],
+      "juste": 2,
+      "explication": "C'est une boutonnière cousue à la main avec un fil de soie sur un cordonnet, ce qui la met en relief. Placée sur le revers, elle sert à porter une fleur et signe une veste faite main.",
+      "source": "Suitsupply, « The hallmarks of a quality suit »"
+    },
+    {
+      "id": "viv-mot-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Le Prince-de-Galles, c'est…",
+      "choix": [
+        "Un nœud de cravate",
+        "Un motif à carreaux",
+        "Une coupe de veste croisée",
+        "Un tissu de soie"
+      ],
+      "juste": 1,
+      "explication": "C'est un motif à carreaux né en Écosse (le « glen check »), rendu célèbre par les princes de Galles, futurs Édouard VII et Édouard VIII. Le nœud de cravate, c'est le Windsor.",
+      "source": "Wikipédia (anglais), « Glen plaid »"
+    },
+    {
+      "id": "viv-mot-0006",
+      "type": "registre",
+      "niveau": "moyen",
+      "q": "Quel motif à petits damiers dentelés s'appelle « houndstooth » (dent de chien) en anglais ?",
+      "choix": [
+        "Pied-de-poule",
+        "Prince-de-Galles",
+        "Chevron",
+        "Tartan",
+        "Madras",
+        "Vichy",
+        "Fil-à-fil",
+        "Œil-de-perdrix",
+        "Pois",
+        "Rayure tennis",
+        "Argyle",
+        "Seersucker"
+      ],
+      "juste": "Pied-de-poule",
+      "explication": "Le pied-de-poule, souvent noir et blanc, doit son nom français à la forme d'une patte de poule ; les Anglais y voient une dent de chien.",
+      "source": "Wikipédia, « Pied-de-poule »"
+    },
+    {
+      "id": "viv-mot-0007",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Qu'est-ce que le revers d'un pantalon ?",
+      "choix": [
+        "La poche arrière",
+        "Le bas retourné vers l'extérieur",
+        "La ceinture",
+        "Le pli repassé"
+      ],
+      "juste": 1,
+      "explication": "Le revers est le bas du pantalon replié vers l'extérieur. Il alourdit le tombé ; on n'en met jamais sur un pantalon de smoking.",
+      "source": "Gentleman's Gazette, « Black Tie Guide »"
+    }
+  ]
+}

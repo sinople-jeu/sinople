@@ -1,0 +1,134 @@
+{
+  "id": "savoir-vivre-1-1",
+  "theme": "savoir-vivre",
+  "etape": 1,
+  "lecon": 1,
+  "titre": "Le costume bien taillé",
+  "intro": "À la cour, on juge l'habit avant d'écouter celui qui le porte. Épaules, manches, longueur : le lapin repère au premier coup d'œil un costume mal coupé.",
+  "epreuve": false,
+  "questions": [
+    {
+      "id": "viv-cou-0001",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Sur une veste bien taillée, où s'arrête la couture de l'épaule ?",
+      "choix": [
+        "Au bout de l'os de l'épaule",
+        "Deux doigts plus loin, sur le haut du bras",
+        "À mi-chemin entre le cou et l'épaule",
+        "Peu importe, du moment que la veste ferme"
+      ],
+      "juste": 0,
+      "explication": "La couture tombe pile au bout de l'épaule. Plus loin, la veste pend et fait trop grande ; plus près du cou, elle tire et plisse le haut des manches.",
+      "source": "Suitsupply, « How it should fit » ; T.M. Lewin, « How a Suit Should Fit »"
+    },
+    {
+      "id": "viv-cou-0002",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Quelle retouche est la plus difficile, souvent impossible, sur une veste ?",
+      "choix": [
+        "Raccourcir les manches",
+        "Reprendre les épaules",
+        "Cintrer la taille",
+        "Changer les boutons"
+      ],
+      "juste": 1,
+      "explication": "Les épaules portent toute la structure de la veste (épaulettes, emmanchures, col). Les reprendre revient presque à la refaire. On choisit donc une veste à la taille de ses épaules : le reste se retouche.",
+      "source": "Suitsupply, « How it should fit » ; T.M. Lewin, « How a Suit Should Fit »"
+    },
+    {
+      "id": "viv-cou-0003",
+      "type": "molette",
+      "niveau": "moyen",
+      "q": "Bras le long du corps, de combien la manchette de la chemise dépasse-t-elle de la manche de la veste ?",
+      "min": 0,
+      "max": 5,
+      "pas": 0.5,
+      "juste": 1,
+      "unite": "cm",
+      "tolerance": 0.5,
+      "explication": "On laisse voir environ 1 à 1,5 cm de manchette. Elle protège la veste de l'usure au poignet et allonge le bras. Une manche qui cache tout fait paraître la veste trop grande. La molette compte juste de 0,5 à 1,5 cm.",
+      "source": "T.M. Lewin, « How a Suit Should Fit » ; Suitsupply, « How it should fit »"
+    },
+    {
+      "id": "viv-cou-0004",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Jusqu'où descend une veste de costume classique ?",
+      "choix": [
+        "Jusqu'à la ceinture",
+        "Elle couvre les fesses",
+        "Jusqu'à mi-cuisse",
+        "Jusqu'au genou"
+      ],
+      "juste": 1,
+      "explication": "La veste classique couvre les fesses. Le test du tailleur : bras le long du corps, son bas arrive à peu près au creux des doigts repliés. Les vestes très courtes sont une mode, pas la règle.",
+      "source": "T.M. Lewin, « How a Suit Should Fit » ; The Art of Manliness, « How a Suit Should Fit: A Visual Guide »"
+    },
+    {
+      "id": "viv-cou-0005",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Veste fermée, des plis en forme de X partent du bouton. Qu'est-ce que cela veut dire ?",
+      "choix": [
+        "La veste est trop serrée",
+        "La veste est trop grande",
+        "Le bouton est mal cousu",
+        "Rien : c'est le signe d'une belle coupe"
+      ],
+      "juste": 0,
+      "explication": "Ces plis en X montrent que le tissu tire autour du bouton : la veste est trop serrée. Bien ajustée, elle se ferme à plat et laisse glisser une main à plat sur la poitrine.",
+      "source": "Suitsupply, « How it should fit » ; The Art of Manliness, « How a Suit Should Fit: A Visual Guide »"
+    },
+    {
+      "id": "viv-cou-0006",
+      "type": "qcm",
+      "niveau": "moyen",
+      "q": "Comment s'appelle le pli que fait le bas du pantalon en touchant la chaussure ?",
+      "choix": [
+        "La cassure",
+        "Le revers",
+        "Le pli permanent",
+        "L'ourlet"
+      ],
+      "juste": 0,
+      "explication": "C'est la cassure (« break » en anglais). Le revers est le bas du pantalon retourné vers l'extérieur, le pli permanent est la ligne repassée devant la jambe, et l'ourlet est la finition cousue du bas.",
+      "source": "BonneGueule, guides du pantalon de costume ; The Art of Manliness, « How a Suit Should Fit: A Visual Guide »"
+    },
+    {
+      "id": "viv-cou-0007",
+      "type": "qcm",
+      "niveau": "facile",
+      "q": "Pour un costume d'aujourd'hui, quelle cassure de pantalon conseille-t-on le plus souvent ?",
+      "choix": [
+        "Aucune ou légère : un seul pli sur la chaussure",
+        "Pleine : plusieurs plis en accordéon",
+        "Le pantalon doit frôler le sol au talon",
+        "Le pantalon doit s'arrêter au-dessus de la cheville"
+      ],
+      "juste": 0,
+      "explication": "Le pantalon tombe droit sans coller à la jambe et touche la chaussure avec au plus un léger pli. La cassure pleine, plus ample, se portait davantage autrefois : aujourd'hui, elle fait vite tire-bouchon.",
+      "source": "Suitsupply, « How it should fit » ; T.M. Lewin, « How a Suit Should Fit »"
+    },
+    {
+      "id": "viv-cou-0008",
+      "type": "pastilles",
+      "niveau": "difficile",
+      "q": "Lesquels de ces signes trahissent un costume mal ajusté ?",
+      "choix": [
+        "La manche cache toute la manchette de la chemise",
+        "Le col de la veste décolle de celui de la chemise",
+        "La couture d'épaule tombe sur le haut du bras",
+        "Le pantalon fait plusieurs plis en accordéon sur la chaussure",
+        "La veste couvre les fesses",
+        "La manchette dépasse d'un centimètre",
+        "Le pantalon tombe droit sans coller à la jambe",
+        "La veste se ferme sans faire de plis"
+      ],
+      "justes": [0, 1, 2, 3],
+      "explication": "Manche trop longue, col qui bâille dans le dos, épaules trop larges et pantalon trop long sont les défauts classiques. Les quatre autres décrivent au contraire un costume bien taillé.",
+      "source": "Suitsupply, « How it should fit » ; T.M. Lewin, « How a Suit Should Fit »"
+    }
+  ]
+}

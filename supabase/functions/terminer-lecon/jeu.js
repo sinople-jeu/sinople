@@ -165,6 +165,9 @@ function pointsPastilles(cochees, justes) {
   const pieges = c.length - bonnes;
   return Math.round(P2.pastilles_max * Math.max(0, bonnes - pieges) / justes.length);
 }
+function ordreJuste(rangs, n) {
+  return rangs.length === n && rangs.every((k, i) => k === i);
+}
 
 // src/lib/jeu/correction.ts
 function corrigerQuestion(q, r) {
@@ -186,6 +189,11 @@ function corrigerQuestion(q, r) {
     case "pastilles": {
       const cochees = Array.isArray(r) ? [...new Set(r.filter((x) => typeof x === "number"))] : [];
       return { juste: pastillesJustes(cochees, q.justes), points: pointsPastilles(cochees, q.justes) };
+    }
+    case "ordre": {
+      const rangs = Array.isArray(r) ? r.filter((x) => typeof x === "number") : [];
+      const juste = ordreJuste(rangs, q.elements.length);
+      return { juste, points: pointsQcm(juste) };
     }
     case "saisie": {
       const textes = Array.isArray(r) ? r.filter((x) => typeof x === "string").slice(0, 200) : [];

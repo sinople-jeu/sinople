@@ -3,7 +3,7 @@
 // lui-même au lieu de croire celui envoyé par l'appareil.
 import { pointsQcm, pointsSaisie, bilanLecon, type Bilan } from './points';
 import { estAcceptee, trouverReponse, saisieJuste } from './reponses';
-import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles } from './formats';
+import { estimationJuste, pointsEstimation, pastillesJustes, pointsPastilles, ordreJuste } from './formats';
 import { regles } from './regles';
 
 /** Ce que le joueur a répondu : un numéro (QCM), une valeur (molette, jauge), des numéros (pastilles), un texte (registre), des textes (saisie). */
@@ -14,6 +14,7 @@ type Q =
   | { id: string; type: 'registre'; juste: string }
   | { id: string; type: 'molette' | 'jauge'; juste: number; tolerance?: number }
   | { id: string; type: 'pastilles'; justes: number[] }
+  | { id: string; type: 'ordre'; elements: string[] }
   | { id: string; type: 'saisie'; reponses: string[][] }
   | { id: string; type: 'carte' };
 
@@ -36,6 +37,11 @@ export function corrigerQuestion(q: Q, r: ReponseBrute): { juste: boolean; point
     case 'pastilles': {
       const cochees = Array.isArray(r) ? [...new Set(r.filter((x): x is number => typeof x === 'number'))] : [];
       return { juste: pastillesJustes(cochees, q.justes), points: pointsPastilles(cochees, q.justes) };
+    }
+    case 'ordre': {
+      const rangs = Array.isArray(r) ? r.filter((x): x is number => typeof x === 'number') : [];
+      const juste = ordreJuste(rangs, q.elements.length);
+      return { juste, points: pointsQcm(juste) };
     }
     case 'saisie': {
       const textes = Array.isArray(r) ? r.filter((x): x is string => typeof x === 'string').slice(0, 200) : [];
